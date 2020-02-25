@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LoginWindow</class>
+ <widget class="QDialog" name="LoginWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>281</width>
+    <height>394</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Login</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QLineEdit{
+border: 0;
+background-color:  #1F1F1F;
+margin: 30px auto;
+border: 2px solid #3498db;
+padding: 14px 10px;
+outline: none;
+color: white;
+border-radius: 24px;
+}
+
+QLineEdit::hover{
+border-color:  #2ecc71;
+}
+
+
+QPushButton{
+border: 0;
+background-color:  #1F1F1F;
+margin: 30px auto;
+border: 2px solid #3498db;
+padding: 14px 10px;
+outline: none;
+color: white;
+border-radius: 24px;
+}
+
+QPushButton::pressed{
+background-color: rgb(100, 100, 100);
+}
+
+QPushButton::hover{
+border-color:  #2ecc71;
+}
+
+QLabel{
+color: white;
+}
+
+QDialog{
+background-color:  #1F1F1F;
+}</string>
+  </property>
+  <widget class="Button" name="loginBtn">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>250</y>
+     <width>180</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Login</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblLogin">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>29</y>
+     <width>281</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>LOGIN</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="Textbox" name="usernameTxt">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>60</y>
+     <width>281</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="placeholderText">
+    <string>Username</string>
+   </property>
+  </widget>
+  <widget class="Textbox" name="passwordTxt">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>150</y>
+     <width>281</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="placeholderText">
+    <string>Password</string>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Textbox</class>
+   <extends>QLineEdit</extends>
+   <header>textbox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Button</class>
+   <extends>QPushButton</extends>
+   <header>button.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>usernameTxt</tabstop>
+  <tabstop>passwordTxt</tabstop>
+  <tabstop>loginBtn</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

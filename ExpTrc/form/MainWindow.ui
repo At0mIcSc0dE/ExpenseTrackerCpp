@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>680</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QLineEdit{
+border: 0;
+background-color:  #1F1F1F;
+border: 2px solid #3498db;
+padding: 14px 10px;
+outline: none;
+color: white;
+border-radius: 24px;
+}
+
+QLineEdit::hover{
+border-color:  #2ecc71;
+}
+
+QListWidget{
+border: 0;
+background-color:  #1F1F1F;
+border: 2px solid #3498db;
+padding: 14px 10px;
+outline: none;
+color: white;
+border-radius: 24px;
+}
+
+QListWidget::hover{
+border-color:  #2ecc71;
+}
+
+QPlainTextEdit{
+border: 0;
+background-color:  #1F1F1F;
+border: 2px solid #3498db;
+padding: 14px 10px;
+outline: none;
+color: white;
+border-radius: 24px;
+}
+
+QPlainTextEdit::hover{
+border-color:  #2ecc71;
+}
+
+QMenuBar{
+background-color:  #1F1F1F;
+color: white;
+}
+
+QComboBox{
+border: 0;
+background-color:  #1F1F1F;
+border: 2px solid #3498db;
+padding: 14px 10px;
+outline: none;
+color: white;
+border-radius: 24px;
+}
+
+
+
+
+
+QComboBox::hover{
+border-color:  #2ecc71;
+}
+
+QSpinBox{
+border: 0;
+background-color:  #1F1F1F;
+border: 2px solid #3498db;
+padding: 14px 10px;
+outline: none;
+color: white;
+border-radius: 24px;
+}
+
+QSpinBox::hover{
+border-color:  #2ecc71;
+}
+
+QCheckBox{
+border: 0;
+background-color:  #1F1F1F;
+border: 2px solid #3498db;
+padding: 14px 10px;
+outline: none;
+color: white;
+border-radius: 24px;
+}
+
+QCheckBox::hover{
+border-color:  #2ecc71;
+}
+
+QPushButton{
+border: 0;
+background-color:  #1F1F1F;
+border: 2px solid #3498db;
+padding: 14px 10px;
+outline: none;
+color: white;
+border-radius: 24px;
+}
+
+QPushButton::pressed{
+background-color: rgb(100, 100, 100);
+}
+
+QPushButton::hover{
+border-color:  #2ecc71;
+}
+
+QLabel{
+color: white;
+}
+
+QMainWindow{
+background-color:  #1F1F1F;
+}
+
+
+QComboBox::drop-down {
+border-width: 0px;
+}
+
+ 
+QComboBox::down-arrow {
+image: url(noimg); border-width: 0px;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="Listbox" name="lstbox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>180</width>
+      <height>340</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+   </widget>
+   <widget class="Listbox" name="lstboxMonth">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>400</y>
+      <width>180</width>
+      <height>230</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+   </widget>
+   <widget class="Button" name="deleteBtn">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>130</y>
+      <width>100</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete</string>
+    </property>
+   </widget>
+   <widget class="Button" name="dupBtn">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>210</y>
+      <width>100</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Dublicate</string>
+    </property>
+   </widget>
+   <widget class="Button" name="clearBtn">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>290</y>
+      <width>100</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear List</string>
+    </property>
+   </widget>
+   <widget class="Button" name="moreInfoBtn">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>370</y>
+      <width>100</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>More Info</string>
+    </property>
+   </widget>
+   <widget class="Button" name="monthGraphBtn">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>530</y>
+      <width>100</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Month-Graph</string>
+    </property>
+   </widget>
+   <widget class="Button" name="yearGraphBtn">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>450</y>
+      <width>100</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Year-Graph</string>
+    </property>
+   </widget>
+   <widget class="Listbox" name="lstboxTakings">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>20</y>
+      <width>180</width>
+      <height>340</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+   </widget>
+   <widget class="Listbox" name="lstboxTakingsMonth">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>400</y>
+      <width>180</width>
+      <height>230</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblInfoMonthly">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>380</y>
+      <width>190</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Monthly Expenses</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblInfoOneTime">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>0</y>
+      <width>180</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>One-Time Expenses</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblInfoOneTimeTak">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>0</y>
+      <width>180</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>One-Time Takings</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblInfoMonthlyTak">
+    <property name="geometry">
+     <rect>
+      <x>1009</x>
+      <y>380</y>
+      <width>190</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Monthly Income Sources</string>
+    </property>
+   </widget>
+   <widget class="Textbox" name="expNameTxt">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>50</y>
+      <width>230</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>Name</string>
+    </property>
+   </widget>
+   <widget class="Textbox" name="expPriceTxt">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>50</y>
+      <width>230</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>Price</string>
+    </property>
+   </widget>
+   <widget class="Combobox" name="comboboxCur">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>50</y>
+      <width>77</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListView{
+border: 0;
+background-color:  #1F1F1F;
+outline: none;
+color: white;
+}
+</string>
+    </property>
+    <property name="maxVisibleItems">
+     <number>2</number>
+    </property>
+    <property name="maxCount">
+     <number>2</number>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QComboBox::AdjustToContents</enum>
+    </property>
+    <item>
+     <property name="text">
+      <string>Dollar $</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Euro €</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="PlainText" name="expInfoTxt">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>240</y>
+      <width>600</width>
+      <height>120</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="placeholderText">
+     <string>You can write some info about your expense here...</string>
+    </property>
+   </widget>
+   <widget class="Checkbox" name="chbOneTime">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>120</y>
+      <width>160</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>One-Time Expenses</string>
+    </property>
+   </widget>
+   <widget class="Checkbox" name="chbOneTimeTakings">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>120</y>
+      <width>160</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>One-Time Takings</string>
+    </property>
+   </widget>
+   <widget class="Checkbox" name="chbMonthly">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>180</y>
+      <width>160</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Monthly Expenses</string>
+    </property>
+   </widget>
+   <widget class="Checkbox" name="chbMonthlyTakings">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>180</y>
+      <width>160</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Monthly Income Sources</string>
+    </property>
+   </widget>
+   <widget class="Combobox" name="comboboxExpCat">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>400</y>
+      <width>170</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListView{
+border: 0;
+background-color:  #1F1F1F;
+outline: none;
+color: white;
+}</string>
+    </property>
+   </widget>
+   <widget class="Combobox" name="comboboxTakCat">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>400</y>
+      <width>170</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListView{
+border: 0;
+background-color:  #1F1F1F;
+outline: none;
+color: white;
+}
+</string>
+    </property>
+   </widget>
+   <widget class="Combobox" name="comboboxCatInpt">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>150</y>
+      <width>100</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListView{
+border: 0;
+background-color:  #1F1F1F;
+outline: none;
+color: white;
+}</string>
+    </property>
+    <property name="editable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblInfoExpCat">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>380</y>
+      <width>190</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select Expense Category</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblInfoTakCat">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>380</y>
+      <width>180</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select Takings Category</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>480</y>
+      <width>331</width>
+      <height>152</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="layoutTotalTxt">
+     <item>
+      <widget class="QLabel" name="lblTotalIncome">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Your total income: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblTotalExpense">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Your total expenses: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblRemainingBudget">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Your remaining budget: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblRemainingBank">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Your total bank balance: </string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>480</y>
+      <width>201</width>
+      <height>152</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="layoutTotalValues">
+     <item>
+      <widget class="QLabel" name="lblTotalIncomeVal">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblTotalExpVal">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblRemainingVal">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblRemainingBankVal">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="Button" name="addBtn">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>50</y>
+      <width>100</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="expMultiTxt">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>150</y>
+      <width>100</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListView{
+border: 0;
+background-color:  #1F1F1F;
+outline: none;
+color: white;
+}</string>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>0</y>
+      <width>341</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="lblBrutoBudgetTxt">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Your budget: </string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>0</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="lblBudgetValue">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionChange_directory"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionEdit_Expense_Taking"/>
+    <addaction name="actionEdit_Users"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionSearch_Item"/>
+    <addaction name="separator"/>
+    <addaction name="actionChange_Theme"/>
+   </widget>
+   <widget class="QMenu" name="menuLanguage">
+    <property name="title">
+     <string>Language</string>
+    </property>
+    <addaction name="actionEnglish"/>
+    <addaction name="actionGerman"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuLanguage"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionChange_directory">
+   <property name="text">
+    <string>Change directory...</string>
+   </property>
+  </action>
+  <action name="actionEdit_Expense_Taking">
+   <property name="text">
+    <string>Edit Expense/Taking...</string>
+   </property>
+  </action>
+  <action name="actionEdit_Users">
+   <property name="text">
+    <string>Edit Users...</string>
+   </property>
+  </action>
+  <action name="actionSearch_Item">
+   <property name="text">
+    <string>Search Item</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="actionGerman">
+   <property name="text">
+    <string>German</string>
+   </property>
+  </action>
+  <action name="actionChange_Theme">
+   <property name="text">
+    <string>Change Theme</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Listbox</class>
+   <extends>QListWidget</extends>
+   <header>listbox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Button</class>
+   <extends>QPushButton</extends>
+   <header>button.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Textbox</class>
+   <extends>QLineEdit</extends>
+   <header>textbox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Combobox</class>
+   <extends>QComboBox</extends>
+   <header>combobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Checkbox</class>
+   <extends>QCheckBox</extends>
+   <header>checkbox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PlainText</class>
+   <extends>QPlainTextEdit</extends>
+   <header>plaintext.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

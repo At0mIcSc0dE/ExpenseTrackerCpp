@@ -6,7 +6,7 @@
 #include "Database.h"
 #include "Declarations.h"
 
-//VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
+//VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
 const std::string folderPath = "D:/Programming/ProgramFiles/ExpenseTracker/";
 
 

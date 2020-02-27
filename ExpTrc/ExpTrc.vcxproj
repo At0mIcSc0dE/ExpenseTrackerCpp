@@ -59,7 +59,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalIncludeDirectories>D:\Programming\Cpp\Projects\ExpTrc\ExpTrc\src;D:\Programming\Cpp\Projects\ExpTrc\ExpTrc\header;D:\Programming\Cpp\Projects\ExpTrc\ExpTrc\form;D:\Programming\Cpp\Projects\ExpTrc\ExpTrc\x64\Debug\uic\form;D:\Programming\Cpp\Projects\ExpTrc\ExpTrc\x64;D:\Programming\Cpp\Libraries\SQLAPI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;D:\Programming\Cpp\Libraries\SQLAPI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>26444</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -75,7 +75,7 @@
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalIncludeDirectories>D:\Programming\Cpp\Projects\ExpTrc\ExpTrc\src;D:\Programming\Cpp\Projects\ExpTrc\ExpTrc\header;D:\Programming\Cpp\Projects\ExpTrc\ExpTrc\form;D:\Programming\Cpp\Projects\ExpTrc\ExpTrc\x64\Debug\uic\form;D:\Programming\Cpp\Projects\ExpTrc\ExpTrc\x64;D:\Programming\Cpp\Libraries\SQLAPI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;D:\Programming\Cpp\Libraries\SQLAPI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>26444</DisableSpecificWarnings>
     </ClCompile>
     <Link>

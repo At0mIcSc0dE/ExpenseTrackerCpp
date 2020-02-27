@@ -19,14 +19,6 @@ namespace lstbox {
 }
 
 
-//DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE
-Database dtbOnce;
-Database dtbMonth;
-Database dtbTakings;
-Database dtbTakingsMonth;
-Database dtbUser;
-Database dtbCategory;
-
 
 int main(int argc, char* argv[])
 {
@@ -35,13 +27,25 @@ int main(int argc, char* argv[])
 	LoginWindow loginWin;
 
 	//DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE
-	dtbOnce = Database((folderPath + "Expense.db").c_str(), std::string("OneTimeExpenseTable"));
-	dtbMonth = Database((folderPath + "Expense.db").c_str(), std::string("MonthlyExpenseTable"));
-	dtbTakings = Database((folderPath + "Expense.db").c_str(), std::string("OneTimeTakingsTable"));
-	dtbTakingsMonth = Database((folderPath + "Expense.db").c_str(), std::string("MonthlyTakingsTable"));
-	dtbUser = Database((folderPath + "User.db").c_str(), std::string("User"), USER);
-	dtbCategory = Database((folderPath + "Category.db").c_str(), std::string("Category"), CATEGORY);
+	Database dtbOnce((folderPath + "Expense.db").c_str(), std::string("OneTimeExpenseTable"));
+	Database dtbMonth((folderPath + "Expense.db").c_str(), std::string("MonthlyExpenseTable"));
+	Database dtbTakings((folderPath + "Expense.db").c_str(), std::string("OneTimeTakingsTable"));
+	Database dtbTakingsMonth((folderPath + "Expense.db").c_str(), std::string("MonthlyTakingsTable"));
+	Database dtbUser((folderPath + "User.db").c_str(), std::string("User"), USER);
+	Database dtbCategory((folderPath + "Category.db").c_str(), std::string("Category"), CATEGORY);
 
+
+	Records records = dtbOnce.getData("SELECT * FROM OneTimeExpenseTable");
+	QString text;
+	for (auto& record : records) {
+		for (auto& value : record) {
+			text.append(value.c_str() + QString("\n"));
+		}
+	}
+
+	QMessageBox msg;
+	msg.setText(text);
+	msg.show();
 
 	loginWin.show();
 	win.show();

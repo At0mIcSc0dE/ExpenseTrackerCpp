@@ -4,20 +4,25 @@
 #include <sqlite\sqlite3.h>
 #include <qmessagebox.h>
 #include <string>
+#include <vector>
+#include "Declarations.h"
 
 
 #define EXPENSE 1
 #define USER 2
 #define CATEGORY 3
 
+using Record = std::vector<std::string>;
+using Records = std::vector<Record>;
 
 class Database
 {
 public:
 
-	sqlite3* dtb;
+	sqlite3* db;
 	const char* path;
 	std::string table;
+	Records records;
 
 	//DEBUG
 	QMessageBox* msg;
@@ -35,6 +40,9 @@ public:
 	}
 	//DEBUG END
 
+	Records getData(const char* sql);
+
+	void enterData(const char* sql);
 };
 
 

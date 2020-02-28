@@ -59,7 +59,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;D:\Programming\Cpp\Libraries\SQLAPI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;D:\Programming\Cpp\Libraries\SQLAPI\include;D:\Programming\Cpp\Libraries\rapidjson-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>26444</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -75,7 +75,7 @@
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;D:\Programming\Cpp\Libraries\SQLAPI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;D:\Programming\Cpp\Libraries\SQLAPI\include;D:\Programming\Cpp\Libraries\rapidjson-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>26444</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -86,11 +86,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\JSON.cpp" />
     <ClCompile Include="src\LoginWindow.cpp" />
     <ClCompile Include="src\checkbox.cpp" />
     <ClCompile Include="src\button.cpp" />
     <ClCompile Include="src\combobox.cpp" />
-    <ClCompile Include="src\Database.cpp" />
     <ClCompile Include="src\listbox.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MainWindow.cpp" />
@@ -119,8 +119,8 @@
     <QtMoc Include="header\LoginWindow.h" />
     <QtMoc Include="header\textbox.h" />
     <QtMoc Include="header\checkbox.h" />
-    <ClInclude Include="header\Database.h" />
     <ClInclude Include="header\Declarations.h" />
+    <ClInclude Include="header\JSON.h" />
     <ClInclude Include="header\WindowDesign.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

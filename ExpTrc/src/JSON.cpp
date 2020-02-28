@@ -1,8 +1,20 @@
 #include "JSON.h"
 
-JSON::JSON(const char* path)
+
+JSON::JSON(const char* path, const char* startDocument)
 	:path(path)
 {
+	//check if file exists, this is a fast way acording to stackoverflow
+	//create it and parse startDocument
+	struct stat buffer;
+	if (stat(path, &buffer) != 0) {
+		std::ofstream st(path);
+		st.close();
+		
+		d.Parse(startDocument);  //first parse any string and write it then
+		write();
+	}
+
 	read();
 }
 
@@ -19,9 +31,19 @@ void JSON::read() {
 	d.ParseStream(is);
 
 	fclose(fp);
+}
 
-	StringBuffer buffer;
-	Writer<StringBuffer> writer(buffer);
+
+void JSON::write() {
+
+	//output to file
+	FILE* fp = fopen(path, "wb"); // write
+
+	char writeBuffer[65536];
+	FileWriteStream os(fp, writeBuffer, sizeof(writeBuffer));
+
+	Writer<FileWriteStream> writer(os);
 	d.Accept(writer);
 
+	fclose(fp);
 }

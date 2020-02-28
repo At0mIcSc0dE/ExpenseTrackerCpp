@@ -8,6 +8,8 @@ namespace lstbox {
     extern short unsigned int lstboxFocus;
 }
 
+void writeExpenseToJson(const QString& expName, const QString& expPrice, const unsigned short int expMulti, short unsigned int loggedInType, short unsigned int expType, QString& category);
+
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -16,6 +18,8 @@ MainWindow::MainWindow(QWidget* parent)
 
     //DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN
     this->resize(1200, 680);
+    ui.comboboxExpCat->addItem("All");
+    ui.comboboxTakCat->addItem("All");
     this->setMaximumSize(1200, 680);
     this->setMinimumSize(1200, 680);
 
@@ -79,6 +83,7 @@ void MainWindow::MainListboxInsertion() {
     
     if (ui.chbOneTime->isChecked()) {
         if (ui.lstbox->ItemInsert(expName, expPrice, expMulti)) {
+            writeExpenseToJson(expName, expPrice, expMulti, USER, ONETIME, ui.comboboxExpCat->currentText()); //TODO --> doesn't check if a user or a group is logged in, nor does it know which category to add it to
             ui.expNameTxt->clear();
             ui.expPriceTxt->clear();
         }

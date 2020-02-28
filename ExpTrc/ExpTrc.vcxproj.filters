@@ -55,7 +55,7 @@
     <ClCompile Include="src\LoginWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Database.cpp">
+    <ClCompile Include="src\JSON.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -108,7 +108,7 @@
     <ClInclude Include="header\WindowDesign.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="header\Database.h">
+    <ClInclude Include="header\JSON.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

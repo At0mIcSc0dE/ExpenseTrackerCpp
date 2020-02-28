@@ -30,7 +30,7 @@ public:
     {
         if (LoginWindow->objectName().isEmpty())
             LoginWindow->setObjectName(QString::fromUtf8("LoginWindow"));
-        LoginWindow->resize(280, 400);
+        LoginWindow->resize(281, 394);
         LoginWindow->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "border: 0;\n"
 "background-color:  #1F1F1F;\n"
@@ -81,20 +81,20 @@ public:
         loginBtn->setFont(font);
         lblLogin = new QLabel(LoginWindow);
         lblLogin->setObjectName(QString::fromUtf8("lblLogin"));
-        lblLogin->setGeometry(QRect(0, 29, 280, 41));
+        lblLogin->setGeometry(QRect(0, 29, 281, 41));
         QFont font1;
         font1.setPointSize(16);
         lblLogin->setFont(font1);
         lblLogin->setAlignment(Qt::AlignCenter);
         usernameTxt = new Textbox(LoginWindow);
         usernameTxt->setObjectName(QString::fromUtf8("usernameTxt"));
-        usernameTxt->setGeometry(QRect(0, 60, 280, 111));
+        usernameTxt->setGeometry(QRect(0, 60, 281, 111));
         QFont font2;
         font2.setPointSize(14);
         usernameTxt->setFont(font2);
         passwordTxt = new Textbox(LoginWindow);
         passwordTxt->setObjectName(QString::fromUtf8("passwordTxt"));
-        passwordTxt->setGeometry(QRect(0, 150, 280, 111));
+        passwordTxt->setGeometry(QRect(0, 150, 281, 111));
         passwordTxt->setFont(font2);
         QWidget::setTabOrder(usernameTxt, passwordTxt);
         QWidget::setTabOrder(passwordTxt, loginBtn);

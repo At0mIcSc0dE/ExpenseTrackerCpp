@@ -1,2 +1,5 @@
-﻿  main.cpp
-  ExpTrc.vcxproj -> D:\Programming\Cpp\Projects\ExpTrc\x64\Debug\ExpTrc.exe
+﻿  Database.cpp
+  listbox.cpp
+  main.cpp
+  MainWindow.cpp
+  ExpTrc.vcxproj -> D:\Programming\Cpp\Projects\ExpTrc  - Database\x64\Debug\ExpTrc.exe

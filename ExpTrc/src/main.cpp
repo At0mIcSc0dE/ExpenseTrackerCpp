@@ -5,7 +5,7 @@
 #include "JSON.h"
 
 
-//VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
+//VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
 const std::string folderPath = "D:/Programming/ProgramFiles/ExpenseTracker/";
 
 

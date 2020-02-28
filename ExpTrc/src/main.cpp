@@ -1,31 +1,25 @@
 #include "MainWindow.h"
 #include "LoginWindow.h"
-
 #include <qapplication.h>
-
-#include "Database.h"
 #include "Declarations.h"
+#include "JSON.h"
+
 
 //VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
 const std::string folderPath = "D:/Programming/ProgramFiles/ExpenseTracker/";
+
+
+//FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS
 
 
 namespace combobox {
 	const char* currency = "€";
 }
 
+
 namespace lstbox {
 	short unsigned int lstboxFocus = LSTBOX;
 }
-
-
-//DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE
-Database dtbOnce;
-Database dtbMonth;
-Database dtbTakings;
-Database dtbTakingsMonth;
-Database dtbUser;
-Database dtbCategory;
 
 
 int main(int argc, char* argv[])
@@ -34,16 +28,25 @@ int main(int argc, char* argv[])
 	MainWindow win;
 	LoginWindow loginWin;
 
-	//DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE || DATABASE
-	dtbOnce = Database((folderPath + "Expense.db").c_str(), std::string("OneTimeExpenseTable"));
-	dtbMonth = Database((folderPath + "Expense.db").c_str(), std::string("MonthlyExpenseTable"));
-	dtbTakings = Database((folderPath + "Expense.db").c_str(), std::string("OneTimeTakingsTable"));
-	dtbTakingsMonth = Database((folderPath + "Expense.db").c_str(), std::string("MonthlyTakingsTable"));
-	dtbUser = Database((folderPath + "User.db").c_str(), std::string("User"), USER);
-	dtbCategory = Database((folderPath + "Category.db").c_str(), std::string("Category"), CATEGORY);
+	JSON json("D:/Programming/ProgramFiles/ExpenseTracker/jsontest.json");
+	
+	std::string debug = "";
 
+	Value& val = json.d["OneTimeExpense"]["User1"];
+	for (SizeType i = 0; i < val.Size(); ++i) {
+		for (SizeType j = 0; j < val[i].Size(); ++j) {
+
+			debug += val[i][j].GetString();
+		}
+	}
+
+	mmsgDebug(debug.c_str());
 
 	loginWin.show();
 	win.show();
 	return app.exec();
 }
+
+
+
+//FUNCTION DEFINITIONS || FUNCTION DEFINITIONS || FUNCTION DEFINITIONS || FUNCTION DEFINITIONS || FUNCTION DEFINITIONS || FUNCTION DEFINITIONS || FUNCTION DEFINITIONS

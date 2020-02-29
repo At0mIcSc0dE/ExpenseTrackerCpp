@@ -74,15 +74,25 @@ void writeExpenseToJson(const QString& expName, const QString& expPrice, const u
 
 	Value::ConstMemberIterator itr = json.d.FindMember("OneTimeExpense");
 
-	Value OneTimeExp(kObjectType);
-	Value UserID(kArrayType);
-	Value exp(kArrayType);
-	exp.PushBack(Value().SetString(expName.toStdString().c_str(), expName.size(), alloc), alloc);
-	exp.PushBack(Value().SetDouble(expPrice.toDouble()), alloc);
-	UserID.PushBack(exp, alloc);
-	OneTimeExp.AddMember("1", UserID, alloc);
-	json.d.AddMember("OneTimeExpense", OneTimeExp, alloc);
 
+	//Value OneTimeExp(kObjectType);
+	//Value UserID(kArrayType);
+	//Value exp(kArrayType);
+	//exp.PushBack(Value().SetString(expName.toStdString().c_str(), expName.size(), alloc), alloc);
+	//exp.PushBack(Value().SetDouble(expPrice.toDouble()), alloc);
+	//UserID.PushBack(exp, alloc);
+	//OneTimeExp.AddMember("1", UserID, alloc);
+	//json.d.AddMember("OneTimeExpense", OneTimeExp, alloc);
+
+
+	Value v(kArrayType);
+	v.PushBack(Value().SetString(expName.toStdString().c_str(), alloc), alloc);
+	v.PushBack(Value().SetDouble(expPrice.toDouble()), alloc);
+
+
+	if (json.d["OneTimeExpense"]["1"][0].IsArray()) {
+		json.d["OneTimeExpense"]["1"][0].PushBack(v, alloc);
+	}
 
 	json.write();
 

@@ -7,6 +7,7 @@
 #include <rapidjson/filewritestream.h>
 #include <rapidjson/error/en.h>
 #include <rapidjson/document.h>
+#include <rapidjson/pointer.h>
 
 #include <fstream>
 #include <qmessagebox.h>

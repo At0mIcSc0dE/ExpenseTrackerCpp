@@ -19,8 +19,9 @@ class JSON : Document
 {
 public:
 	const char* path;
-
+	
 	Document d;
+	Document::AllocatorType& alloc = d.GetAllocator();
 
 	//StringBuffer buffer;
 	//Writer<StringBuffer> writer(buffer);
@@ -34,6 +35,8 @@ public:
 	void read();
 
 	void write();
+
+	void addExpMember(const char* expType, const char* userID, Value& inVal);
 
 private:
 	QMessageBox* msg;

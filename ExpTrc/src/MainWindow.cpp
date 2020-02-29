@@ -8,7 +8,7 @@ namespace lstbox {
     extern short unsigned int lstboxFocus;
 }
 
-void writeExpenseToJson(const QString& expName, const QString& expPrice, const unsigned short int expMulti, short unsigned int loggedInType, short unsigned int expType, QString& category);
+void writeExpenseToJson(const QString& expName, const QString& expPrice, const QString& expInfo, const unsigned short int expMulti, short unsigned int loggedInType, short unsigned int expType, QString& category);
 
 
 MainWindow::MainWindow(QWidget* parent)
@@ -74,6 +74,7 @@ void MainWindow::MainListboxInsertion() {
     QString& expName = ui.expNameTxt->text();
     QString& expPrice = ui.expPriceTxt->text();
     short unsigned int expMulti = ui.expMultiTxt->text().toInt();
+    QString& expInfo = ui.expInfoTxt->toPlainText();
 
     if (expName == "" || expPrice == NULL) {
         msg = new QMessageBox(QMessageBox::Icon::Critical, "Failed to add object", "Please enter name and price for your expense!");
@@ -83,7 +84,8 @@ void MainWindow::MainListboxInsertion() {
     
     if (ui.chbOneTime->isChecked()) {
         if (ui.lstbox->ItemInsert(expName, expPrice, expMulti)) {
-            writeExpenseToJson(expName, expPrice, expMulti, USER, ONETIME, ui.comboboxExpCat->currentText()); //TODO --> doesn't check if a user or a group is logged in, nor does it know which category to add it to
+            writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, ONETIME, ui.comboboxExpCat->currentText()); 
+            // ^ TODO --> doesn't check if a user or a group is logged in, nor does it know which category to add it to
             ui.expNameTxt->clear();
             ui.expPriceTxt->clear();
         }
@@ -91,18 +93,21 @@ void MainWindow::MainListboxInsertion() {
     }
     else if (ui.chbMonthly->isChecked()) {
         if (ui.lstboxMonth->ItemInsert(expName, expPrice, expMulti)) {
+            writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, MONTHLY, ui.comboboxExpCat->currentText());
             ui.expNameTxt->clear();
             ui.expPriceTxt->clear();
         }
     }
     else if (ui.chbOneTimeTakings->isChecked()) {
         if (ui.lstboxTakings->ItemInsert(expName, expPrice, expMulti)) {
+            writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, ONETIME_T, ui.comboboxExpCat->currentText());
             ui.expNameTxt->clear();
             ui.expPriceTxt->clear();
         }
     }
     else {
         if (ui.lstboxTakingsMonth->ItemInsert(expName, expPrice, expMulti)) {
+            writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, MONTHLY_T, ui.comboboxExpCat->currentText());
             ui.expNameTxt->clear();
             ui.expPriceTxt->clear();
         }

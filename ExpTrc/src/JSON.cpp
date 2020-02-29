@@ -47,3 +47,20 @@ void JSON::write() {
 
 	fclose(fp);
 }
+
+
+void JSON::addExpMember(const char* expType, const char* userID, Value& entry) {
+	
+	
+	if (!d.HasMember(expType)) {
+		Value table(kObjectType);
+		Value UserID(kArrayType);
+
+		table.AddMember(Value().SetString(userID, alloc), UserID, alloc);
+		d.AddMember(Value().SetString(expType, alloc), table, alloc);
+	}
+
+	if (d[expType][userID].IsArray()) {
+		d[expType][userID].PushBack(entry, alloc);
+	}
+}

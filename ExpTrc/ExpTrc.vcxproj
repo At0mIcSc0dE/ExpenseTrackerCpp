@@ -59,14 +59,14 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;D:\Programming\Cpp\Libraries\SQLAPI\include;D:\Programming\Cpp\Libraries\rapidjson-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;$(SolutionDir)..\..\Libraries\SQLAPI\include;$(SolutionDir)..\..\Libraries\rapidjson-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>26444</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>D:\Programming\Cpp\Libraries\SQLAPI\vs2019\x86_64\lib\sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)..\..\Libraries\SQLAPI\vs2019\x86_64\lib\sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -75,14 +75,14 @@
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;D:\Programming\Cpp\Libraries\SQLAPI\include;D:\Programming\Cpp\Libraries\rapidjson-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;$(SolutionDir)..\..\Libraries\SQLAPI\include;$(SolutionDir)..\..\Libraries\rapidjson-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>26444</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>D:\Programming\Cpp\Libraries\SQLAPI\vs2019\x86_64\lib\sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)..\..\Libraries\SQLAPI\vs2019\x86_64\lib\sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -97,6 +97,7 @@
     <ClCompile Include="src\plaintext.cpp" />
     <ClCompile Include="src\spinbox.cpp" />
     <ClCompile Include="src\textbox.cpp" />
+    <ClCompile Include="src\User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="header\MainWindow.h" />
@@ -116,6 +117,7 @@
     <QtMoc Include="header\spinbox.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\User.h" />
     <QtMoc Include="header\LoginWindow.h" />
     <QtMoc Include="header\textbox.h" />
     <QtMoc Include="header\checkbox.h" />

@@ -58,6 +58,9 @@
     <ClCompile Include="src\JSON.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\User.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="MainWindow.qrc">
@@ -109,6 +112,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\JSON.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\User.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

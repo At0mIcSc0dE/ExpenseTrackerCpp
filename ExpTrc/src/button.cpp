@@ -1,3 +1,5 @@
+/*.cpp file for Button class*/
+
 #include "button.h"
 
 

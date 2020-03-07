@@ -1,3 +1,5 @@
+/*.h file for Combobox class, inherits from QComboBox*/
+
 #ifndef COMBOBOX_H
 #define COMBOBOX_H
 

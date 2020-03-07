@@ -1,3 +1,5 @@
+/*.cpp file for JSON class*/
+
 #include "JSON.h"
 
 

@@ -1,3 +1,5 @@
+/*.h file for LoginWindow class, inherits from QDialog*/
+
 #ifndef LOGINWINDOW_H
 #define LOGINWINDOW_H
 

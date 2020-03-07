@@ -1,3 +1,5 @@
+/*.cpp file for Combobox class*/
+
 #include "combobox.h"
 
 

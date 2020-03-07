@@ -1,3 +1,10 @@
+/*.h file for all declarations
+ *Defines LstboxIndexes
+ *Defines USER/GROUP
+ *Defines ExpenseTime
+ *Defines Debug options
+ *Defines global variables*/
+
 #ifndef DECLARATIONS_H
 #define DECLARATIONS_H
 

@@ -1,3 +1,5 @@
+/*main file*/
+
 #include "MainWindow.h"
 #include "LoginWindow.h"
 #include <qapplication.h>
@@ -7,8 +9,7 @@
 
 //VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
 const std::string folderPath = "C:/Programming/ProgramFiles/ExpenseTracker/";
-//JSON json("D:/Programming/ProgramFiles/ExpenseTracker/files.json", "{\"OneTimeExpense\": {\"1\": [[]]},\"MonthlyExpense\": {\"1\": [[]]},\"OneTimeTakings\": {\"1\": [[]]},\"MonthlyTakings\": {\"1\": [[]]},\"Group\": {\"1\": [\"admin\", \"admin\"]},\"User\": {\"2\": [\"Simon\", \"123\"]},\"Category\": {\"All\": [\"\", \"\"]}}");
-JSON json("C:/Programming/ProgramFiles/ExpenseTracker/files.json", "{\"OneTimeExpense\": {\"1\": []},\"MonthlyExpense\": {\"1\": []},\"OneTimeTakings\": {\"1\": []},\"MonthlyTakings\": {\"1\": []},\"Group\": {\"1\": [\"admin\", \"admin\"]},\"User\": {\"2\": []},\"Category\": {\"All\": []}}");
+JSON json("D:/Programming/ProgramFiles/ExpenseTracker/files.json", "{\"OneTimeExpense\": {\"1\": []},\"MonthlyExpense\": {\"1\": []},\"OneTimeTakings\": {\"1\": []},\"MonthlyTakings\": {\"1\": []},\"Group\": {\"1\": [\"admin\", \"admin\"]},\"User\": {\"2\": []},\"Category\": {\"All\": []}}");
 
 
 //FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS

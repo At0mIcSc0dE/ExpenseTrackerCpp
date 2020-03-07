@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'loginwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.1
+** Created by: Qt User Interface Compiler version 5.12.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -30,7 +30,7 @@ public:
     {
         if (LoginWindow->objectName().isEmpty())
             LoginWindow->setObjectName(QString::fromUtf8("LoginWindow"));
-        LoginWindow->resize(280, 400);
+        LoginWindow->resize(281, 394);
         LoginWindow->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "border: 0;\n"
 "background-color:  #1F1F1F;\n"
@@ -106,11 +106,11 @@ public:
 
     void retranslateUi(QDialog *LoginWindow)
     {
-        LoginWindow->setWindowTitle(QCoreApplication::translate("LoginWindow", "Login", nullptr));
-        loginBtn->setText(QCoreApplication::translate("LoginWindow", "Login", nullptr));
-        lblLogin->setText(QCoreApplication::translate("LoginWindow", "LOGIN", nullptr));
-        usernameTxt->setPlaceholderText(QCoreApplication::translate("LoginWindow", "Username", nullptr));
-        passwordTxt->setPlaceholderText(QCoreApplication::translate("LoginWindow", "Password", nullptr));
+        LoginWindow->setWindowTitle(QApplication::translate("LoginWindow", "Login", nullptr));
+        loginBtn->setText(QApplication::translate("LoginWindow", "Login", nullptr));
+        lblLogin->setText(QApplication::translate("LoginWindow", "LOGIN", nullptr));
+        usernameTxt->setPlaceholderText(QApplication::translate("LoginWindow", "Username", nullptr));
+        passwordTxt->setPlaceholderText(QApplication::translate("LoginWindow", "Password", nullptr));
     } // retranslateUi
 
 };

@@ -1,3 +1,5 @@
+/*.cpp file for User class*/
+
 #include "User.h"
 
 
@@ -19,7 +21,8 @@ User::User(char* username, char* password)
 
 
 User::~User() {
-	delete msg;
+	if(msg != nullptr)
+		delete msg;
 }
 
 

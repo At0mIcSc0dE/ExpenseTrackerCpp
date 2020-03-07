@@ -1,3 +1,5 @@
+/*.h file for Window Design functions*/
+
 #ifndef MAINWINDOWDESIGN_H
 #define MAINWINDOWDESIGN_H
 

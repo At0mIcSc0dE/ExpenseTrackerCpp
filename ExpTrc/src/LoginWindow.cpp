@@ -1,3 +1,5 @@
+/*.cpp file for LoginWindow class*/
+
 #include "LoginWindow.h"
 #include "WindowDesign.h"
 
@@ -19,8 +21,8 @@ LoginWindow::LoginWindow(QWidget* parent)
 
 
 LoginWindow::~LoginWindow() {
-	delete animation;
-	delete this;
+	if(animation != nullptr)
+		delete animation;
 }
 
 

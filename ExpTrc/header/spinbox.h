@@ -1,3 +1,5 @@
+/*.h file for Spinbox class, inherits from QSpinBox*/
+
 #ifndef SPINBOX_H
 #define SPINBOX_H
 

@@ -1,16 +1,23 @@
+/*.cpp file for MainWindow class*/
+
 #include "MainWindow.h"
 #include "WindowDesign.h"
 #include "Declarations.h"
 
 
-//GLOBAL VARIABLE LINKING || GLOBAL VARIABLE LINKING || GLOBAL VARIABLE LINKING || GLOBAL VARIABLE LINKING
-
+//GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING
 void writeExpenseToJson(const QString& expName, const QString& expPrice, const QString& expInfo, const unsigned short int expMulti, short unsigned int loggedInType, short unsigned int expType, QString& category);
 
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
 {
+    /*Constructor for MainWindow class
+     *Calls setupUi function
+     *Sets window size
+     *Connects Signals and Slots
+     *Sets up eventFilters*/
+
     ui.setupUi(this);
 
     //DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN
@@ -57,17 +64,20 @@ MainWindow::MainWindow(QWidget* parent)
 
 
 MainWindow::~MainWindow() {
-    delete animation;
+    /*Destructor for MainWindow class*/
 
-    //DEBUG
-    delete msg;
-    //DEBUG END
-
-    delete this;
+    if (msg != nullptr || animation != nullptr) {
+        delete animation;
+        delete msg;
+    }
 }
 
 
 void MainWindow::MainListboxInsertion() {
+    /*Calls all neccessary functions to add the current element to the listbox
+     *Function first gets all info, then checks which checkbox is checked and inserts the info
+      into the corresponding listbox.*/
+
     QString& expName = ui.expNameTxt->text();
     QString& expPrice = ui.expPriceTxt->text();
     short unsigned int expMulti = ui.expMultiTxt->text().toInt();
@@ -78,38 +88,34 @@ void MainWindow::MainListboxInsertion() {
         msg->show();
         return;
     }
-    
+
+    #pragma region CheckWhichListboxIsChecked
+
     if (ui.chbOneTime->isChecked()) {
         if (ui.lstbox->ItemInsert(expName, expPrice, expMulti)) {
             writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, ONETIME, ui.comboboxExpCat->currentText()); 
             // ^ TODO --> doesn't check if a user or a group is logged in, nor does it know which category to add it to
-            ui.expNameTxt->clear();
-            ui.expPriceTxt->clear();
         }
-            
     }
     else if (ui.chbMonthly->isChecked()) {
         if (ui.lstboxMonth->ItemInsert(expName, expPrice, expMulti)) {
             writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, MONTHLY, ui.comboboxExpCat->currentText());
-            ui.expNameTxt->clear();
-            ui.expPriceTxt->clear();
         }
     }
     else if (ui.chbOneTimeTakings->isChecked()) {
         if (ui.lstboxTakings->ItemInsert(expName, expPrice, expMulti)) {
             writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, ONETIME_T, ui.comboboxExpCat->currentText());
-            ui.expNameTxt->clear();
-            ui.expPriceTxt->clear();
         }
     }
     else {
         if (ui.lstboxTakingsMonth->ItemInsert(expName, expPrice, expMulti)) {
             writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, MONTHLY_T, ui.comboboxExpCat->currentText());
-            ui.expNameTxt->clear();
-            ui.expPriceTxt->clear();
         }
     }
-    
+    #pragma endregion
+
+    ui.expNameTxt->clear();
+    ui.expPriceTxt->clear();
 }
 
 

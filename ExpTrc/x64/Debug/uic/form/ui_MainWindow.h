@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.1
+** Created by: Qt User Interface Compiler version 5.12.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -124,6 +124,7 @@ public:
 "border-radius: 24px;\n"
 "}\n"
 "\n"
+"\n"
 "QListWidget::hover{\n"
 "border-color:  #2ecc71;\n"
 "}\n"
@@ -155,9 +156,9 @@ public:
 "outline: none;\n"
 "color: white;\n"
 "border-radius: 24px;\n"
-"}\n"
 ""
-                        "\n"
+                        "}\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -220,9 +221,9 @@ public:
 "background-color:  #1F1F1F;\n"
 "}\n"
 "\n"
-"\n"
 ""
-                        "QComboBox::drop-down {\n"
+                        "\n"
+"QComboBox::drop-down {\n"
 "border-width: 0px;\n"
 "}\n"
 "\n"
@@ -254,11 +255,15 @@ public:
         font.setPointSize(13);
         lstbox->setFont(font);
         lstbox->setStyleSheet(QString::fromUtf8(""));
+        lstbox->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        lstbox->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         lstboxMonth = new Listbox(centralwidget);
         lstboxMonth->setObjectName(QString::fromUtf8("lstboxMonth"));
         lstboxMonth->setGeometry(QRect(10, 400, 180, 230));
         lstboxMonth->setFont(font);
         lstboxMonth->setStyleSheet(QString::fromUtf8(""));
+        lstboxMonth->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        lstboxMonth->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         deleteBtn = new Button(centralwidget);
         deleteBtn->setObjectName(QString::fromUtf8("deleteBtn"));
         deleteBtn->setGeometry(QRect(210, 130, 100, 50));
@@ -282,11 +287,15 @@ public:
         lstboxTakings->setGeometry(QRect(1010, 20, 180, 340));
         lstboxTakings->setFont(font);
         lstboxTakings->setStyleSheet(QString::fromUtf8(""));
+        lstboxTakings->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        lstboxTakings->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         lstboxTakingsMonth = new Listbox(centralwidget);
         lstboxTakingsMonth->setObjectName(QString::fromUtf8("lstboxTakingsMonth"));
         lstboxTakingsMonth->setGeometry(QRect(1010, 400, 180, 230));
         lstboxTakingsMonth->setFont(font);
         lstboxTakingsMonth->setStyleSheet(QString::fromUtf8(""));
+        lstboxTakingsMonth->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        lstboxTakingsMonth->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         lblInfoMonthly = new QLabel(centralwidget);
         lblInfoMonthly->setObjectName(QString::fromUtf8("lblInfoMonthly"));
         lblInfoMonthly->setGeometry(QRect(20, 380, 190, 20));
@@ -530,51 +539,51 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        actionChange_directory->setText(QCoreApplication::translate("MainWindow", "Change directory...", nullptr));
-        actionEdit_Expense_Taking->setText(QCoreApplication::translate("MainWindow", "Edit Expense/Taking...", nullptr));
-        actionEdit_Users->setText(QCoreApplication::translate("MainWindow", "Edit Users...", nullptr));
-        actionSearch_Item->setText(QCoreApplication::translate("MainWindow", "Search Item", nullptr));
-        actionEnglish->setText(QCoreApplication::translate("MainWindow", "English", nullptr));
-        actionGerman->setText(QCoreApplication::translate("MainWindow", "German", nullptr));
-        actionChange_Theme->setText(QCoreApplication::translate("MainWindow", "Change Theme", nullptr));
-        deleteBtn->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
-        dupBtn->setText(QCoreApplication::translate("MainWindow", "Dublicate", nullptr));
-        clearBtn->setText(QCoreApplication::translate("MainWindow", "Clear List", nullptr));
-        moreInfoBtn->setText(QCoreApplication::translate("MainWindow", "More Info", nullptr));
-        monthGraphBtn->setText(QCoreApplication::translate("MainWindow", "Month-Graph", nullptr));
-        yearGraphBtn->setText(QCoreApplication::translate("MainWindow", "Year-Graph", nullptr));
-        lblInfoMonthly->setText(QCoreApplication::translate("MainWindow", "Monthly Expenses", nullptr));
-        lblInfoOneTime->setText(QCoreApplication::translate("MainWindow", "One-Time Expenses", nullptr));
-        lblInfoOneTimeTak->setText(QCoreApplication::translate("MainWindow", "One-Time Takings", nullptr));
-        lblInfoMonthlyTak->setText(QCoreApplication::translate("MainWindow", "Monthly Income Sources", nullptr));
-        expNameTxt->setPlaceholderText(QCoreApplication::translate("MainWindow", "Name", nullptr));
-        expPriceTxt->setPlaceholderText(QCoreApplication::translate("MainWindow", "Price", nullptr));
-        comboboxCur->setItemText(0, QCoreApplication::translate("MainWindow", "Dollar $", nullptr));
-        comboboxCur->setItemText(1, QCoreApplication::translate("MainWindow", "Euro \342\202\254", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
+        actionChange_directory->setText(QApplication::translate("MainWindow", "Change directory...", nullptr));
+        actionEdit_Expense_Taking->setText(QApplication::translate("MainWindow", "Edit Expense/Taking...", nullptr));
+        actionEdit_Users->setText(QApplication::translate("MainWindow", "Edit Users...", nullptr));
+        actionSearch_Item->setText(QApplication::translate("MainWindow", "Search Item", nullptr));
+        actionEnglish->setText(QApplication::translate("MainWindow", "English", nullptr));
+        actionGerman->setText(QApplication::translate("MainWindow", "German", nullptr));
+        actionChange_Theme->setText(QApplication::translate("MainWindow", "Change Theme", nullptr));
+        deleteBtn->setText(QApplication::translate("MainWindow", "Delete", nullptr));
+        dupBtn->setText(QApplication::translate("MainWindow", "Dublicate", nullptr));
+        clearBtn->setText(QApplication::translate("MainWindow", "Clear List", nullptr));
+        moreInfoBtn->setText(QApplication::translate("MainWindow", "More Info", nullptr));
+        monthGraphBtn->setText(QApplication::translate("MainWindow", "Month-Graph", nullptr));
+        yearGraphBtn->setText(QApplication::translate("MainWindow", "Year-Graph", nullptr));
+        lblInfoMonthly->setText(QApplication::translate("MainWindow", "Monthly Expenses", nullptr));
+        lblInfoOneTime->setText(QApplication::translate("MainWindow", "One-Time Expenses", nullptr));
+        lblInfoOneTimeTak->setText(QApplication::translate("MainWindow", "One-Time Takings", nullptr));
+        lblInfoMonthlyTak->setText(QApplication::translate("MainWindow", "Monthly Income Sources", nullptr));
+        expNameTxt->setPlaceholderText(QApplication::translate("MainWindow", "Name", nullptr));
+        expPriceTxt->setPlaceholderText(QApplication::translate("MainWindow", "Price", nullptr));
+        comboboxCur->setItemText(0, QApplication::translate("MainWindow", "Dollar $", nullptr));
+        comboboxCur->setItemText(1, QApplication::translate("MainWindow", "Euro \342\202\254", nullptr));
 
-        expInfoTxt->setPlaceholderText(QCoreApplication::translate("MainWindow", "You can write some info about your expense here...", nullptr));
-        chbOneTime->setText(QCoreApplication::translate("MainWindow", "One-Time Expenses", nullptr));
-        chbOneTimeTakings->setText(QCoreApplication::translate("MainWindow", "One-Time Takings", nullptr));
-        chbMonthly->setText(QCoreApplication::translate("MainWindow", "Monthly Expenses", nullptr));
-        chbMonthlyTakings->setText(QCoreApplication::translate("MainWindow", "Monthly Income Sources", nullptr));
-        lblInfoExpCat->setText(QCoreApplication::translate("MainWindow", "Select Expense Category", nullptr));
-        lblInfoTakCat->setText(QCoreApplication::translate("MainWindow", "Select Takings Category", nullptr));
-        lblTotalIncome->setText(QCoreApplication::translate("MainWindow", "Your total income: ", nullptr));
-        lblTotalExpense->setText(QCoreApplication::translate("MainWindow", "Your total expenses: ", nullptr));
-        lblRemainingBudget->setText(QCoreApplication::translate("MainWindow", "Your remaining budget: ", nullptr));
-        lblRemainingBank->setText(QCoreApplication::translate("MainWindow", "Your total bank balance: ", nullptr));
+        expInfoTxt->setPlaceholderText(QApplication::translate("MainWindow", "You can write some info about your expense here...", nullptr));
+        chbOneTime->setText(QApplication::translate("MainWindow", "One-Time Expenses", nullptr));
+        chbOneTimeTakings->setText(QApplication::translate("MainWindow", "One-Time Takings", nullptr));
+        chbMonthly->setText(QApplication::translate("MainWindow", "Monthly Expenses", nullptr));
+        chbMonthlyTakings->setText(QApplication::translate("MainWindow", "Monthly Income Sources", nullptr));
+        lblInfoExpCat->setText(QApplication::translate("MainWindow", "Select Expense Category", nullptr));
+        lblInfoTakCat->setText(QApplication::translate("MainWindow", "Select Takings Category", nullptr));
+        lblTotalIncome->setText(QApplication::translate("MainWindow", "Your total income: ", nullptr));
+        lblTotalExpense->setText(QApplication::translate("MainWindow", "Your total expenses: ", nullptr));
+        lblRemainingBudget->setText(QApplication::translate("MainWindow", "Your remaining budget: ", nullptr));
+        lblRemainingBank->setText(QApplication::translate("MainWindow", "Your total bank balance: ", nullptr));
         lblTotalIncomeVal->setText(QString());
         lblTotalExpVal->setText(QString());
         lblRemainingVal->setText(QString());
         lblRemainingBankVal->setText(QString());
-        addBtn->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
-        lblBrutoBudgetTxt->setText(QCoreApplication::translate("MainWindow", "Your budget: ", nullptr));
+        addBtn->setText(QApplication::translate("MainWindow", "Add", nullptr));
+        lblBrutoBudgetTxt->setText(QApplication::translate("MainWindow", "Your budget: ", nullptr));
         lblBudgetValue->setText(QString());
-        menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
-        menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
-        menuView->setTitle(QCoreApplication::translate("MainWindow", "View", nullptr));
-        menuLanguage->setTitle(QCoreApplication::translate("MainWindow", "Language", nullptr));
+        menuFile->setTitle(QApplication::translate("MainWindow", "File", nullptr));
+        menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", nullptr));
+        menuView->setTitle(QApplication::translate("MainWindow", "View", nullptr));
+        menuLanguage->setTitle(QApplication::translate("MainWindow", "Language", nullptr));
     } // retranslateUi
 
 };

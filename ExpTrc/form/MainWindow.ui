@@ -38,6 +38,7 @@ color: white;
 border-radius: 24px;
 }
 
+
 QListWidget::hover{
 border-color:  #2ecc71;
 }
@@ -162,6 +163,12 @@ image: url(noimg); border-width: 0px;
     <property name="styleSheet">
      <string notr="true"/>
     </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
    </widget>
    <widget class="Listbox" name="lstboxMonth">
     <property name="geometry">
@@ -179,6 +186,12 @@ image: url(noimg); border-width: 0px;
     </property>
     <property name="styleSheet">
      <string notr="true"/>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
    </widget>
    <widget class="Button" name="deleteBtn">
@@ -276,6 +289,12 @@ image: url(noimg); border-width: 0px;
     <property name="styleSheet">
      <string notr="true"/>
     </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
    </widget>
    <widget class="Listbox" name="lstboxTakingsMonth">
     <property name="geometry">
@@ -293,6 +312,12 @@ image: url(noimg); border-width: 0px;
     </property>
     <property name="styleSheet">
      <string notr="true"/>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
    </widget>
    <widget class="QLabel" name="lblInfoMonthly">

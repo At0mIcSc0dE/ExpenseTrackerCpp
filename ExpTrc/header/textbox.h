@@ -1,3 +1,5 @@
+/*.h file for Textbox class, inherits from QLineEdit*/
+
 #ifndef TEXTBOX_H
 #define TEXTBOX_H
 

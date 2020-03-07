@@ -1,3 +1,5 @@
+/*.cpp file for Checkbox class*/
+
 #include "checkbox.h"
 
 

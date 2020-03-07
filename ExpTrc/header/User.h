@@ -1,3 +1,7 @@
+/*.h file for User class, can check if
+ *User exists
+ *User has correct login info*/
+
 #ifndef USER_H
 #define USER_H
 

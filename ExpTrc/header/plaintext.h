@@ -1,3 +1,5 @@
+/*.h file for PlainText class, inherits from QPlainTextEdit*/
+
 #ifndef PLAINTEXT_H
 #define PLAINTEXT_H
 

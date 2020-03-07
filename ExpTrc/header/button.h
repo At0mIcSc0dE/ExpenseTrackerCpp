@@ -1,3 +1,6 @@
+/*.h file for Button class, inherits from QPushButton*/
+
+
 #ifndef BUTTON_H
 #define BUTTON_H
 

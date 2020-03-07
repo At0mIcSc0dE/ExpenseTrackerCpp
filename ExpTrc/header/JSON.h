@@ -1,3 +1,6 @@
+/*.h file for JSON class, inherits from Document
+ *Library used: Rapidjson*/
+
 #ifndef JSON_H
 #define JSON_H
 

@@ -1,3 +1,5 @@
+/*.h file for Checkbox class, inherits from QCheckBox*/
+
 #ifndef CHECKBOX_H
 #define CHECKBOC_H
 

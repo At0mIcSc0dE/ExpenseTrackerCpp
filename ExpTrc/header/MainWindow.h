@@ -1,3 +1,5 @@
+/*.h file for MainWindow class, inherits from QMainWindow*/
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

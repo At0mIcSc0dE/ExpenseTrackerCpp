@@ -13,7 +13,7 @@ User::User(char* username, char* password)
 		}
 	}
 	else {
-
+		msgDEBUG("User does not exist");
 	}
 }
 

@@ -2,10 +2,10 @@
 #include "listbox.h"
 
 
-namespace combobox {
-	//QString& currency;
-	extern const char* currency;
-}
+//namespace combobox {
+//	//QString& currency;
+//	extern const char* currency;
+//}
 
 
 Listbox::Listbox(QWidget* parent)
@@ -26,7 +26,7 @@ void Listbox::clearLstFocus(std::array<Listbox*, 3> lstboxes) {
 bool Listbox::ItemInsert(QString& expName, QString& expPrice, short unsigned int expMulti) {
 
 	for (int i = 0; i <= expMulti; ++i) {
-		this->insertItem(0, expName + " || " + expPrice + QString::fromLocal8Bit(combobox::currency));
+		this->insertItem(0, expName + " || " + expPrice + QString::fromLocal8Bit(config::currency));
 		return true;
 	}
 

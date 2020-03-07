@@ -2,12 +2,11 @@
 #define JSON_H
 
 #include <rapidjson/reader.h>
-#include <rapidjson/prettywriter.h>
 #include <rapidjson/filereadstream.h>
 #include <rapidjson/filewritestream.h>
-#include <rapidjson/error/en.h>
+#include <rapidjson/writer.h>
 #include <rapidjson/document.h>
-#include <rapidjson/pointer.h>
+#include <rapidjson/ostreamwrapper.h>
 
 #include <fstream>
 #include <qmessagebox.h>

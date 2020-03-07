@@ -24,6 +24,7 @@ JSON::~JSON() {
 
 
 void JSON::read() {
+
 	FILE* fp = fopen(path, "rb");
 
 	char readBuffer[65536];
@@ -36,16 +37,23 @@ void JSON::read() {
 
 void JSON::write() {
 
-	//output to file
-	FILE* fp = fopen(path, "wb"); // write
+	//FILE* fp = fopen(path, "wb"); // write-byte
 
-	char writeBuffer[65536];
-	FileWriteStream os(fp, writeBuffer, sizeof(writeBuffer));
+	//char writeBuffer[65536];
+	//FileWriteStream os(fp, writeBuffer, sizeof(writeBuffer));
 
-	Writer<FileWriteStream> writer(os);
+	//Writer<FileWriteStream> writer(os);
+	//d.Accept(writer);
+
+	//fclose(fp);
+
+
+	std::ofstream ofs(path);
+	OStreamWrapper osw(ofs);
+
+	Writer<OStreamWrapper> writer(osw);
 	d.Accept(writer);
 
-	fclose(fp);
 }
 
 

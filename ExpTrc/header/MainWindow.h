@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 
-#include <QtWidgets/QMainWindow>
+#include <qmainwindow.h>
 #include "ui_MainWindow.h"
 #include <qmessagebox.h>
 #include <qpropertyanimation.h>

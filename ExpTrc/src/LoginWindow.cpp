@@ -6,6 +6,9 @@ LoginWindow::LoginWindow(QWidget* parent)
 {
 	ui.setupUi(this);
 
+	this->setMaximumSize(280, 400);
+	this->setMinimumSize(280, 400);
+
 	ui.loginBtn->installEventFilter(this);
 	ui.usernameTxt->installEventFilter(this);
 	ui.passwordTxt->installEventFilter(this);

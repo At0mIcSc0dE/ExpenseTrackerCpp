@@ -1,2 +1,5 @@
-﻿  User.cpp
-  ExpTrc.vcxproj -> D:\Programming\Cpp\Projects\ExpTrc\x64\Debug\ExpTrc.exe
+﻿  LoginWindow.cpp
+  MainWindow.cpp
+  main.cpp
+  moc_LoginWindow.cpp
+  ExpTrc.vcxproj -> C:\Programming\Cpp\Projects\ExpTrc\x64\Debug\ExpTrc.exe

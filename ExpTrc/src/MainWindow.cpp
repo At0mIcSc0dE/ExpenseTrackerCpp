@@ -4,9 +4,6 @@
 
 
 //GLOBAL VARIABLE LINKING || GLOBAL VARIABLE LINKING || GLOBAL VARIABLE LINKING || GLOBAL VARIABLE LINKING
-namespace lstbox {
-    extern short unsigned int lstboxFocus;
-}
 
 void writeExpenseToJson(const QString& expName, const QString& expPrice, const QString& expInfo, const unsigned short int expMulti, short unsigned int loggedInType, short unsigned int expType, QString& category);
 
@@ -118,7 +115,7 @@ void MainWindow::MainListboxInsertion() {
 
 void MainWindow::MainListboxDeletion() {
     QListWidgetItem* item;
-    switch (lstbox::lstboxFocus) {
+    switch (config::lstboxFocus) {
     case LSTBOX:
         item = ui.lstbox->takeItem(ui.lstbox->currentRow());
         delete item;
@@ -183,22 +180,22 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* Event) {
         //listbox focus obj
         else if (watched == ui.lstbox) {
             Listbox::clearLstFocus({ ui.lstboxMonth, ui.lstboxTakings, ui.lstboxTakingsMonth });
-            lstbox::lstboxFocus = LSTBOX;
+            config::lstboxFocus = LSTBOX;
             return true;
         }
         else if (watched == ui.lstboxMonth) {
             Listbox::clearLstFocus({ ui.lstbox, ui.lstboxTakings, ui.lstboxTakingsMonth });
-            lstbox::lstboxFocus = LSTBOXMONTH;
+            config::lstboxFocus = LSTBOXMONTH;
             return true;
         }
         else if (watched == ui.lstboxTakings) {
             Listbox::clearLstFocus({ ui.lstboxMonth, ui.lstbox, ui.lstboxTakingsMonth });
-            lstbox::lstboxFocus = LSTBOXTAKINGS;
+            config::lstboxFocus = LSTBOXTAKINGS;
             return true;
         }
         else if (watched == ui.lstboxTakingsMonth) {
             Listbox::clearLstFocus({ ui.lstboxMonth, ui.lstboxTakings, ui.lstbox });
-            lstbox::lstboxFocus = LSTBOXTAKINGSMONTH;
+            config::lstboxFocus = LSTBOXTAKINGSMONTH;
             return true;
         }
 

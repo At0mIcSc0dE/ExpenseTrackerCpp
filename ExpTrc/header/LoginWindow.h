@@ -19,18 +19,11 @@ public:
 
 	~LoginWindow();
 
-
-	template<typename widget>
-	void QWidgetAnimation(widget* obj, QRect endValues, unsigned short int mSecTimer, QEvent* Event);
-
-	bool eventFilter(QObject* watched, QEvent* Event);
-
 public slots:
 	bool login();
 
 private:
 	Ui::LoginWindow ui;
-	QPropertyAnimation* animation;
 };
 
 

@@ -30,11 +30,10 @@ public:
     {
         if (LoginWindow->objectName().isEmpty())
             LoginWindow->setObjectName(QString::fromUtf8("LoginWindow"));
-        LoginWindow->resize(281, 394);
+        LoginWindow->resize(274, 394);
         LoginWindow->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "border: 0;\n"
 "background-color:  #1F1F1F;\n"
-"margin: 30px auto;\n"
 "border: 2px solid #3498db;\n"
 "padding: 14px 10px;\n"
 "outline: none;\n"
@@ -50,7 +49,6 @@ public:
 "QPushButton{\n"
 "border: 0;\n"
 "background-color:  #1F1F1F;\n"
-"margin: 30px auto;\n"
 "border: 2px solid #3498db;\n"
 "padding: 14px 10px;\n"
 "outline: none;\n"
@@ -75,7 +73,7 @@ public:
 "}"));
         loginBtn = new Button(LoginWindow);
         loginBtn->setObjectName(QString::fromUtf8("loginBtn"));
-        loginBtn->setGeometry(QRect(50, 250, 180, 111));
+        loginBtn->setGeometry(QRect(90, 260, 100, 50));
         QFont font;
         font.setPointSize(12);
         loginBtn->setFont(font);
@@ -88,13 +86,13 @@ public:
         lblLogin->setAlignment(Qt::AlignCenter);
         usernameTxt = new Textbox(LoginWindow);
         usernameTxt->setObjectName(QString::fromUtf8("usernameTxt"));
-        usernameTxt->setGeometry(QRect(0, 60, 281, 111));
+        usernameTxt->setGeometry(QRect(40, 90, 200, 50));
         QFont font2;
         font2.setPointSize(14);
         usernameTxt->setFont(font2);
         passwordTxt = new Textbox(LoginWindow);
         passwordTxt->setObjectName(QString::fromUtf8("passwordTxt"));
-        passwordTxt->setGeometry(QRect(0, 150, 281, 111));
+        passwordTxt->setGeometry(QRect(40, 180, 200, 50));
         passwordTxt->setFont(font2);
         QWidget::setTabOrder(usernameTxt, passwordTxt);
         QWidget::setTabOrder(passwordTxt, loginBtn);

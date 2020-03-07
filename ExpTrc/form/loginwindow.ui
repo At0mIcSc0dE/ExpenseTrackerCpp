@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>281</width>
+    <width>274</width>
     <height>394</height>
    </rect>
   </property>
@@ -17,7 +17,6 @@
    <string notr="true">QLineEdit{
 border: 0;
 background-color:  #1F1F1F;
-margin: 30px auto;
 border: 2px solid #3498db;
 padding: 14px 10px;
 outline: none;
@@ -33,7 +32,6 @@ border-color:  #2ecc71;
 QPushButton{
 border: 0;
 background-color:  #1F1F1F;
-margin: 30px auto;
 border: 2px solid #3498db;
 padding: 14px 10px;
 outline: none;
@@ -60,10 +58,10 @@ background-color:  #1F1F1F;
   <widget class="Button" name="loginBtn">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>250</y>
-     <width>180</width>
-     <height>111</height>
+     <x>90</x>
+     <y>260</y>
+     <width>100</width>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
@@ -99,10 +97,10 @@ background-color:  #1F1F1F;
   <widget class="Textbox" name="usernameTxt">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>60</y>
-     <width>281</width>
-     <height>111</height>
+     <x>40</x>
+     <y>90</y>
+     <width>200</width>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
@@ -117,10 +115,10 @@ background-color:  #1F1F1F;
   <widget class="Textbox" name="passwordTxt">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>150</y>
-     <width>281</width>
-     <height>111</height>
+     <x>40</x>
+     <y>180</y>
+     <width>200</width>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">

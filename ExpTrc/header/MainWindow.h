@@ -7,7 +7,6 @@
 #include <qmainwindow.h>
 #include "ui_MainWindow.h"
 #include <qmessagebox.h>
-#include <qpropertyanimation.h>
 
 class MainWindow : public QMainWindow
 {
@@ -18,12 +17,7 @@ public:
 
 	~MainWindow();
 
-	//DEBUG
 	QMessageBox* msg;
-	//DEBUG END
-
-	template<typename widget>
-	void QWidgetAnimation(widget* obj, QRect endValues, unsigned short int mSecTimer, QEvent* Event);
 
 protected slots:
 
@@ -53,7 +47,6 @@ signals:
 
 private:
 	Ui::MainWindow ui;
-	QPropertyAnimation* animation;
 };
 
 

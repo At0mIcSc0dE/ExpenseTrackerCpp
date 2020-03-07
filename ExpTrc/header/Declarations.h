@@ -32,10 +32,5 @@
 					 msg->show()
 
 
-struct config {
-	static short unsigned int lstboxFocus;
-	static char* currency;
-};
-
 
 #endif //DECLARATIONS_H

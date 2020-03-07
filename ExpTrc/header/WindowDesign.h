@@ -8,33 +8,15 @@
 #include "MainWindow.h"
 
 template<typename widget>
-void MainWindow::QWidgetAnimation(widget* obj, QRect endValues, unsigned short int mSecTimer, QEvent* Event) {
+void QWidgetAnimation(widget* obj, const QRect& endValues, unsigned short int mSecTimer, QEvent* Event = nullptr) {
+    
+    QPropertyAnimation* animation = new QPropertyAnimation(obj, "geometry");
 
-    if (Event->type() == QEvent::HoverEnter)
-        obj->setStyleSheet("border-color:  #2ecc71");
-    else
-        obj->setStyleSheet("border: 2px solid #3498db");
-
-    animation = new QPropertyAnimation(obj, "geometry");
     animation->setStartValue(obj->geometry());
     animation->setEndValue(endValues);
     animation->setDuration(mSecTimer);
     animation->start(QAbstractAnimation::DeleteWhenStopped);
 
-}
-
-template<typename widget>
-void LoginWindow::QWidgetAnimation(widget* obj, QRect endValues, unsigned short int mSecTimer, QEvent* Event) {
-    if (Event->type() == QEvent::HoverEnter)
-        obj->setStyleSheet("border-color:  #2ecc71");
-    else
-        obj->setStyleSheet("border: 2px solid #3498db");
-
-    animation = new QPropertyAnimation(obj, "geometry");
-    animation->setStartValue(obj->geometry());
-    animation->setEndValue(endValues);
-    animation->setDuration(mSecTimer);
-    animation->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
 

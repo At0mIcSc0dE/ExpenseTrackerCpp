@@ -1,5 +1,6 @@
 /*.cpp file for Listbox class*/
 
+#include "Config.h"
 #include "Declarations.h"
 #include "listbox.h"
 
@@ -7,7 +8,7 @@
 Listbox::Listbox(QWidget* parent)
 	:QListWidget(parent)
 {
-	this->installEventFilter(this);
+
 }
 
 

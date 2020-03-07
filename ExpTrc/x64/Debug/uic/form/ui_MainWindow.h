@@ -17,7 +17,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -26,6 +25,7 @@
 #include "combobox.h"
 #include "listbox.h"
 #include "plaintext.h"
+#include "spinbox.h"
 #include "textbox.h"
 
 QT_BEGIN_NAMESPACE
@@ -81,7 +81,7 @@ public:
     QLabel *lblRemainingVal;
     QLabel *lblRemainingBankVal;
     Button *addBtn;
-    QSpinBox *expMultiTxt;
+    Spinbox *expMultiTxt;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
     QLabel *lblBrutoBudgetTxt;
@@ -466,7 +466,7 @@ public:
         addBtn = new Button(centralwidget);
         addBtn->setObjectName(QString::fromUtf8("addBtn"));
         addBtn->setGeometry(QRect(210, 50, 100, 50));
-        expMultiTxt = new QSpinBox(centralwidget);
+        expMultiTxt = new Spinbox(centralwidget);
         expMultiTxt->setObjectName(QString::fromUtf8("expMultiTxt"));
         expMultiTxt->setGeometry(QRect(470, 150, 100, 50));
         expMultiTxt->setStyleSheet(QString::fromUtf8("QListView{\n"

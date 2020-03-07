@@ -3,6 +3,7 @@
 #include "MainWindow.h"
 #include "WindowDesign.h"
 #include "Declarations.h"
+#include "Config.h"
 
 
 //GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING
@@ -19,6 +20,23 @@ MainWindow::MainWindow(QWidget* parent)
      *Sets up eventFilters*/
 
     ui.setupUi(this);
+
+    //Required to set geometry for every button for animation
+    #pragma region SetAnimationGeometry
+    ui.addBtn->btnRect = ui.addBtn->geometry();
+    ui.deleteBtn->btnRect = ui.deleteBtn->geometry();
+    ui.dupBtn->btnRect = ui.dupBtn->geometry();
+    ui.clearBtn->btnRect = ui.clearBtn->geometry();
+    ui.moreInfoBtn->btnRect = ui.moreInfoBtn->geometry();
+    ui.yearGraphBtn->btnRect = ui.yearGraphBtn->geometry();
+    ui.monthGraphBtn->btnRect = ui.monthGraphBtn->geometry();
+
+    ui.expNameTxt->txtboxSize = ui.expNameTxt->geometry();
+    ui.expPriceTxt->txtboxSize = ui.expPriceTxt->geometry();
+
+    ui.expInfoTxt->plainTxtSize = ui.expInfoTxt->geometry();
+    ui.expMultiTxt->spinboxSize = ui.expMultiTxt->geometry();
+    #pragma endregion
 
     //DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN
     this->resize(1200, 680);
@@ -43,31 +61,20 @@ MainWindow::MainWindow(QWidget* parent)
 
 
     //EVENT FILTERS || EVENT FILTERS || EVENT FILTERS || EVENT FILTERS || EVENT FILTERS
-    {
-        ui.expNameTxt->installEventFilter(this);
-        ui.expPriceTxt->installEventFilter(this);
-        ui.expInfoTxt->installEventFilter(this);
-        ui.expMultiTxt->installEventFilter(this);
-        ui.addBtn->installEventFilter(this);
-        ui.deleteBtn->installEventFilter(this);
-        ui.dupBtn->installEventFilter(this);
-        ui.moreInfoBtn->installEventFilter(this);
-        ui.clearBtn->installEventFilter(this);
-        ui.monthGraphBtn->installEventFilter(this);
-        ui.yearGraphBtn->installEventFilter(this);
-        ui.lstbox->installEventFilter(this);
-        ui.lstboxMonth->installEventFilter(this);
-        ui.lstboxTakings->installEventFilter(this);
-        ui.lstboxTakingsMonth->installEventFilter(this);
-    }
+    #pragma region installEventFilter
+    ui.lstbox->installEventFilter(this);
+    ui.lstboxMonth->installEventFilter(this);
+    ui.lstboxTakings->installEventFilter(this);
+    ui.lstboxTakingsMonth->installEventFilter(this);
+    #pragma endregion
+
 }
 
 
 MainWindow::~MainWindow() {
     /*Destructor for MainWindow class*/
 
-    if (msg != nullptr || animation != nullptr) {
-        delete animation;
+    if (msg != nullptr) {
         delete msg;
     }
 }
@@ -125,66 +132,31 @@ void MainWindow::MainListboxDeletion() {
     case LSTBOX:
         item = ui.lstbox->takeItem(ui.lstbox->currentRow());
         delete item;
+        break;
     case LSTBOXMONTH:
         item = ui.lstboxMonth->takeItem(ui.lstboxMonth->currentRow());
         delete item;
+        break;
     case LSTBOXTAKINGS:
         item = ui.lstboxTakings->takeItem(ui.lstboxTakings->currentRow());
         delete item;
+        break;
     case LSTBOXTAKINGSMONTH:
         item = ui.lstboxTakingsMonth->takeItem(ui.lstboxTakingsMonth->currentRow());
         delete item;
-    }
-}
-
-
-void MainWindow::on_actionGerman_toggled(bool checked) {
-    if (checked) {
-        ui.actionEnglish->setChecked(false);
-    }
-    else {
-        ui.actionEnglish->setChecked(true);
-    }
-}
-
-
-void MainWindow::on_actionEnglish_toggled(bool checked) {
-    if (checked) {
-        ui.actionGerman->setChecked(false);
-    }
-    else {
-        ui.actionGerman->setChecked(true);
+        break;
     }
 }
 
 
 bool MainWindow::eventFilter(QObject* watched, QEvent* Event) {
-    //Button/Textbox effects
+    /*Function determines the listbox focus object, which is neccessary to delete correctly and only allow one selection*/
     
-    //hover over buttons to trigger animation
-
+    #pragma region LstboxFocus
+    
     if (Event->type() == QEvent::FocusIn) {
-
-        //buttons
-        if (watched == ui.expNameTxt) {
-            QWidgetAnimation(ui.expNameTxt, QRect(320, 50, 270, 50), 200, Event);
-            ui.expNameTxt->setStyleSheet("border-color:  #2ecc71");
-        }
-        else if (watched == ui.expPriceTxt) {
-            QWidgetAnimation(ui.expPriceTxt, QRect(600, 50, 270, 50), 200, Event);
-            ui.expPriceTxt->setStyleSheet("border-color:  #2ecc71");
-        }
-        else if (watched == ui.expInfoTxt) {
-            QWidgetAnimation(ui.expInfoTxt, QRect(320, 240, 640, 120), 200, Event);
-            ui.expInfoTxt->setStyleSheet("border-color:  #2ecc71");
-        }
-        else if (watched == ui.expMultiTxt) {
-            QWidgetAnimation(ui.expMultiTxt, QRect(450, 150, 140, 50), 200, Event);
-            ui.expMultiTxt->setStyleSheet("border-color:  #2ecc71");
-        }
-
         //listbox focus obj
-        else if (watched == ui.lstbox) {
+        if (watched == ui.lstbox) {
             Listbox::clearLstFocus({ ui.lstboxMonth, ui.lstboxTakings, ui.lstboxTakingsMonth });
             config::lstboxFocus = LSTBOX;
             return true;
@@ -204,124 +176,8 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* Event) {
             config::lstboxFocus = LSTBOXTAKINGSMONTH;
             return true;
         }
-
     }
-    else if (Event->type() == QEvent::FocusOut) {
-        if (watched == ui.expNameTxt) {
-            QWidgetAnimation(ui.expNameTxt, QRect(340, 50, 230, 50), 150, Event);
-            ui.expNameTxt->setStyleSheet("border: 2px solid #3498db");
-        }
-        else if (watched == ui.expPriceTxt) {
-            QWidgetAnimation(ui.expPriceTxt, QRect(620, 50, 230, 50), 150, Event);
-            ui.expPriceTxt->setStyleSheet("border: 2px solid #3498db");
-        }
-        else if (watched == ui.expInfoTxt) {
-            QWidgetAnimation(ui.expInfoTxt, QRect(340, 240, 600, 120), 150, Event);
-            ui.expInfoTxt->setStyleSheet("border: 2px solid #3498db");
-        }
-        else if (watched == ui.expMultiTxt) {
-            QWidgetAnimation(ui.expMultiTxt, QRect(470, 150, 100, 50), 150, Event);
-            ui.expMultiTxt->setStyleSheet("border: 2px solid #3498db");
-        }
-    }
-
-    //buttons
-    else if (Event->type() == QEvent::HoverEnter) {
-        if (watched == ui.expNameTxt) {
-            ui.expNameTxt->setStyleSheet("border-color:  #2ecc71");
-        }
-        else if (watched == ui.expPriceTxt) {
-            ui.expPriceTxt->setStyleSheet("border-color:  #2ecc71");
-        }
-        else if (watched == ui.expInfoTxt) {
-            ui.expInfoTxt->setStyleSheet("border-color:  #2ecc71");
-        }
-        else if (watched == ui.expMultiTxt) {
-            ui.expMultiTxt->setStyleSheet("border-color:  #2ecc71");
-        }
-        else if (watched == ui.addBtn) {
-            QWidgetAnimation(ui.addBtn, QRect(190, 50, 140, 50), 200, Event);
-        }
-        else if (watched == ui.deleteBtn) {
-            QWidgetAnimation(ui.deleteBtn, QRect(190, 130, 140, 50), 200, Event);
-        }
-        else if (watched == ui.clearBtn) {
-            QWidgetAnimation(ui.clearBtn, QRect(190, 290, 140, 50), 200, Event);
-        }
-        else if (watched == ui.moreInfoBtn) {
-            QWidgetAnimation(ui.moreInfoBtn, QRect(190, 370, 140, 50), 200, Event);
-        }
-        else if (watched == ui.dupBtn) {
-            QWidgetAnimation(ui.dupBtn, QRect(190, 210, 140, 50), 200, Event);
-        }
-        else if (watched == ui.monthGraphBtn) {
-            QWidgetAnimation(ui.monthGraphBtn, QRect(190, 530, 140, 50), 200, Event);
-        }
-        else if (watched == ui.yearGraphBtn) {
-            QWidgetAnimation(ui.yearGraphBtn, QRect(190, 450, 140, 50), 200, Event);
-        }
-        else if (watched == ui.lstbox) {
-            ui.lstbox->setStyleSheet("border-color:  #2ecc71");
-        }
-        else if (watched == ui.lstboxMonth) {
-            ui.lstboxMonth->setStyleSheet("border-color:  #2ecc71");
-        }
-        else if (watched == ui.lstboxTakings) {
-            ui.lstboxTakings->setStyleSheet("border-color:  #2ecc71");
-        }
-        else if (watched == ui.lstboxTakingsMonth) {
-            ui.lstboxTakingsMonth->setStyleSheet("border-color:  #2ecc71");
-        }
-        return true;
-    }
-    else if (Event->type() == QEvent::HoverLeave) {
-        if (watched == ui.expNameTxt) {
-            ui.expNameTxt->setStyleSheet("border: 2px solid #3498db");
-        }
-        else if (watched == ui.expPriceTxt) {
-            ui.expPriceTxt->setStyleSheet("border: 2px solid #3498db");
-        }
-        else if (watched == ui.expInfoTxt) {
-            ui.expInfoTxt->setStyleSheet("border: 2px solid #3498db");
-        }
-        else if (watched == ui.expMultiTxt) {
-            ui.expMultiTxt->setStyleSheet("border: 2px solid #3498db");
-        }
-        else if (watched == ui.addBtn) {
-            QWidgetAnimation(ui.addBtn, QRect(210, 50, 100, 50), 150, Event);
-        }
-        else if (watched == ui.deleteBtn) {
-            QWidgetAnimation(ui.deleteBtn, QRect(210, 130, 100, 50), 150, Event);
-        }
-        else if (watched == ui.clearBtn) {
-            QWidgetAnimation(ui.clearBtn, QRect(210, 290, 100, 50), 150, Event);
-        }
-        else if (watched == ui.moreInfoBtn) {
-            QWidgetAnimation(ui.moreInfoBtn, QRect(210, 370, 100, 50), 150, Event);
-        }
-        else if (watched == ui.dupBtn) {
-            QWidgetAnimation(ui.dupBtn, QRect(210, 210, 100, 50), 150, Event);
-        }
-        else if (watched == ui.monthGraphBtn) {
-            QWidgetAnimation(ui.monthGraphBtn, QRect(210, 530, 100, 50), 150, Event);
-        }
-        else if (watched == ui.yearGraphBtn) {
-            QWidgetAnimation(ui.yearGraphBtn, QRect(210, 450, 100, 50), 150, Event);
-        }
-        else if (watched == ui.lstbox) {
-            ui.lstbox->setStyleSheet("border: 2px solid #3498db");
-        }
-        else if (watched == ui.lstboxMonth) {
-            ui.lstboxMonth->setStyleSheet("border: 2px solid #3498db");
-        }
-        else if (watched == ui.lstboxTakings) {
-            ui.lstboxTakings->setStyleSheet("border: 2px solid #3498db");
-        }
-        else if (watched == ui.lstboxTakingsMonth) {
-            ui.lstboxTakingsMonth->setStyleSheet("border: 2px solid #3498db");
-        }
-        return true;
-    }
+    #pragma endregion
 
     return false;
 }
@@ -348,4 +204,24 @@ void MainWindow::chbOneTakingsStateHandler() {
 void MainWindow::chbMonthTakingsStateHandler() {
     ui.chbMonthlyTakings->uncheckAny({ ui.chbMonthly, ui.chbOneTimeTakings, ui.chbOneTime });
     ui.chbMonthlyTakings->setChecked(true);
+}
+
+
+void MainWindow::on_actionGerman_toggled(bool checked) {
+    if (checked) {
+        ui.actionEnglish->setChecked(false);
+    }
+    else {
+        ui.actionEnglish->setChecked(true);
+    }
+}
+
+
+void MainWindow::on_actionEnglish_toggled(bool checked) {
+    if (checked) {
+        ui.actionGerman->setChecked(false);
+    }
+    else {
+        ui.actionGerman->setChecked(true);
+    }
 }

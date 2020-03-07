@@ -777,7 +777,7 @@ color: white;
      <string>Add</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="expMultiTxt">
+   <widget class="Spinbox" name="expMultiTxt">
     <property name="geometry">
      <rect>
       <x>470</x>
@@ -962,6 +962,11 @@ color: white;
    <class>PlainText</class>
    <extends>QPlainTextEdit</extends>
    <header>plaintext.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Spinbox</class>
+   <extends>QSpinBox</extends>
+   <header>spinbox.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

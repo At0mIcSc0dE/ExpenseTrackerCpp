@@ -25,15 +25,15 @@ void Listbox::clearLstFocus(std::array<Listbox*, 3> lstboxes) {
 }
 
 
-bool Listbox::ItemInsert(QString& expName, QString& expPrice, short unsigned int expMulti) {
+bool Listbox::ItemInsert(QString& expName, double expPrice, short unsigned int expMulti) {
 
-	if (expName.length() + expPrice.length() > 10) {
+	if (expName.length() + QString::number(expPrice).length() > 10) {
 		msgDEBUG("Length of name and price exceed allowed length! Please shorten your Expense name or Price");
 		return false;
 	}
 
 	for (int i = 0; i <= expMulti; ++i) {
-		this->insertItem(0, expName + " || " + expPrice + QString::fromLocal8Bit(config::currency));
+		this->insertItem(0, expName + " || " + QString::number(expPrice) + QString::fromLocal8Bit(config::currency));
 		return true;
 	}
 

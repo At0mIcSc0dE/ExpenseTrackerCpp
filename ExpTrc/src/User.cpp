@@ -1,11 +1,11 @@
 /*.cpp file for User class*/
 
 #include "User.h"
-
+#include "Config.h"
 
 User::User()
 {
-	
+	this->userID = "1";
 }
 
 
@@ -34,6 +34,12 @@ User::~User() {
 
 
 bool User::exists() {
+	/*checks in .json file if user exists*/
+
+	if (config::json.d["User"][userID].IsArray()) {
+		return true;
+	}
+
 	return false;
 }
 

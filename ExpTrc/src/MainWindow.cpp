@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget* parent)
 
     //Required to set geometry for every button for animation
     #pragma region SetAnimationGeometry
+    
     ui.addBtn->btnRect = ui.addBtn->geometry();
     ui.deleteBtn->btnRect = ui.deleteBtn->geometry();
     ui.dupBtn->btnRect = ui.dupBtn->geometry();
@@ -36,6 +37,7 @@ MainWindow::MainWindow(QWidget* parent)
 
     ui.expInfoTxt->plainTxtSize = ui.expInfoTxt->geometry();
     ui.expMultiTxt->spinboxSize = ui.expMultiTxt->geometry();
+    
     #pragma endregion
 
     //DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN || DESIGN
@@ -86,7 +88,8 @@ void MainWindow::MainListboxInsertion() {
       into the corresponding listbox.*/
 
     QString& expName = ui.expNameTxt->text();
-    QString& expPrice = ui.expPriceTxt->text();
+    QString& expCategory = ui.comboboxCatInpt->currentText();
+    double expPrice = ui.expPriceTxt->text().toDouble();
     short unsigned int expMulti = ui.expMultiTxt->text().toInt();
     QString& expInfo = ui.expInfoTxt->toPlainText();
 
@@ -101,51 +104,77 @@ void MainWindow::MainListboxInsertion() {
 
     if (ui.chbOneTime->isChecked()) {
         if (ui.lstbox->ItemInsert(expName, expPrice, expMulti)) {
-            writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, ONETIME, ui.comboboxExpCat->currentText()); 
-            // ^ TODO --> doesn't check if a user or a group is logged in, nor does it know which category to add it to
+            // ^ TODO --> doesn't check if a user or a group is logged in
+            config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, ONETIME);
         }
     }
     else if (ui.chbMonthly->isChecked()) {
         if (ui.lstboxMonth->ItemInsert(expName, expPrice, expMulti)) {
-            writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, MONTHLY, ui.comboboxExpCat->currentText());
+            config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, MONTHLY);
         }
     }
     else if (ui.chbOneTimeTakings->isChecked()) {
         if (ui.lstboxTakings->ItemInsert(expName, expPrice, expMulti)) {
-            writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, ONETIME_T, ui.comboboxExpCat->currentText());
+            config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, ONETIME_T);
         }
     }
     else {
         if (ui.lstboxTakingsMonth->ItemInsert(expName, expPrice, expMulti)) {
-            writeExpenseToJson(expName, expPrice, expInfo, expMulti, USER, MONTHLY_T, ui.comboboxExpCat->currentText());
+            config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, MONTHLY_T);
         }
     }
     #pragma endregion
 
     ui.expNameTxt->clear();
     ui.expPriceTxt->clear();
+    config::exp.writeExpenseToJson();
 }
 
 
 void MainWindow::MainListboxDeletion() {
     QListWidgetItem* item;
+    short unsigned int expID;
+    
     switch (config::lstboxFocus) {
     case LSTBOX:
-        item = ui.lstbox->takeItem(ui.lstbox->currentRow());
+    {
+        expID = ui.lstbox->currentRow();
+        item = ui.lstbox->takeItem(expID);
         delete item;
+
+        Value& val = config::json.d["OneTimeExpense"][config::user.userID];
+        for (SizeType i = 0; i < val.Size(); ++i) {
+            for (SizeType j = 0; j < val[i].Size(); ++j) {
+                
+            }
+        }
+
         break;
+    }
     case LSTBOXMONTH:
-        item = ui.lstboxMonth->takeItem(ui.lstboxMonth->currentRow());
+    {
+        expID = ui.lstbox->currentRow();
+        item = ui.lstboxMonth->takeItem(expID);
         delete item;
+
         break;
+    }
     case LSTBOXTAKINGS:
-        item = ui.lstboxTakings->takeItem(ui.lstboxTakings->currentRow());
+    {
+        expID = ui.lstbox->currentRow();
+        item = ui.lstboxTakings->takeItem(expID);
         delete item;
+
         break;
+    }
     case LSTBOXTAKINGSMONTH:
-        item = ui.lstboxTakingsMonth->takeItem(ui.lstboxTakingsMonth->currentRow());
+    {
+        expID = ui.lstbox->currentRow();
+        item = ui.lstboxTakingsMonth->takeItem(expID);
         delete item;
+
         break;
+    }
     }
 }
 
@@ -184,6 +213,8 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* Event) {
 }
 
 
+#pragma region chbHandlers
+
 void MainWindow::chbOneStateHandler() {
     ui.chbOneTime->uncheckAny({ ui.chbMonthly, ui.chbOneTimeTakings, ui.chbMonthlyTakings });
     ui.chbOneTime->setChecked(true);
@@ -207,6 +238,8 @@ void MainWindow::chbMonthTakingsStateHandler() {
     ui.chbMonthlyTakings->setChecked(true);
 }
 
+#pragma endregion
+
 
 void MainWindow::on_actionGerman_toggled(bool checked) {
     if (checked) {
@@ -226,3 +259,5 @@ void MainWindow::on_actionEnglish_toggled(bool checked) {
         ui.actionGerman->setChecked(true);
     }
 }
+
+

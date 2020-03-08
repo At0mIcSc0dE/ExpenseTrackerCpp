@@ -1,6 +1,2 @@
-﻿  Config.cpp
-  LoginWindow.cpp
-  MainWindow.cpp
-  listbox.cpp
-  main.cpp
+﻿  MainWindow.cpp
   ExpTrc.vcxproj -> D:\Programming\Cpp\Projects\ExpTrc\x64\Debug\ExpTrc.exe

@@ -8,14 +8,13 @@
 #include "Declarations.h"
 #include "JSON.h"
 
-extern JSON json;
 
 class User
 {
 public:
 	QString username;
 	QString password;
-	unsigned int ID;
+	const char* userID;
 
 	User();
 

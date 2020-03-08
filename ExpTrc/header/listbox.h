@@ -10,16 +10,16 @@ class Listbox : public QListWidget
 	Q_OBJECT
 
 public:
-	Listbox(QWidget* parent = Q_NULLPTR);
 
+	Listbox(QWidget* parent = Q_NULLPTR);
 	~Listbox();
 
-	bool ItemInsert(QString& expName, QString& expPrice, short unsigned int expMulti);
 
+	bool ItemInsert(QString& expName, QString& expPrice, short unsigned int expMulti);
 	static void clearLstFocus(std::array<Listbox*, 3> lstboxes);
 
 private:
-	QMessageBox* msg;
+
 };
 
 

@@ -66,6 +66,7 @@ MainWindow::MainWindow(QWidget* parent)
     ui.lstboxMonth->installEventFilter(this);
     ui.lstboxTakings->installEventFilter(this);
     ui.lstboxTakingsMonth->installEventFilter(this);
+
     #pragma endregion
 
 }
@@ -73,10 +74,9 @@ MainWindow::MainWindow(QWidget* parent)
 
 MainWindow::~MainWindow() {
     /*Destructor for MainWindow class*/
-
-    if (msg != nullptr) {
+    
+    if (msg != nullptr)
         delete msg;
-    }
 }
 
 
@@ -92,6 +92,7 @@ void MainWindow::MainListboxInsertion() {
 
     if (expName == "" || expPrice == NULL) {
         msg = new QMessageBox(QMessageBox::Icon::Critical, "Failed to add object", "Please enter name and price for your expense!");
+        msg->setAttribute(Qt::WA_DeleteOnClose, true);
         msg->show();
         return;
     }

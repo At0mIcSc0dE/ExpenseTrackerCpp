@@ -13,9 +13,8 @@ Listbox::Listbox(QWidget* parent)
 
 
 Listbox::~Listbox() {
-	if(msg != nullptr)
-		delete msg;
-	}
+	
+}
 
 
 void Listbox::clearLstFocus(std::array<Listbox*, 3> lstboxes) {

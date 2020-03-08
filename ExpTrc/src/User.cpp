@@ -3,12 +3,19 @@
 #include "User.h"
 
 
-User::User(char* username, char* password)
-	:username(username), password(password)
+User::User()
 {
+	
+}
+
+
+bool User::initUser(QString& username, QString& password) {
+	this->username = username;
+	this->password = password;
+
 	if (this->exists()) {
 		if (this->hasCorrectLoginInformation()) {
-
+			return true;
 		}
 		else {
 			msgDEBUG("Invalid Username or Password");
@@ -17,12 +24,12 @@ User::User(char* username, char* password)
 	else {
 		msgDEBUG("User does not exist");
 	}
+	return false;
 }
 
 
 User::~User() {
-	if(msg != nullptr)
-		delete msg;
+	
 }
 
 

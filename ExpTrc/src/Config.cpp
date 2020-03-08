@@ -5,3 +5,4 @@
 
 short unsigned int config::lstboxFocus = LSTBOX;
 char* config::currency = "€";
+User config::user;

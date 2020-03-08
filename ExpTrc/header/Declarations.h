@@ -8,7 +8,6 @@
 #ifndef DECLARATIONS_H
 #define DECLARATIONS_H
 
-#include <qstring.h>
 
 #define LSTBOX 1
 #define LSTBOXMONTH 2
@@ -23,13 +22,10 @@
 #define ONETIME_T 3
 #define MONTHLY_T 4
 
-#define msgDEBUG(a) msg = new QMessageBox; \
-					msg->setText(a); \
+#define msgDEBUG(a) QMessageBox* msg = new QMessageBox;\
+                    msg->setAttribute(Qt::WA_DeleteOnClose, true); \
+					msg->setText(a);\
 					msg->show()
-
-#define mmsgDebug(a) QMessageBox* msg = new QMessageBox;\
-					 msg->setText(a);\
-					 msg->show()
 
 
 

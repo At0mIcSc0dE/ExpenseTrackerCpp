@@ -13,20 +13,21 @@ extern JSON json;
 class User
 {
 public:
-	char* username;
-	char* password;
+	QString username;
+	QString password;
 	unsigned int ID;
 
-	User(char* username, char* passwordd);
+	User();
 
 	~User();
 
+	bool initUser(QString& username, QString& password);
 	bool exists();
-
 	bool hasCorrectLoginInformation();
 
+
 private:
-	QMessageBox* msg;
+	
 };
 
 

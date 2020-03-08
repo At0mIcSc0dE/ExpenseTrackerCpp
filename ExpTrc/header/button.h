@@ -29,7 +29,7 @@ signals:
 protected slots:
 	
 private:
-	QMessageBox* msg;
+
 };
 
 

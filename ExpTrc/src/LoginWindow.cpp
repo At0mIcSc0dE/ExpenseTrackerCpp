@@ -2,6 +2,8 @@
 
 #include "LoginWindow.h"
 #include "WindowDesign.h"
+#include "User.h"
+#include "Config.h"
 
 LoginWindow::LoginWindow(QWidget* parent)
 	:QDialog(parent)
@@ -26,6 +28,9 @@ LoginWindow::~LoginWindow() {
 
 
 bool LoginWindow::login() {
+	if (config::user.initUser(ui.usernameTxt->text(), ui.passwordTxt->text())) {
+		return true;
+	}
 	return false;
 }
 

@@ -5,9 +5,12 @@
 #include <qapplication.h>
 #include "Declarations.h"
 #include "JSON.h"
-
+#include <ctime>
+#include "Config.h"
 
 //VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
+
+
 const std::string folderPath = "C:/Programming/ProgramFiles/ExpenseTracker/";
 JSON json("D:/Programming/ProgramFiles/ExpenseTracker/files.json", "{\"OneTimeExpense\": {\"1\": []},\"MonthlyExpense\": {\"1\": []},\"OneTimeTakings\": {\"1\": []},\"MonthlyTakings\": {\"1\": []},\"Group\": {\"1\": [\"admin\", \"admin\"]},\"User\": {\"2\": []},\"Category\": {\"All\": []}}");
 
@@ -44,12 +47,20 @@ void writeExpenseToJson(const QString& expName, const QString& expPrice, const Q
 	//ORDER ---> ID, expName, expPrice, expInfo, Day, Month, Year, Username, Category
 	//TODO -> ID, Day, Month, Year and Username are not included yet
 
+	time_t now = time(0);
+
+	tm* ltm = localtime(&now);
+
 	for (int i = 0; i < expMulti; ++i) {
 		Value inUserLstEntry(kArrayType);
 		//inUserLstEntry.PushBack(Value().SetInt(), json.alloc);  //ID
 		inUserLstEntry.PushBack(Value().SetString(expName.toStdString().c_str(), json.alloc), json.alloc);
 		inUserLstEntry.PushBack(Value().SetDouble(expPrice.toDouble()), json.alloc);
 		inUserLstEntry.PushBack(Value().SetString(expInfo.toStdString().c_str(), json.alloc), json.alloc);
+		inUserLstEntry.PushBack(Value().SetString(std::to_string(ltm->tm_mday).c_str(), json.alloc), json.alloc);
+		inUserLstEntry.PushBack(Value().SetString(std::to_string(ltm->tm_mon).c_str(), json.alloc), json.alloc);
+		inUserLstEntry.PushBack(Value().SetString(std::to_string(ltm->tm_year).c_str(), json.alloc), json.alloc);
+		inUserLstEntry.PushBack(Value().SetInt(config::user.ID), json.alloc);
 		inUserLstEntry.PushBack(Value().SetString(category.toStdString().c_str(), json.alloc), json.alloc);
 
 

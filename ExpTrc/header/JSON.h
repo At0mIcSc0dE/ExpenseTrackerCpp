@@ -41,7 +41,6 @@ public:
 	void addExpMember(const char* expType, const char* userID, Value& inVal);
 
 private:
-	QMessageBox* msg;
 
 };
 

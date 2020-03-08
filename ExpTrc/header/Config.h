@@ -3,10 +3,9 @@
 
 #include "User.h"
 
-struct config {
-	static short unsigned int lstboxFocus;
-	static char* currency;
-	static User user;
-};
-
+namespace config {
+	extern short unsigned int lstboxFocus;
+	extern char* currency;
+	extern User user;
+}
 #endif //CONFIG_H

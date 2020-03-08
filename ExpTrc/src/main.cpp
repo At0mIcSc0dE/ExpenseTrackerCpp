@@ -9,46 +9,18 @@
 #include "Config.h"
 
 //VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
-
-
 const std::string folderPath = "C:/Programming/ProgramFiles/ExpenseTracker/";
 JSON json("D:/Programming/ProgramFiles/ExpenseTracker/files.json", "{\"OneTimeExpense\": {\"1\": []},\"MonthlyExpense\": {\"1\": []},\"OneTimeTakings\": {\"1\": []},\"MonthlyTakings\": {\"1\": []},\"Group\": {\"1\": [\"admin\", \"admin\"]},\"User\": {\"2\": []},\"Category\": {\"All\": []}}");
 
 
 //FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS
-void writeExpenseToJson(const QString& expName, const QString& expPrice, const QString& expInfo, const unsigned short int expMulti, short unsigned int loggedInType, short unsigned int expType, QString& category = QString::fromLocal8Bit("All"));
-
-
-int main(int argc, char* argv[])
-{
-	QApplication app(argc, argv);
-	MainWindow win;
-	LoginWindow loginWin;
-														
-	//Value& val = json.d["OneTimeExpense"]["User1"];
-	//for (SizeType i = 0; i < val.Size(); ++i) {
-	//	for (SizeType j = 0; j < val[i].Size(); ++j) {
-
-	//		debug += val[i][j].GetString() + std::string("\n");
-	//	}
-	//}
-
-
-	loginWin.show();
-	win.show();
-	return app.exec();
-}
-
-
-
-//FUNCTION DEFINITIONS || FUNCTION DEFINITIONS || FUNCTION DEFINITIONS || FUNCTION DEFINITIONS || FUNCTION DEFINITIONS || FUNCTION DEFINITIONS || FUNCTION DEFINITIONS
 void writeExpenseToJson(const QString& expName, const QString& expPrice, const QString& expInfo, const unsigned short int expMulti, short unsigned int loggedInType, short unsigned int expType, QString& category) {
 	//Takes data and writes it to json
-	//ORDER ---> ID, expName, expPrice, expInfo, Day, Month, Year, Username, Category
-	//TODO -> ID, Day, Month, Year and Username are not included yet
+	//ORDER ---> ExpenseID, expName, expPrice, expInfo, Day, Month, Year, UserID, Category
+	//TODO -> ExpenseID, Day, Month, Year are not included properly yet
 
+	//Getting time
 	time_t now = time(0);
-
 	tm* ltm = localtime(&now);
 
 	for (int i = 0; i < expMulti; ++i) {
@@ -81,4 +53,25 @@ void writeExpenseToJson(const QString& expName, const QString& expPrice, const Q
 
 		json.write();
 	}
+}
+
+//MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION
+int main(int argc, char* argv[])
+{
+	QApplication app(argc, argv);
+	MainWindow win;
+	LoginWindow loginWin;
+														
+	//Value& val = json.d["OneTimeExpense"]["User1"];
+	//for (SizeType i = 0; i < val.Size(); ++i) {
+	//	for (SizeType j = 0; j < val[i].Size(); ++j) {
+
+	//		debug += val[i][j].GetString() + std::string("\n");
+	//	}
+	//}
+
+
+	loginWin.show();
+	win.show();
+	return app.exec();
 }

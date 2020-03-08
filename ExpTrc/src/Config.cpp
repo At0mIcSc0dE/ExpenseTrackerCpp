@@ -3,6 +3,8 @@
 #include "Config.h"
 #include "Declarations.h"
 
-short unsigned int config::lstboxFocus = LSTBOX;
-char* config::currency = "€";
-User config::user;
+namespace config {
+	short unsigned int lstboxFocus = LSTBOX;
+	char* currency = "€";
+	User user;
+}

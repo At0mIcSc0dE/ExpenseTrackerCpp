@@ -103,23 +103,23 @@ void MainWindow::MainListboxInsertion() {
     #pragma region CheckWhichListboxIsChecked
 
     if (ui.chbOneTime->isChecked()) {
-        if (ui.lstbox->ItemInsert(expName, expPrice, expMulti)) {
+        if (ui.lstbox->ItemInsert(expName, QString::number(expPrice), expMulti)) {
             // ^ TODO --> doesn't check if a user or a group is logged in
             config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, ONETIME);
         }
     }
     else if (ui.chbMonthly->isChecked()) {
-        if (ui.lstboxMonth->ItemInsert(expName, expPrice, expMulti)) {
+        if (ui.lstboxMonth->ItemInsert(expName, QString::number(expPrice), expMulti)) {
             config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, MONTHLY);
         }
     }
     else if (ui.chbOneTimeTakings->isChecked()) {
-        if (ui.lstboxTakings->ItemInsert(expName, expPrice, expMulti)) {
+        if (ui.lstboxTakings->ItemInsert(expName, QString::number(expPrice), expMulti)) {
             config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, ONETIME_T);
         }
     }
     else {
-        if (ui.lstboxTakingsMonth->ItemInsert(expName, expPrice, expMulti)) {
+        if (ui.lstboxTakingsMonth->ItemInsert(expName, QString::number(expPrice), expMulti)) {
             config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, MONTHLY_T);
         }
     }
@@ -141,14 +141,16 @@ void MainWindow::MainListboxDeletion() {
         expID = ui.lstbox->currentRow();
         item = ui.lstbox->takeItem(expID);
         delete item;
+        Value& obj = config::json.d["OneTimeExpense"][config::user.userID];
+        std::string test = "";
 
-        Value& val = config::json.d["OneTimeExpense"][config::user.userID];
-        for (SizeType i = 0; i < val.Size(); ++i) {
-            for (SizeType j = 0; j < val[i].Size(); ++j) {
-                
-            }
+        for (Value::ConstValueIterator itr = obj.Begin(); itr != obj.End(); ++itr) {
+            test += (*itr)[expID].GetString();
         }
 
+        msgDEBUG(QString::fromStdString(test));
+
+        //config::json.d["OneTimeExpense"][config::user.userID].Clear();
         break;
     }
     case LSTBOXMONTH:
@@ -157,6 +159,7 @@ void MainWindow::MainListboxDeletion() {
         item = ui.lstboxMonth->takeItem(expID);
         delete item;
 
+        config::json.d["MonthlyExpense"][config::user.userID].Clear();
         break;
     }
     case LSTBOXTAKINGS:
@@ -165,6 +168,7 @@ void MainWindow::MainListboxDeletion() {
         item = ui.lstboxTakings->takeItem(expID);
         delete item;
 
+        config::json.d["OneTimeTakings"][config::user.userID].Clear();
         break;
     }
     case LSTBOXTAKINGSMONTH:
@@ -173,9 +177,11 @@ void MainWindow::MainListboxDeletion() {
         item = ui.lstboxTakingsMonth->takeItem(expID);
         delete item;
 
+        config::json.d["MonthlyTakings"][config::user.userID].Clear();
         break;
     }
     }
+    config::json.write();
 }
 
 

@@ -29,9 +29,9 @@ void Expense::writeExpenseToJson() {
 
 	for (int i = 0; i < expMulti; ++i) {
 		Value inUserLstEntry(kArrayType);
-		inUserLstEntry.PushBack(Value().SetInt(expID + 1), config::json.alloc);  //ID
+		inUserLstEntry.PushBack(Value().SetString(std::to_string(expID + 1).c_str(), config::json.alloc), config::json.alloc);  //ID
 		inUserLstEntry.PushBack(Value().SetString(expName.toStdString().c_str(), config::json.alloc), config::json.alloc);
-		inUserLstEntry.PushBack(Value().SetDouble(expPrice), config::json.alloc);
+		inUserLstEntry.PushBack(Value().SetString(std::to_string(expPrice).c_str(), config::json.alloc), config::json.alloc);
 		inUserLstEntry.PushBack(Value().SetString(expInfo.toStdString().c_str(), config::json.alloc), config::json.alloc);
 		inUserLstEntry.PushBack(Value().SetString(std::to_string(ltm->tm_mday).c_str(), config::json.alloc), config::json.alloc);
 		inUserLstEntry.PushBack(Value().SetString(std::to_string(ltm->tm_mon).c_str(), config::json.alloc), config::json.alloc);
@@ -42,16 +42,16 @@ void Expense::writeExpenseToJson() {
 
 		switch (expType) {
 		case ONETIME:
-			config::json.addExpMember("OneTimeExpense", "1", inUserLstEntry); //TODO --> Correct User ID
+			config::json.addExpMember("OneTimeExpense", config::user.userID, inUserLstEntry); //TODO --> Correct User ID
 			break;
 		case MONTHLY:
-			config::json.addExpMember("MonthlyExpense", "1", inUserLstEntry);
+			config::json.addExpMember("MonthlyExpense", config::user.userID, inUserLstEntry);
 			break;
 		case ONETIME_T:
-			config::json.addExpMember("OneTimeTakings", "1", inUserLstEntry);
+			config::json.addExpMember("OneTimeTakings", config::user.userID, inUserLstEntry);
 			break;
 		case MONTHLY_T:
-			config::json.addExpMember("MonthlyTakings", "1", inUserLstEntry);
+			config::json.addExpMember("MonthlyTakings", config::user.userID, inUserLstEntry);
 			break;
 		}
 

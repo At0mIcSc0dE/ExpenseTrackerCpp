@@ -10,7 +10,7 @@ public:
 	QString expInfo;
 	QString category;
 	double expPrice;
-	short unsigned int expID;
+	short unsigned int expID = 0;
 	short unsigned int expMulti;
 	short unsigned int expType;
 

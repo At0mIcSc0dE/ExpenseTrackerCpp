@@ -56,8 +56,6 @@ void JSON::write() {
 	Writer<OStreamWrapper> writer(osw);
 	d.Accept(writer);
 	
-	
-
 }
 
 

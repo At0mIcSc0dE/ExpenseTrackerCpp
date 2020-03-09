@@ -15,7 +15,7 @@ public:
 	~Listbox();
 
 
-	bool ItemInsert(QString& expName, double expPrice, short unsigned int expMulti);
+	bool ItemInsert(QString& expName, QString& expPrice, short unsigned int expMulti);
 	static void clearLstFocus(std::array<Listbox*, 3> lstboxes);
 
 private:

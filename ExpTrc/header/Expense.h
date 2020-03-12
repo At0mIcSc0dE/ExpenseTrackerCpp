@@ -10,7 +10,7 @@ public:
 	QString expInfo;
 	QString category;
 	double expPrice;
-	unsigned short int expID = 1;
+	unsigned short int expID;
 	unsigned short int expMulti;
 	unsigned short int expType;
 
@@ -19,6 +19,7 @@ public:
 	~Expense();
 
 	void writeExpenseToJson();
+	void assignExpID();
 };
 
 

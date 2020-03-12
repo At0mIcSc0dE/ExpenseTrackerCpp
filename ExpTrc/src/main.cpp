@@ -31,6 +31,7 @@ int main(int argc, char* argv[])
 	//	}
 	//}
 
+	config::user.registerUser();
 
 	loginWin.show();
 	win.show();

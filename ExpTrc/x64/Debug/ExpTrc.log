@@ -1,9 +1,2 @@
-﻿  Config.cpp
-  Expense.cpp
-  JSON.cpp
-  LoginWindow.cpp
-  MainWindow.cpp
-  User.cpp
-  listbox.cpp
-  main.cpp
+﻿  Expense.cpp
   ExpTrc.vcxproj -> D:\Programming\Cpp\Projects\ExpTrc\x64\Debug\ExpTrc.exe

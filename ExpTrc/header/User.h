@@ -23,6 +23,7 @@ public:
 	bool initUser(QString& username, QString& password);
 	bool exists();
 	bool hasCorrectLoginInformation();
+	bool registerUser();
 
 
 private:

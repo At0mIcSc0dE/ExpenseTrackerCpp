@@ -36,7 +36,7 @@ User::~User() {
 bool User::exists() {
 	/*checks in .json file if user exists*/
 
-	if (config::json.d["User"][userID].IsArray()) {
+	if (config::json["User"][userID].IsArray()) {
 		return true;
 	}
 

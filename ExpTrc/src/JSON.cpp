@@ -1,10 +1,10 @@
 /*.cpp file for JSON class*/
 
 #include "JSON.h"
-
+#include <fstream>
 
 JSON::JSON(const char* path, const char* startDocument)
-	:path(path)
+	:path(path), d(kObjectType)
 {
 	//check if file exists, this is a fast way acording to stackoverflow
 	//create it and parse startDocument
@@ -39,23 +39,16 @@ void JSON::read() {
 
 void JSON::write() {
 
-	//FILE* fp = fopen(path, "wb"); // write-byte
+	FILE* fp = fopen(path, "wb");
 
-	//char writeBuffer[65536];
-	//FileWriteStream os(fp, writeBuffer, sizeof(writeBuffer));
+	char writeBuffer[65536];
+	FileWriteStream os(fp, writeBuffer, sizeof(writeBuffer));
 
-	//Writer<FileWriteStream> writer(os);
-	//d.Accept(writer);
-
-	//fclose(fp);
-
-
-	std::ofstream ofs(path);
-	OStreamWrapper osw(ofs);
-
-	Writer<OStreamWrapper> writer(osw);
+	PrettyWriter<FileWriteStream> writer(os);
 	d.Accept(writer);
-	
+
+	fclose(fp);
+
 }
 
 

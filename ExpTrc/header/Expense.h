@@ -10,9 +10,9 @@ public:
 	QString expInfo;
 	QString category;
 	double expPrice;
-	short unsigned int expID = 0;
-	short unsigned int expMulti;
-	short unsigned int expType;
+	unsigned short int expID = 1;
+	unsigned short int expMulti;
+	unsigned short int expType;
 
 	Expense();
 	Expense(QString& expName, double expPrice, QString& expInfo, short unsigned int expMulti, QString& category, short unsigned int loggedInType = 1, short unsigned int expType = 1);

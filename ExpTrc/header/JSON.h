@@ -4,20 +4,17 @@
 #ifndef JSON_H
 #define JSON_H
 
-#include <rapidjson/reader.h>
 #include <rapidjson/filereadstream.h>
-#include <rapidjson/filewritestream.h>
-#include <rapidjson/writer.h>
 #include <rapidjson/document.h>
-#include <rapidjson/ostreamwrapper.h>
+#include <rapidjson/prettywriter.h>
+#include <rapidjson/filewritestream.h>
 
-#include <fstream>
 #include <qmessagebox.h>
 #include "Declarations.h"
 
 using namespace rapidjson;
 
-class JSON : Document
+class JSON : public Document
 {
 public:
 	const char* path;

@@ -27,64 +27,85 @@ void Expense::writeExpenseToJson() {
 	//time_t now = time(0);
 	//tm* ltm = localtime(&now);
 
-	//for (int i = 0; i < expMulti; ++i) {
-	//	Value inUserLstEntry(kArrayType);
-	//	inUserLstEntry.PushBack(Value().SetString(std::to_string(expID + 1).c_str(), config::json.alloc), config::json.alloc);  //ID
-	//	inUserLstEntry.PushBack(Value().SetString(expName.toStdString().c_str(), config::json.alloc), config::json.alloc);
-	//	inUserLstEntry.PushBack(Value().SetString(std::to_string(expPrice).c_str(), config::json.alloc), config::json.alloc);
-	//	inUserLstEntry.PushBack(Value().SetString(expInfo.toStdString().c_str(), config::json.alloc), config::json.alloc);
-	//	inUserLstEntry.PushBack(Value().SetString(std::to_string(ltm->tm_mday).c_str(), config::json.alloc), config::json.alloc);
-	//	inUserLstEntry.PushBack(Value().SetString(std::to_string(ltm->tm_mon).c_str(), config::json.alloc), config::json.alloc);
-	//	inUserLstEntry.PushBack(Value().SetString(std::to_string(ltm->tm_year).c_str(), config::json.alloc), config::json.alloc);
-	//	inUserLstEntry.PushBack(Value().SetString(config::user.userID, config::json.alloc), config::json.alloc);
-	//	inUserLstEntry.PushBack(Value().SetString(category.toStdString().c_str(), config::json.alloc), config::json.alloc);
 
 
-	//	switch (expType) {
-	//	case ONETIME:
-	//		config::json.addExpMember("OneTimeExpense", config::user.userID, inUserLstEntry); //TODO --> Correct User ID
-	//		break;
-	//	case MONTHLY:
-	//		config::json.addExpMember("MonthlyExpense", config::user.userID, inUserLstEntry);
-	//		break;
-	//	case ONETIME_T:
-	//		config::json.addExpMember("OneTimeTakings", config::user.userID, inUserLstEntry);
-	//		break;
-	//	case MONTHLY_T:
-	//		config::json.addExpMember("MonthlyTakings", config::user.userID, inUserLstEntry);
-	//		break;
-	//	}
 
-	//	config::json.write();
-	//}
 	Value expAttr(kObjectType);
-	Value expIDVal(kObjectType);
+	//Value expIDVal(kObjectType);
 	Value userIDVal(kObjectType);
 
 	expAttr.AddMember("expName", Value().SetString(expName.toStdString().c_str(), config::json.alloc), config::json.alloc);
 	expAttr.AddMember("expPrice", Value().SetDouble(expPrice), config::json.alloc);
 
-	//expIDVal.AddMember(Value().SetString(std::to_string(expID + 1).c_str(), config::json.alloc), expAttr, config::json.alloc);
+	//expIDVal.AddMember(Value().SetString(std::to_string(expID).c_str(), config::json.alloc), expAttr, config::json.alloc);
 
-	//userIDVal.AddMember(Value().SetString(config::user.userID, config::json.alloc), expIDVal, config::json.alloc);
+	//userIDVal.AddMember(Value().SetString(std::to_string(expID + 1).c_str(), config::json.alloc), expAttr, config::json.alloc);
 
-	Value::MemberIterator itrExpID = expIDVal.FindMember(Value().SetString(std::to_string(expID).c_str(), config::json.alloc));
-	if (itrExpID == expIDVal.MemberEnd()) {
-		expIDVal.AddMember(Value().SetString(std::to_string(expID + 1).c_str(), config::json.alloc), expAttr, config::json.alloc);
-	}
+
+	//Value::MemberIterator itrUserID = config::json.d["OneTimeExpense"].FindMember(config::user.userID);
+	//if (itrUserID == config::json.d["OneTimeExpense"].MemberEnd()) {
+	//	userIDVal.AddMember(Value().SetString(std::to_string(expID + 1).c_str(), config::json.alloc), expAttr, config::json.alloc);
+	//	config::json.d["OneTimeExpense"].AddMember(Value().SetString(config::user.userID, config::json.alloc), userIDVal, config::json.alloc);
+	//}
+	//else
+	//	config::json.d["OneTimeExpense"].AddMember(Value().SetString(config::user.userID, config::json.alloc), userIDVal, config::json.alloc);
+
+	//Value::MemberIterator itrExpTime = config::json.d.FindMember("OneTimeExpense");
+	//if (itrExpTime == config::json.d.MemberEnd()) {
+	//	config::json.d.AddMember("OneTimeExpense", userIDVal, config::json.alloc);
+	//}
+	//else {
+	//	//config::json.d["OneTimeExpense"].AddMember(Value().SetString(config::user.userID, config::json.alloc), userIDVal, config::json.alloc);
+	//}
+
+
+	/*Value valExpID(kObjectType);
+	Value valUserID(kObjectType);
+
+	valExpID.AddMember(Value().SetString(config::user.userID, config::json.alloc), expAttr, config::json.alloc);
 	
-	Value::MemberIterator itrUserID1 = userIDVal.FindMember(Value().SetString(config::user.userID, config::json.alloc));
-	if (itrUserID1 == userIDVal.MemberEnd()) {
-		userIDVal.AddMember(Value().SetString(config::user.userID, config::json.alloc), expIDVal, config::json.alloc);
-	}
+	Value::MemberIterator itrUserID = config::json.d["OneTimeExpense"].FindMember(Value().SetString(config::user.userID, config::json.alloc));
+	if (itrUserID == config::json.d["OneTimeExpense"].MemberEnd())
+		valUserID.AddMember(Value().SetString(config::user.userID, config::json.alloc), valExpID, config::json.alloc);
+	else
+		config::json.d["OneTimeExpense"][config::user.userID].AddMember(Value().SetString(std::to_string(expID).c_str(), config::json.alloc), expAttr, config::json.alloc);
+
 
 	Value::MemberIterator itrExpTime = config::json.d.FindMember("OneTimeExpense");
-	if (itrExpTime == config::json.d.MemberEnd()) {
-		config::json.d.AddMember("OneTimeExpense", userIDVal, config::json.alloc);
-	}
+	if (itrExpTime == config::json.d.MemberEnd())
+		config::json.d.AddMember("OneTimeExpense", valUserID, config::json.alloc);
 	else {
+		config::json.d["OneTimeExpense"].AddMember(Value().SetString(config::user.userID, config::json.alloc), Value().SetString(std::to_string(expID).c_str(), config::json.alloc), config::json.alloc);
+	}*/
 
+	//Value expIDVal(kObjectType);
+	//expIDVal.AddMember(Value().SetString(expID, config::json.alloc), expAttr, config::json.alloc);
+	//config::json.d["OneTimeExpense"].AddMember(Value().SetString(config::user.userID, config::json.alloc), expIDVal, config::json.alloc);
+
+	//userIDVal.AddMember(Value().SetString(config::user.userID, config::json.alloc), expIDVal, config::json.alloc);
+	//Value::MemberIterator itrUserID = config::json.d["OneTimeExpense"].FindMember(Value().SetString(config::user.userID, config::json.alloc));
+	//if (itrUserID == config::json.d["OneTimeExpense"].MemberEnd()) {
+	//	config::json.d["OneTimeExpense"].AddMember(Value().SetString(config::user.userID, config::json.alloc), expIDVal, config::json.alloc);
+	//}
+	//else {
+	//	config::json.d["OneTimeExpense"][config::user.userID].AddMember(Value().SetString(config::user.userID, config::json.alloc), expAttr, config::json.alloc);
+	//}
+
+	Value expIdVal(kObjectType);
+
+	expIdVal.AddMember(Value().SetString(std::to_string(expID).c_str(), config::json.alloc), expAttr, config::json.alloc);
+
+	Value::MemberIterator itrFindUser = config::json.d["OneTimeExpense"].FindMember(Value().SetString(config::user.userID, config::json.alloc));
+	if (itrFindUser == config::json.d["OneTimeExpense"].MemberEnd())
+		config::json.d["OneTimeExpense"].AddMember(Value().SetString(config::user.userID, config::json.alloc), expIdVal, config::json.alloc);
+	else {
+		config::json.d["OneTimeExpense"][config::user.userID].AddMember(Value().SetString(std::to_string(expID).c_str(), config::json.alloc), Value(kObjectType), config::json.alloc);
+		config::json.write();
+		config::json.d["OneTimeExpense"][config::user.userID][std::to_string(expID).c_str()].AddMember(Value().SetString(std::to_string(expID).c_str(), config::json.alloc), expAttr, config::json.alloc);
+		//config::json.d["OneTimeExpense"][config::user.userID].AddMember(Value().SetString(expID, config::json.alloc), expAttr, config::json.alloc);
 	}
+
+	this->expID++;
 
 	config::json.write();
 }

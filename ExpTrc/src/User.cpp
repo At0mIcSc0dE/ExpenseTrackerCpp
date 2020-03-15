@@ -5,7 +5,7 @@
 
 User::User()
 {
-	this->userID = "1";
+	this->userID = 0;
 }
 
 
@@ -47,14 +47,32 @@ bool User::exists() {
 
 
 bool User::registerUser() {
+	this->userID = config::json.d["General"]["userID"].GetInt();
 
-	Value::MemberIterator itrUserID = config::json.d["OneTimeExpense"].FindMember(Value().SetString(userID, config::json.alloc));
-	if (itrUserID == config::json.d["OneTimeExpense"].MemberEnd()) {
-		config::json.d["OneTimeExpense"].AddMember(Value().SetString(userID, config::json.alloc), Value(kObjectType), config::json.alloc);
-		config::json.write();
-		return true;
-	}
+	config::json.d["General"]["userID"] = Value().SetInt(this->userID + 1);
+	
+	//Add userID to Expense keys
+	config::json.d["OneTimeExpense"].AddMember(Value().SetString(std::to_string(userID).c_str(), config::json.alloc), Value(kObjectType), config::json.alloc);
+	config::json.d["MonthlyExpense"].AddMember(Value().SetString(std::to_string(userID).c_str(), config::json.alloc), Value(kObjectType), config::json.alloc);
+	config::json.d["OneTimeTakings"].AddMember(Value().SetString(std::to_string(userID).c_str(), config::json.alloc), Value(kObjectType), config::json.alloc);
+	config::json.d["MonthlyTakings"].AddMember(Value().SetString(std::to_string(userID).c_str(), config::json.alloc), Value(kObjectType), config::json.alloc);
+
+	//Value userIDVal(kObjectType);
+	Value expTypeID(kObjectType);
+
+	expTypeID.AddMember("OneTimeExpense", 0, config::json.alloc);
+	expTypeID.AddMember("MonthlyExpense", 0, config::json.alloc);
+	expTypeID.AddMember("OneTimeTakings", 0, config::json.alloc);
+	expTypeID.AddMember("MonthlyTakings", 0, config::json.alloc);
+
+	//userIDVal.AddMember(Value().SetString(std::to_string(userID).c_str(), config::json.alloc), expTypeID, config::json.alloc);
+
+	config::json.d["General"]["expID"].AddMember(Value().SetString(std::to_string(userID).c_str(), config::json.alloc), expTypeID, config::json.alloc);
+	//config::json.d["General"].AddMember("expID", userIDVal, config::json.alloc);
+
+	config::json.write();
 	return false;
+
 }
 
 

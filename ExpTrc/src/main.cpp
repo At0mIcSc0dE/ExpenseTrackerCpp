@@ -5,7 +5,6 @@
 #include <qapplication.h>
 #include "Declarations.h"
 #include "JSON.h"
-#include <ctime>
 #include "Config.h"
 
 //VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES

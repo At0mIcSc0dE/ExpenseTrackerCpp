@@ -14,7 +14,7 @@ class User
 public:
 	QString username;
 	QString password;
-	const char* userID;
+	unsigned short int userID;
 
 	User();
 

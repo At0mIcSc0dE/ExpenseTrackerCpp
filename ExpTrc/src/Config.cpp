@@ -7,6 +7,6 @@ namespace config {
 	short unsigned int lstboxFocus = LSTBOX;
 	char* currency = "€";
 	User user;
-	JSON json("D:/Programming/ProgramFiles/ExpenseTracker/files2.json", "{\"OneTimeExpense\": {},\"MonthlyExpense\": {},\"OneTimeTakings\": {},\"MonthlyTakings\": {},\"Group\": {\"1\": [\"admin\", \"admin\"]},\"User\": {\"2\": []},\"Category\": {\"All\": []}}");
+	JSON json("D:/Programming/ProgramFiles/ExpenseTracker/Data.json", "{\"OneTimeExpense\": {},\"MonthlyExpense\": {},\"OneTimeTakings\": {},\"MonthlyTakings\": {},\"Group\": {\"0\": [\"admin\", \"admin\"]},\"User\": {\"0\": []},\"Category\": {\"All\": []}, \"General\": {\"expID\": {}, \"userID\": 0, \"groupID\": 0}}");
 	Expense exp;
 }

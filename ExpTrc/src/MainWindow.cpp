@@ -103,31 +103,43 @@ void MainWindow::MainListboxInsertion() {
     #pragma region CheckWhichListboxIsChecked
 
     if (ui.chbOneTime->isChecked()) {
-        if (ui.lstbox->ItemInsert(expName, QString::number(expPrice), expMulti)) {
-            // ^ TODO --> doesn't check if a user or a group is logged in
-            config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, ONETIME);
+        for (unsigned short int i = 0; i < expMulti; ++i) {
+            if (ui.lstbox->ItemInsert(expName, QString::number(expPrice), expMulti)) {
+                // ^ TODO --> doesn't check if a user or a group is logged in
+                config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, ONETIME);
+                config::exp.writeExpenseToJson();
+            }
         }
     }
     else if (ui.chbMonthly->isChecked()) {
-        if (ui.lstboxMonth->ItemInsert(expName, QString::number(expPrice), expMulti)) {
-            config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, MONTHLY);
+        for (unsigned short int i = 0; i < expMulti; ++i) {
+            if (ui.lstboxMonth->ItemInsert(expName, QString::number(expPrice), expMulti)) {
+                config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, MONTHLY);
+                config::exp.writeExpenseToJson();
+            }
         }
     }
     else if (ui.chbOneTimeTakings->isChecked()) {
-        if (ui.lstboxTakings->ItemInsert(expName, QString::number(expPrice), expMulti)) {
-            config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, ONETIME_T);
+        for (unsigned short int i = 0; i < expMulti; ++i) {
+            if (ui.lstboxTakings->ItemInsert(expName, QString::number(expPrice), expMulti)) {
+                config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, ONETIME_T);
+                config::exp.writeExpenseToJson();
+            }
         }
     }
     else {
-        if (ui.lstboxTakingsMonth->ItemInsert(expName, QString::number(expPrice), expMulti)) {
-            config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, MONTHLY_T);
+        for (unsigned short int i = 0; i < expMulti; ++i) {
+            if (ui.lstboxTakingsMonth->ItemInsert(expName, QString::number(expPrice), expMulti)) {
+                config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, MONTHLY_T);
+                config::exp.writeExpenseToJson();
+            }
         }
     }
     #pragma endregion
 
     ui.expNameTxt->clear();
     ui.expPriceTxt->clear();
-    config::exp.writeExpenseToJson();
+    ui.expMultiTxt->setValue(1);
 }
 
 
@@ -138,19 +150,29 @@ void MainWindow::MainListboxDeletion() {
     switch (config::lstboxFocus) {
     case LSTBOX:
     {
-        expID = ui.lstbox->currentRow();
-        item = ui.lstbox->takeItem(expID);
-        delete item;
-        Value& obj = config::json.d["OneTimeExpense"][config::user.userID];
-        std::string test = "";
+        //expID = ui.lstbox->currentRow();
+        //item = ui.lstbox->takeItem(expID);
+        //delete item;
+        //Value& obj = config::json.d["OneTimeExpense"][config::user.userID];
+        //std::string test = "";
 
-        for (Value::ConstValueIterator itr = obj.Begin(); itr != obj.End(); ++itr) {
-            test += (*itr)[expID].GetString();
-        }
+        //for (Value::ConstValueIterator itr = obj.Begin(); itr != obj.End(); ++itr) {
+        //    test += (*itr)[expID].GetString();
+        //}
 
-        msgDEBUG(QString::fromStdString(test));
+        //msgDEBUG(QString::fromStdString(test));
 
         //config::json.d["OneTimeExpense"][config::user.userID].Clear();
+
+        unsigned int lastExpID = config::json.d["General"]["expID"][std::to_string(config::user.userID).c_str()]["OneTimeExpense"].GetInt() - 1;
+        std::vector<int> expIndices;
+
+        for (int i = 0; i <= lastExpID; ++i) {
+            expIndices.emplace_back(std::stoi(config::json.d["OneTimeExpense"][std::to_string(config::user.userID).c_str()].GetString()));
+            
+        }
+
+
         break;
     }
     case LSTBOXMONTH:

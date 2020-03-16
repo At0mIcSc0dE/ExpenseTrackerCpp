@@ -27,7 +27,7 @@ void Listbox::clearLstFocus(std::array<Listbox*, 3> lstboxes) {
 
 bool Listbox::ItemInsert(QString& expName, QString& expPrice, short unsigned int expMulti) {
 
-	if (expName.length() + expPrice.length() > 10) {
+	if (expName.length() + expPrice.length() > 13) {
 		msgDEBUG("Length of name and price exceed allowed length! Please shorten your Expense name or Price");
 		return false;
 	}

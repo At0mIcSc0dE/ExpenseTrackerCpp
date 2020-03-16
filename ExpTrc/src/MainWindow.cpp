@@ -166,6 +166,7 @@ void MainWindow::MainListboxDeletion() {
         unsigned short int lstboxIndex = ui.lstbox->currentRow();
         config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(lstboxIndex + 1), config::json.alloc));
         ui.lstbox->takeItem(lstboxIndex);
+        config::json.updateIndex(config::user.userID, lstboxIndex + 1, "OneTimeExpense");
 
         break;
     }

@@ -22,7 +22,7 @@
 #define ONETIME_T 3
 #define MONTHLY_T 4
 
-#define msgDEBUG(a) QMessageBox* msg = new QMessageBox;\
+#define msgDEBUG(a) QMessageBox* msg = new QMessageBox();\
                     msg->setAttribute(Qt::WA_DeleteOnClose, true); \
 					msg->setText(a);\
 					msg->show()

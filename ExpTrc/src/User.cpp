@@ -5,7 +5,7 @@
 
 User::User()
 {
-	this->userID = 0;
+	
 }
 
 
@@ -46,8 +46,10 @@ bool User::exists() {
 
 	for (unsigned short int i = 0; i < config::json.d["General"]["userID"].GetInt(); ++i) {
 		Value::MemberIterator itrFindUserID = config::json.d["User"].FindMember(Value().SetString(TOCHARPTR(i), config::json.alloc));
-		if (itrFindUserID != config::json.d["User"].MemberEnd())
+		if (itrFindUserID != config::json.d["User"].MemberEnd()) {
+			this->userID = i;
 			return true;
+		}
 	}
 	return false;
 }
@@ -98,5 +100,5 @@ bool User::hasCorrectLoginInformation() {
 		if (userInfo[0].GetString() == username && userInfo[1].GetString() == password)
 			return true;
 	}
-	return true;
+	return false;
 }

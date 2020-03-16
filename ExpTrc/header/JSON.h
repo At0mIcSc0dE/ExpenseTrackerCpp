@@ -33,9 +33,8 @@ public:
 
 
 	void read();
-
 	void write();
-
+	void updateIndex(short unsigned int userID, short unsigned int indexOfDeletedElement, const char* expTime);
 	void addExpMember(const char* expType, const char* userID, Value& inVal);
 
 private:

@@ -31,6 +31,7 @@ LoginWindow::~LoginWindow() {
 
 bool LoginWindow::login() {
 	if (config::user.initUser(ui.usernameTxt->text(), ui.passwordTxt->text())) {
+		this->close();
 		win->show();
 		return true;
 	}

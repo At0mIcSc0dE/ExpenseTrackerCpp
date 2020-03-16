@@ -5,8 +5,10 @@
 #include "User.h"
 #include "Config.h"
 
+extern MainWindow* win;
+
 LoginWindow::LoginWindow(QWidget* parent)
-	:QDialog(parent)
+	:QDialog(parent), successfullLogin(false)
 {
 	ui.setupUi(this);
 
@@ -29,6 +31,7 @@ LoginWindow::~LoginWindow() {
 
 bool LoginWindow::login() {
 	if (config::user.initUser(ui.usernameTxt->text(), ui.passwordTxt->text())) {
+		win->show();
 		return true;
 	}
 	return false;

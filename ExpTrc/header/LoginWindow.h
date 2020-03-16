@@ -15,6 +15,7 @@ class LoginWindow : public QDialog
 {
 	Q_OBJECT
 public:
+	bool successfullLogin;
 	LoginWindow(QWidget* parent = Q_NULLPTR);
 
 	~LoginWindow();

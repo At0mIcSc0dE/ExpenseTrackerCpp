@@ -45,6 +45,53 @@ void Expense::assignExpID() {
 }
 
 
+void Expense::correctJsonExpID() {
+	//Function will sync expID in .json file to the IDs used in the QListWidget (reverse .json IDs)
+
+	const char* expTime;
+	std::vector<int> listOfAllIndices;
+	for (unsigned int i = 0; i < config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeExpense"].GetInt(); ++i) {
+		listOfAllIndices.emplace_back(i);
+	}
+
+	std::reverse(listOfAllIndices.begin(), listOfAllIndices.end());
+
+	switch (expType) {
+	case ONETIME:
+		expTime = "OneTimeExpense";
+		break;
+	case MONTHLY:
+		expTime = "MonthlyExpense";
+		break;
+	case ONETIME_T:
+		expTime = "OneTimeTakings";
+		break;
+	case MONTHLY_T:
+		expTime = "MonthlyTakings";
+		break;
+	}
+
+	for (unsigned int i = 0; i < config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)][expTime].GetInt(); ++i) {
+		Value::MemberIterator itrExpID = config::json.d[expTime][TOCHARPTR(config::user.userID)].FindMember(Value().SetString(TOCHARPTR(i), config::json.alloc));
+
+		Value copyAttrVal(kObjectType);
+		copyAttrVal.AddMember("expName", Value().SetString(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expName"].GetString(), config::json.alloc), config::json.alloc);
+		copyAttrVal.AddMember("expPrice", Value().SetDouble(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expPrice"].GetDouble()), config::json.alloc);
+		copyAttrVal.AddMember("expInfo", Value().SetString(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expInfo"].GetString(), config::json.alloc), config::json.alloc);
+		copyAttrVal.AddMember("expDay", Value().SetInt(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expDay"].GetInt()), config::json.alloc);
+		copyAttrVal.AddMember("expMonth", Value().SetInt(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expMonth"].GetInt()), config::json.alloc);
+		copyAttrVal.AddMember("expYear", Value().SetInt(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expYear"].GetInt()), config::json.alloc);
+		copyAttrVal.AddMember("expCat", Value().SetString(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expCat"].GetString(), config::json.alloc), config::json.alloc);
+
+		//Replace member by removing it first and adding it witch the correct index
+		config::json.d[expTime][TOCHARPTR(config::user.userID)].RemoveMember(itrExpID);
+
+		config::json.d[expTime][TOCHARPTR(config::user.userID)].AddMember(Value().SetString(TOCHARPTR(i + 1), config::json.alloc), copyAttrVal, config::json.alloc);
+	}
+	config::json.write();
+}
+
+
 void Expense::writeExpenseToJson() {
 	//Takes data and writes it to json
 	//ORDER ---> expName, expPrice, expInfo, Day, Month, Year, Category
@@ -67,18 +114,20 @@ void Expense::writeExpenseToJson() {
 
 	switch (expType) {
 	case ONETIME:
-		config::json.d["OneTimeExpense"][std::to_string(config::user.userID).c_str()].AddMember(Value().SetString(std::to_string(expID).c_str(), config::json.alloc), expAttr, config::json.alloc);
+		config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)].AddMember(Value().SetString(TOCHARPTR(0), config::json.alloc), expAttr, config::json.alloc);
 		break;
 	case MONTHLY:
-		config::json.d["MonthlyExpense"][std::to_string(config::user.userID).c_str()].AddMember(Value().SetString(std::to_string(expID).c_str(), config::json.alloc), expAttr, config::json.alloc);
+		config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)].AddMember(Value().SetString(TOCHARPTR(0), config::json.alloc), expAttr, config::json.alloc);
 		break;
 	case ONETIME_T:
-		config::json.d["OneTimeTakings"][std::to_string(config::user.userID).c_str()].AddMember(Value().SetString(std::to_string(expID).c_str(), config::json.alloc), expAttr, config::json.alloc);
+		config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)].AddMember(Value().SetString(TOCHARPTR(0), config::json.alloc), expAttr, config::json.alloc);
 		break;
 	case MONTHLY_T:
-		config::json.d["MonthlyTakings"][std::to_string(config::user.userID).c_str()].AddMember(Value().SetString(std::to_string(expID).c_str(), config::json.alloc), expAttr, config::json.alloc);
+		config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)].AddMember(Value().SetString(TOCHARPTR(0), config::json.alloc), expAttr, config::json.alloc);
 		break;
 	}
 
 	config::json.write();
+
+	correctJsonExpID();
 }

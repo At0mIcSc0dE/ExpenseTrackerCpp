@@ -7,6 +7,7 @@
 
 #include "Declarations.h"
 #include "JSON.h"
+#include <array>
 
 
 class User
@@ -23,7 +24,7 @@ public:
 	bool initUser(QString& username, QString& password);
 	bool exists();
 	bool hasCorrectLoginInformation();
-	bool registerUser();
+	void registerUser();
 
 
 private:

@@ -28,5 +28,7 @@
 					msg->show()
 
 
+#define TOCHARPTR(a) std::to_string(a).c_str()
+
 
 #endif //DECLARATIONS_H

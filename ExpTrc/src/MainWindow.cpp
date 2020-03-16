@@ -7,7 +7,6 @@
 
 
 //GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING
-void writeExpenseToJson(const QString& expName, const QString& expPrice, const QString& expInfo, const unsigned short int expMulti, short unsigned int loggedInType, short unsigned int expType, QString& category);
 
 
 MainWindow::MainWindow(QWidget* parent)
@@ -164,14 +163,9 @@ void MainWindow::MainListboxDeletion() {
 
         //config::json.d["OneTimeExpense"][config::user.userID].Clear();
 
-        unsigned int lastExpID = config::json.d["General"]["expID"][std::to_string(config::user.userID).c_str()]["OneTimeExpense"].GetInt() - 1;
-        std::vector<int> expIndices;
-
-        for (int i = 0; i <= lastExpID; ++i) {
-            expIndices.emplace_back(std::stoi(config::json.d["OneTimeExpense"][std::to_string(config::user.userID).c_str()].GetString()));
-            
-        }
-
+        unsigned short int lstboxIndex = ui.lstbox->currentRow();
+        config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(lstboxIndex + 1), config::json.alloc));
+        ui.lstbox->takeItem(lstboxIndex);
 
         break;
     }

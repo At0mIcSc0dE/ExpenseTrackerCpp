@@ -3,6 +3,7 @@
 
 #include <qstring.h>
 
+
 class Expense
 {
 public:
@@ -20,6 +21,7 @@ public:
 
 	void writeExpenseToJson();
 	void assignExpID();
+	void correctJsonExpID();
 };
 
 

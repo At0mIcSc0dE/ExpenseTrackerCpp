@@ -9,6 +9,7 @@
 
 //VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
 const std::string folderPath = "C:/Programming/ProgramFiles/ExpenseTracker/";
+MainWindow* win;
 //JSON json("D:/Programming/ProgramFiles/ExpenseTracker/files.json", "{\"OneTimeExpense\": {\"1\": []},\"MonthlyExpense\": {\"1\": []},\"OneTimeTakings\": {\"1\": []},\"MonthlyTakings\": {\"1\": []},\"Group\": {\"1\": [\"admin\", \"admin\"]},\"User\": {\"2\": []},\"Category\": {\"All\": []}}");
 
 
@@ -19,20 +20,10 @@ const std::string folderPath = "C:/Programming/ProgramFiles/ExpenseTracker/";
 int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
-	MainWindow win;
+	win = new MainWindow();
 	LoginWindow loginWin;
 														
-	//Value& val = json.d["OneTimeExpense"]["User1"];
-	//for (SizeType i = 0; i < val.Size(); ++i) {
-	//	for (SizeType j = 0; j < val[i].Size(); ++j) {
-
-	//		debug += val[i][j].GetString() + std::string("\n");
-	//	}
-	//}
-
-	config::user.registerUser();
-
 	loginWin.show();
-	win.show();
+
 	return app.exec();
 }

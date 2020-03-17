@@ -49,12 +49,6 @@ void Expense::correctJsonExpID() {
 	//Function will sync expID in .json file to the IDs used in the QListWidget (reverse .json IDs)
 
 	const char* expTime;
-	std::vector<int> listOfAllIndices;
-	for (unsigned int i = 0; i < config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeExpense"].GetInt(); ++i) {
-		listOfAllIndices.emplace_back(i);
-	}
-
-	std::reverse(listOfAllIndices.begin(), listOfAllIndices.end());
 
 	switch (expType) {
 	case ONETIME:
@@ -71,24 +65,8 @@ void Expense::correctJsonExpID() {
 		break;
 	}
 
-	for (unsigned int i = 0; i < config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)][expTime].GetInt(); ++i) {
-		Value::MemberIterator itrExpID = config::json.d[expTime][TOCHARPTR(config::user.userID)].FindMember(Value().SetString(TOCHARPTR(i), config::json.alloc));
+	config::json.updateIndex(TOCHARPTR(config::user.userID), 0, expTime, ADDEXP);
 
-		Value copyAttrVal(kObjectType);
-		copyAttrVal.AddMember("expName", Value().SetString(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expName"].GetString(), config::json.alloc), config::json.alloc);
-		copyAttrVal.AddMember("expPrice", Value().SetDouble(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expPrice"].GetDouble()), config::json.alloc);
-		copyAttrVal.AddMember("expInfo", Value().SetString(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expInfo"].GetString(), config::json.alloc), config::json.alloc);
-		copyAttrVal.AddMember("expDay", Value().SetInt(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expDay"].GetInt()), config::json.alloc);
-		copyAttrVal.AddMember("expMonth", Value().SetInt(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expMonth"].GetInt()), config::json.alloc);
-		copyAttrVal.AddMember("expYear", Value().SetInt(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expYear"].GetInt()), config::json.alloc);
-		copyAttrVal.AddMember("expCat", Value().SetString(config::json.d[expTime][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expCat"].GetString(), config::json.alloc), config::json.alloc);
-
-		//Replace member by removing it first and adding it witch the correct index
-		config::json.d[expTime][TOCHARPTR(config::user.userID)].RemoveMember(itrExpID);
-
-		config::json.d[expTime][TOCHARPTR(config::user.userID)].AddMember(Value().SetString(TOCHARPTR(i + 1), config::json.alloc), copyAttrVal, config::json.alloc);
-	}
-	config::json.write();
 }
 
 

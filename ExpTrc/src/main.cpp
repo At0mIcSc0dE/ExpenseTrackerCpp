@@ -10,7 +10,6 @@
 //VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
 const std::string folderPath = "C:/Programming/ProgramFiles/ExpenseTracker/";
 MainWindow* win;
-//JSON json("D:/Programming/ProgramFiles/ExpenseTracker/files.json", "{\"OneTimeExpense\": {\"1\": []},\"MonthlyExpense\": {\"1\": []},\"OneTimeTakings\": {\"1\": []},\"MonthlyTakings\": {\"1\": []},\"Group\": {\"1\": [\"admin\", \"admin\"]},\"User\": {\"2\": []},\"Category\": {\"All\": []}}");
 
 
 //FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS

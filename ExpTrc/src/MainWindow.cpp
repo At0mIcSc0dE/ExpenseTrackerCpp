@@ -49,6 +49,8 @@ MainWindow::MainWindow(QWidget* parent)
     //INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING
     ui.chbOneTime->setChecked(true);
 
+    //TODO: Add .json elements into the listobxes on startup!
+
     //CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS
     connect(ui.addBtn, SIGNAL(clicked()), this, SLOT(MainListboxInsertion()));
     connect(ui.deleteBtn, SIGNAL(clicked()), this, SLOT(MainListboxDeletion()));
@@ -146,58 +148,50 @@ void MainWindow::MainListboxDeletion() {
     QListWidgetItem* item;
     short unsigned int expID;
     
+    #pragma region CheckListboxFocusAndDeleteItems
+
+    //Deletes item from listbox, .json and updates indices
     switch (config::lstboxFocus) {
     case LSTBOX:
     {
-        //expID = ui.lstbox->currentRow();
-        //item = ui.lstbox->takeItem(expID);
-        //delete item;
-        //Value& obj = config::json.d["OneTimeExpense"][config::user.userID];
-        //std::string test = "";
-
-        //for (Value::ConstValueIterator itr = obj.Begin(); itr != obj.End(); ++itr) {
-        //    test += (*itr)[expID].GetString();
-        //}
-
-        //msgDEBUG(QString::fromStdString(test));
-
-        //config::json.d["OneTimeExpense"][config::user.userID].Clear();
-
         unsigned short int lstboxIndex = ui.lstbox->currentRow();
         config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(lstboxIndex + 1), config::json.alloc));
         ui.lstbox->takeItem(lstboxIndex);
-        config::json.updateIndex(config::user.userID, lstboxIndex + 1, "OneTimeExpense");
+        config::json.updateIndex(TOCHARPTR(config::user.userID), lstboxIndex + 1, "OneTimeExpense", DELEXP);
 
         break;
     }
     case LSTBOXMONTH:
     {
-        expID = ui.lstbox->currentRow();
-        item = ui.lstboxMonth->takeItem(expID);
-        delete item;
+        unsigned short int lstboxIndex = ui.lstboxMonth->currentRow();
+        config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(lstboxIndex + 1), config::json.alloc));
+        ui.lstboxMonth->takeItem(lstboxIndex);
+        config::json.updateIndex(TOCHARPTR(config::user.userID), lstboxIndex + 1, "MonthlyExpense", DELEXP);
 
-        config::json.d["MonthlyExpense"][config::user.userID].Clear();
         break;
     }
     case LSTBOXTAKINGS:
     {
-        expID = ui.lstbox->currentRow();
-        item = ui.lstboxTakings->takeItem(expID);
-        delete item;
+        unsigned short int lstboxIndex = ui.lstboxTakings->currentRow();
+        config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(lstboxIndex + 1), config::json.alloc));
+        ui.lstboxTakings->takeItem(lstboxIndex);
+        config::json.updateIndex(TOCHARPTR(config::user.userID), lstboxIndex + 1, "OneTimeTakings", DELEXP);
 
-        config::json.d["OneTimeTakings"][config::user.userID].Clear();
         break;
     }
     case LSTBOXTAKINGSMONTH:
     {
-        expID = ui.lstbox->currentRow();
-        item = ui.lstboxTakingsMonth->takeItem(expID);
-        delete item;
+        unsigned short int lstboxIndex = ui.lstboxTakingsMonth->currentRow();
+        config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(lstboxIndex + 1), config::json.alloc));
+        ui.lstboxTakingsMonth->takeItem(lstboxIndex);
+        config::json.updateIndex(TOCHARPTR(config::user.userID), lstboxIndex + 1, "MonthlyTakings", DELEXP);
 
-        config::json.d["MonthlyTakings"][config::user.userID].Clear();
         break;
     }
     }
+
+    #pragma endregion
+
     config::json.write();
 }
 

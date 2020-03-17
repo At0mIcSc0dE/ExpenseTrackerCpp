@@ -69,35 +69,58 @@ void JSON::addExpMember(const char* expType, const char* userID, Value& entry) {
 }
 
 
-void JSON::updateIndex(short unsigned int userID, short unsigned int indexOfDeletedElement, const char* expTime) {
+void JSON::updateIndex(const char* userID, short unsigned int indexOfDeletedElement, const char* expTime, unsigned short int addOrDelete) {
+
+	if (addOrDelete == DELEXP) {
+		//-1 from expTime index
+		d["General"]["expID"][userID][expTime] = Value().SetInt(d["General"]["expID"][userID][expTime].GetInt() - 1);
+
+		//check if expTime only has one member
+		if (d[expTime][userID].FindMember(TOCHARPTR(indexOfDeletedElement + 1)) == d[expTime][userID].MemberEnd())
+			return;
+	}
+
 
 	std::vector<int> listOfAllIndices;
-	for (unsigned int i = 0; i < d["General"]["expID"][TOCHARPTR(userID)]["OneTimeExpense"].GetInt(); ++i) {
+	for (unsigned int i = 0; i < d["General"]["expID"][userID]["OneTimeExpense"].GetInt(); ++i) {
 		listOfAllIndices.emplace_back(i);
 	}
 
 	std::reverse(listOfAllIndices.begin(), listOfAllIndices.end());
 
-	for (unsigned int i = indexOfDeletedElement; i < d["General"]["expID"][TOCHARPTR(userID)][expTime].GetInt(); ++i) {
-		Value::MemberIterator itrExpID = d[expTime][TOCHARPTR(userID)].FindMember(Value().SetString(TOCHARPTR(i), alloc));
-
-		Value copyAttrVal(kObjectType);
-
-		//TODO: only works with one element(I beleave) and update d[expid][userid][expTime] index
-
-		copyAttrVal.AddMember("expName", Value().SetString(d[expTime][TOCHARPTR(userID)][TOCHARPTR(i)]["expName"].GetString(), alloc), alloc);
-		copyAttrVal.AddMember("expPrice", Value().SetDouble(d[expTime][TOCHARPTR(userID)][TOCHARPTR(i)]["expPrice"].GetDouble()), alloc);
-		copyAttrVal.AddMember("expInfo", Value().SetString(d[expTime][TOCHARPTR(userID)][TOCHARPTR(i)]["expInfo"].GetString(), alloc), alloc);
-		copyAttrVal.AddMember("expDay", Value().SetInt(d[expTime][TOCHARPTR(userID)][TOCHARPTR(i)]["expDay"].GetInt()), alloc);
-		copyAttrVal.AddMember("expMonth", Value().SetInt(d[expTime][TOCHARPTR(userID)][TOCHARPTR(i)]["expMonth"].GetInt()), alloc);
-		copyAttrVal.AddMember("expYear", Value().SetInt(d[expTime][TOCHARPTR(userID)][TOCHARPTR(i)]["expYear"].GetInt()), alloc);
-		copyAttrVal.AddMember("expCat", Value().SetString(d[expTime][TOCHARPTR(userID)][TOCHARPTR(i)]["expCat"].GetString(), alloc), alloc);
-
-		//Replace member by removing it first and adding it witch the correct index
-		d[expTime][TOCHARPTR(userID)].RemoveMember(itrExpID);
-
-		d[expTime][TOCHARPTR(userID)].AddMember(Value().SetString(TOCHARPTR(i - 1), alloc), copyAttrVal, alloc);
+	if (addOrDelete == DELEXP) {
+		for (unsigned int i = indexOfDeletedElement + 1; i <= d["General"]["expID"][userID][expTime].GetInt() + 1; ++i) {
+			changeMemberName(userID, expTime, i, addOrDelete);
+		}
+	}
+	else {
+		for (unsigned int i = 0; i < d["General"]["expID"][userID][expTime].GetInt(); ++i) {
+			changeMemberName(userID, expTime, i, addOrDelete);
+		}
 	}
 	write();
 
+}
+
+
+void JSON::changeMemberName(const char* userID, const char* expTime, unsigned int i, unsigned short int addOrDelete) {
+	Value::MemberIterator itrExpID = d[expTime][userID].FindMember(Value().SetString(TOCHARPTR(i), alloc));
+
+	Value copyAttrVal(kObjectType);
+
+	copyAttrVal.AddMember("expName", Value().SetString(d[expTime][userID][TOCHARPTR(i)]["expName"].GetString(), alloc), alloc);
+	copyAttrVal.AddMember("expPrice", Value().SetDouble(d[expTime][userID][TOCHARPTR(i)]["expPrice"].GetDouble()), alloc);
+	copyAttrVal.AddMember("expInfo", Value().SetString(d[expTime][userID][TOCHARPTR(i)]["expInfo"].GetString(), alloc), alloc);
+	copyAttrVal.AddMember("expDay", Value().SetInt(d[expTime][userID][TOCHARPTR(i)]["expDay"].GetInt()), alloc);
+	copyAttrVal.AddMember("expMonth", Value().SetInt(d[expTime][userID][TOCHARPTR(i)]["expMonth"].GetInt()), alloc);
+	copyAttrVal.AddMember("expYear", Value().SetInt(d[expTime][userID][TOCHARPTR(i)]["expYear"].GetInt()), alloc);
+	copyAttrVal.AddMember("expCat", Value().SetString(d[expTime][userID][TOCHARPTR(i)]["expCat"].GetString(), alloc), alloc);
+
+	//Replace member by removing it first and adding it witch the correct index
+	d[expTime][userID].RemoveMember(itrExpID);
+
+	if (addOrDelete == DELEXP)
+		d[expTime][userID].AddMember(Value().SetString(TOCHARPTR(i - 1), alloc), copyAttrVal, alloc);
+	else
+		d[expTime][userID].AddMember(Value().SetString(TOCHARPTR(i + 1), alloc), copyAttrVal, alloc);
 }

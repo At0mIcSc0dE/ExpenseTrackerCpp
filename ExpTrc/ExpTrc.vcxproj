@@ -59,7 +59,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;$(SolutionDir)..\..\Libraries\SQLAPI\include;$(SolutionDir)..\..\Libraries\rapidjson-master\include;C:\Qt\5.12.6\msvc2017_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;$(SolutionDir)..\..\Libraries\SQLAPI\include;$(SolutionDir)..\..\Libraries\rapidjson-master\include;C:\Qt\5.14.1\msvc2017_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>26444</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -75,7 +75,7 @@
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;$(SolutionDir)..\..\Libraries\SQLAPI\include;$(SolutionDir)..\..\Libraries\rapidjson-master\include;C:\Qt\5.12.6\msvc2017_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;$(SolutionDir)..\..\Libraries\SQLAPI\include;$(SolutionDir)..\..\Libraries\rapidjson-master\include;C:\Qt\5.14.1\msvc2017_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>26444</DisableSpecificWarnings>
     </ClCompile>
     <Link>

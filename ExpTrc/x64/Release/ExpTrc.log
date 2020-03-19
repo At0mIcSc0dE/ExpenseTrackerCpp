@@ -1,0 +1,38 @@
+﻿  uic form\loginwindow.ui
+  uic form\MainWindow.ui
+  rcc MainWindow.qrc
+  moc header\MainWindow.h
+   RCC: Warning: No resources in 'C:\Programming\Cpp\Projects\ExpTrc\ExpTrc\MainWindow.qrc'.
+  moc header\button.h
+  moc header\combobox.h
+  moc header\listbox.h
+  moc header\plaintext.h
+  moc header\spinbox.h
+  moc header\LoginWindow.h
+  moc header\textbox.h
+  moc header\checkbox.h
+  Expense.cpp
+  Config.cpp
+  JSON.cpp
+  LoginWindow.cpp
+  checkbox.cpp
+  button.cpp
+  combobox.cpp
+  listbox.cpp
+  main.cpp
+  MainWindow.cpp
+  plaintext.cpp
+  spinbox.cpp
+  textbox.cpp
+  User.cpp
+  qrc_MainWindow.cpp
+  moc_MainWindow.cpp
+  moc_button.cpp
+  moc_combobox.cpp
+  moc_listbox.cpp
+  moc_plaintext.cpp
+  moc_spinbox.cpp
+  moc_LoginWindow.cpp
+  moc_textbox.cpp
+  moc_checkbox.cpp
+  ExpTrc.vcxproj -> C:\Programming\Cpp\Projects\ExpTrc\x64\Release\ExpTrc.exe

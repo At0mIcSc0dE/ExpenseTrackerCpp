@@ -18,6 +18,7 @@ JSON::JSON(const char* path, const char* startDocument)
 	}
 
 	read();
+
 }
 
 JSON::~JSON() {
@@ -49,23 +50,6 @@ void JSON::write() {
 
 	fclose(fp);
 
-}
-
-
-void JSON::addExpMember(const char* expType, const char* userID, Value& entry) {
-	
-	
-	if (!d.HasMember(expType)) {
-		Value table(kObjectType);
-		Value UserID(kArrayType);
-
-		table.AddMember(Value().SetString(userID, alloc), UserID, alloc);
-		d.AddMember(Value().SetString(expType, alloc), table, alloc);
-	}
-
-	if (d[expType][userID].IsArray()) {
-		d[expType][userID].PushBack(entry, alloc);
-	}
 }
 
 
@@ -123,4 +107,28 @@ void JSON::changeMemberName(const char* userID, const char* expTime, unsigned in
 		d[expTime][userID].AddMember(Value().SetString(TOCHARPTR(i - 1), alloc), copyAttrVal, alloc);
 	else
 		d[expTime][userID].AddMember(Value().SetString(TOCHARPTR(i + 1), alloc), copyAttrVal, alloc);
+}
+
+
+void JSON::insertItemsToListbox(Listbox* lstbox, const char* userID, const char* expTime, const char* currency) {
+
+	Value::MemberIterator itrFindExpID = d[expTime][userID].FindMember("1");
+	if (itrFindExpID == d[expTime][userID].MemberEnd())
+		return;
+
+
+	const char* expName;
+	double expPrice;
+
+	for (int i = d["General"]["expID"][userID][expTime].GetInt(); i != 0 ; --i) {
+		expName = d[expTime][userID][TOCHARPTR(i)]["expName"].GetString();
+		expPrice = d[expTime][userID][TOCHARPTR(i)]["expPrice"].GetDouble();
+		
+		std::ostringstream streamObj;
+		streamObj << std::fixed;
+		streamObj << std::setprecision(2);
+		streamObj << expPrice;
+
+		lstbox->insertItem(0, QString::fromLocal8Bit((std::string(expName) + " || " + streamObj.str() + currency).c_str()));
+	}
 }

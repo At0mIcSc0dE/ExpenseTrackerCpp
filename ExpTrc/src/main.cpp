@@ -1,14 +1,13 @@
 /*main file*/
 
+#include "Config.h"
 #include "MainWindow.h"
 #include "LoginWindow.h"
 #include <qapplication.h>
 #include "Declarations.h"
 #include "JSON.h"
-#include "Config.h"
 
 //VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
-const std::string folderPath = "C:/Programming/ProgramFiles/ExpenseTracker/";
 MainWindow* win;
 
 

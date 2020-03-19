@@ -8,10 +8,13 @@
 #include <rapidjson/document.h>
 #include <rapidjson/prettywriter.h>
 #include <rapidjson/filewritestream.h>
-//#include <rapidjson/rapidjson.h>
+#include <sstream>
+#include <iomanip>
 
 #include <qmessagebox.h>
 #include "Declarations.h"
+#include "listbox.h"
+
 
 using namespace rapidjson;
 
@@ -35,8 +38,8 @@ public:
 	void read();
 	void write();
 	void updateIndex(const char* userID, short unsigned int indexOfDeletedElement, const char* expTime, unsigned short int addOrDelete = ADDEXP);
-	void addExpMember(const char* expType, const char* userID, Value& inVal);
 	void changeMemberName(const char* userID, const char* expTime, unsigned int i, unsigned short int addOrDelete);
+	void insertItemsToListbox(Listbox* lstbox, const char* userID, const char* expTime, const char* currency);
 
 private:
 

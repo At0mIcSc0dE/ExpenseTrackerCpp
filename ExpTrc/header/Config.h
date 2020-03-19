@@ -3,6 +3,7 @@
 
 #include "User.h"
 #include "Expense.h"
+#include "MainWindow.h"
 
 namespace config {
 	extern short unsigned int lstboxFocus;
@@ -11,4 +12,10 @@ namespace config {
 	extern JSON json;
 	extern Expense exp;
 }
+
+
+namespace window {
+	extern void initMainWindow(MainWindow* win);
+}
+
 #endif //CONFIG_H

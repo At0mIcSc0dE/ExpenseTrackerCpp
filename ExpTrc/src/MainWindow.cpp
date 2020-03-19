@@ -49,6 +49,11 @@ MainWindow::MainWindow(QWidget* parent)
     //INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING
     ui.chbOneTime->setChecked(true);
 
+    config::json.insertItemsToListbox(ui.lstbox, TOCHARPTR(config::user.userID), "OneTimeExpense", config::currency);
+    config::json.insertItemsToListbox(ui.lstboxMonth, TOCHARPTR(config::user.userID), "MonthlyExpense", config::currency);
+    config::json.insertItemsToListbox(ui.lstboxTakings, TOCHARPTR(config::user.userID), "OneTimeTakings", config::currency);
+    config::json.insertItemsToListbox(ui.lstboxTakingsMonth, TOCHARPTR(config::user.userID), "MonthlyTakings", config::currency);
+
     //TODO: Add .json elements into the listobxes on startup!
 
     //CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS
@@ -199,8 +204,9 @@ void MainWindow::MainListboxDeletion() {
 bool MainWindow::eventFilter(QObject* watched, QEvent* Event) {
     /*Function determines the listbox focus object, which is neccessary to delete correctly and only allow one selection*/
     
+
     #pragma region LstboxFocus
-    
+
     if (Event->type() == QEvent::FocusIn) {
         //listbox focus obj
         if (watched == ui.lstbox) {

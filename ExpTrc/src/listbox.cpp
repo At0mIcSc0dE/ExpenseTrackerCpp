@@ -8,7 +8,6 @@
 Listbox::Listbox(QWidget* parent)
 	:QListWidget(parent)
 {
-
 }
 
 
@@ -32,8 +31,13 @@ bool Listbox::ItemInsert(QString& expName, QString& expPrice, short unsigned int
 		return false;
 	}
 
+	std::ostringstream streamObj;
+	streamObj << std::fixed;
+	streamObj << std::setprecision(2);
+	streamObj << expPrice.toDouble();
+
 	for (int i = 0; i <= expMulti; ++i) {
-		this->insertItem(0, expName + " || " + expPrice + QString::fromLocal8Bit(config::currency));
+		this->insertItem(0, expName + " || " + streamObj.str().c_str() + QString::fromLocal8Bit(config::currency));
 		return true;
 	}
 

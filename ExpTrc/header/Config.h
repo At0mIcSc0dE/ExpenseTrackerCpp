@@ -11,6 +11,9 @@ namespace config {
 	extern User user;
 	extern JSON json;
 	extern Expense exp;
+	extern MainWindow* win;
+	
+	void initVariables();
 }
 
 

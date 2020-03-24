@@ -61,12 +61,13 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <AdditionalIncludeDirectories>$(SolutionDir)ExpTrc\src;$(SolutionDir)ExpTrc\header;$(SolutionDir)ExpTrc\form;$(SolutionDir)ExpTrc\x64\Debug\uic\form;$(SolutionDir)..\..\Libraries\SQLAPI\include;$(SolutionDir)..\..\Libraries\rapidjson-master\include;C:\Qt\5.14.1\msvc2017_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>26444</DisableSpecificWarnings>
+      <PreprocessorDefinitions>$(Qt_DEFINES_);%(PreprocessorDefinitions);DEBUG</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)..\..\Libraries\SQLAPI\vs2019\x86_64\lib\sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -79,10 +80,10 @@
       <DisableSpecificWarnings>26444</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>$(SolutionDir)..\..\Libraries\SQLAPI\vs2019\x86_64\lib\sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -100,6 +101,7 @@
     <ClCompile Include="src\spinbox.cpp" />
     <ClCompile Include="src\textbox.cpp" />
     <ClCompile Include="src\User.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="header\MainWindow.h" />
@@ -122,6 +124,7 @@
     <ClInclude Include="header\Expense.h" />
     <ClInclude Include="header\Config.h" />
     <ClInclude Include="header\User.h" />
+    <ClInclude Include="header\Timer.h" />
     <QtMoc Include="header\LoginWindow.h" />
     <QtMoc Include="header\textbox.h" />
     <QtMoc Include="header\checkbox.h" />

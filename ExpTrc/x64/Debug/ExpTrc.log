@@ -1,14 +1,2 @@
-﻿  moc header\MainWindow.h
-  Config.cpp
-  Expense.cpp
-  LoginWindow.cpp
-  MainWindow.cpp
-  User.cpp
-  button.cpp
-  listbox.cpp
-  main.cpp
-  plaintext.cpp
-  spinbox.cpp
-  textbox.cpp
-  moc_MainWindow.cpp
-  ExpTrc.vcxproj -> C:\Programming\Cpp\Projects\ExpTrc\x64\Debug\ExpTrc.exe
+﻿  Expense.cpp
+  ExpTrc.vcxproj -> D:\Programming\Cpp\Projects\ExpTrc\x64\Debug\ExpTrc.exe

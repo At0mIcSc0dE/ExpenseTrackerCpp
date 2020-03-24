@@ -3,23 +3,43 @@
 #include "JSON.h"
 #include <fstream>
 
-JSON::JSON(const char* path, const char* startDocument)
-	:path(path), d(kObjectType)
-{
+JSON::JSON() { }
+
+
+void JSON::setPath(const char* path) {
+	this->path = path;
+}
+
+
+void JSON::setStartDocument(const char* msg) {
+	this->startDocument = msg;
+	writeStartDocument();
+	read();
+}
+
+
+void JSON::writeStartDocument() {
+
 	//check if file exists, this is a fast way acording to stackoverflow
 	//create it and parse startDocument
 	struct stat buffer;
 	if (stat(path, &buffer) != 0) {
 		std::ofstream st(path);
 		st.close();
-		
+
 		d.Parse(startDocument);  //first parse any string and write it then
 		write();
 	}
-
-	read();
-
 }
+
+
+JSON::JSON(const char* path, const char* startDocument)
+	:path(path), d(kObjectType), startDocument(startDocument)
+{
+	read();
+	writeStartDocument();
+}
+
 
 JSON::~JSON() {
 
@@ -55,6 +75,8 @@ void JSON::write() {
 
 void JSON::updateIndex(const char* userID, short unsigned int indexOfDeletedElement, const char* expTime, unsigned short int addOrDelete) {
 
+	TIMER("");
+
 	if (addOrDelete == DELEXP) {
 		//-1 from expTime index
 		d["General"]["expID"][userID][expTime] = Value().SetInt(d["General"]["expID"][userID][expTime].GetInt() - 1);
@@ -83,7 +105,6 @@ void JSON::updateIndex(const char* userID, short unsigned int indexOfDeletedElem
 		}
 	}
 	write();
-
 }
 
 
@@ -98,7 +119,7 @@ void JSON::changeMemberName(const char* userID, const char* expTime, unsigned in
 	copyAttrVal.AddMember("expDay", Value().SetInt(d[expTime][userID][TOCHARPTR(i)]["expDay"].GetInt()), alloc);
 	copyAttrVal.AddMember("expMonth", Value().SetInt(d[expTime][userID][TOCHARPTR(i)]["expMonth"].GetInt()), alloc);
 	copyAttrVal.AddMember("expYear", Value().SetInt(d[expTime][userID][TOCHARPTR(i)]["expYear"].GetInt()), alloc);
-	copyAttrVal.AddMember("expCat", Value().SetString(d[expTime][userID][TOCHARPTR(i)]["expCat"].GetString(), alloc), alloc);
+	copyAttrVal.AddMember("expCategory", Value().SetString(d[expTime][userID][TOCHARPTR(i)]["expCategory"].GetString(), alloc), alloc);
 
 	//Replace member by removing it first and adding it witch the correct index
 	d[expTime][userID].RemoveMember(itrExpID);
@@ -112,15 +133,21 @@ void JSON::changeMemberName(const char* userID, const char* expTime, unsigned in
 
 void JSON::insertItemsToListbox(Listbox* lstbox, const char* userID, const char* expTime, const char* currency) {
 
+	TIMER("");
+
 	Value::MemberIterator itrFindExpID = d[expTime][userID].FindMember("1");
 	if (itrFindExpID == d[expTime][userID].MemberEnd())
 		return;
 
-
 	const char* expName;
 	double expPrice;
 
+	double durationTotal = 0;
+	
+	QStringList lst;
+
 	for (int i = d["General"]["expID"][userID][expTime].GetInt(); i != 0 ; --i) {
+
 		expName = d[expTime][userID][TOCHARPTR(i)]["expName"].GetString();
 		expPrice = d[expTime][userID][TOCHARPTR(i)]["expPrice"].GetDouble();
 		
@@ -129,6 +156,8 @@ void JSON::insertItemsToListbox(Listbox* lstbox, const char* userID, const char*
 		streamObj << std::setprecision(2);
 		streamObj << expPrice;
 
-		lstbox->insertItem(0, QString::fromLocal8Bit((std::string(expName) + " || " + streamObj.str() + currency).c_str()));
+		lst.append(QString::fromLocal8Bit((std::string(expName) + " || " + streamObj.str() + currency).c_str()));
 	}
+	lstbox->insertItems(0, lst);
+	std::cout << "Total duration: " << timer.duration << "ms";
 }

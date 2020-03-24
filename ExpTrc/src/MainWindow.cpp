@@ -115,6 +115,9 @@ void MainWindow::MainListboxInsertion() {
                 config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, ONETIME);
                 config::exp.writeExpenseToJson();
             }
+            else {
+                break;
+            }
         }
     }
     else if (ui.chbMonthly->isChecked()) {
@@ -122,6 +125,9 @@ void MainWindow::MainListboxInsertion() {
             if (ui.lstboxMonth->ItemInsert(expName, QString::number(expPrice), expMulti)) {
                 config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, MONTHLY);
                 config::exp.writeExpenseToJson();
+            }
+            else {
+                break;
             }
         }
     }
@@ -131,6 +137,9 @@ void MainWindow::MainListboxInsertion() {
                 config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, ONETIME_T);
                 config::exp.writeExpenseToJson();
             }
+            else {
+                break;
+            }
         }
     }
     else {
@@ -138,6 +147,9 @@ void MainWindow::MainListboxInsertion() {
             if (ui.lstboxTakingsMonth->ItemInsert(expName, QString::number(expPrice), expMulti)) {
                 config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, MONTHLY_T);
                 config::exp.writeExpenseToJson();
+            }
+            else {
+                break;
             }
         }
     }

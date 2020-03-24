@@ -8,8 +8,11 @@
 #include "JSON.h"
 
 //VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
-MainWindow* win;
 
+namespace config {
+	JSON json;
+	MainWindow* win;
+}
 
 //FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS
 
@@ -17,10 +20,14 @@ MainWindow* win;
 //MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION
 int main(int argc, char* argv[])
 {
+	//Initialisation of variaables
+	config::initVariables();
+	
+
 	QApplication app(argc, argv);
-	win = new MainWindow();
+	config::win = new MainWindow();
 	LoginWindow loginWin;
-														
+
 	loginWin.show();
 
 	return app.exec();

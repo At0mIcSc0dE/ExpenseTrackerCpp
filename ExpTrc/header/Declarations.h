@@ -8,6 +8,7 @@
 #ifndef DECLARATIONS_H
 #define DECLARATIONS_H
 
+#include "Timer.h"
 
 #define LSTBOX 1
 #define LSTBOXMONTH 2
@@ -33,5 +34,10 @@
 
 #define TOCHARPTR(a) std::to_string(a).c_str()
 
+#ifdef DEBUG
+#define TIMER(msg) Timer timer(__func__, msg)
+#else
+#define TIMER(msg)
+#endif
 
 #endif //DECLARATIONS_H

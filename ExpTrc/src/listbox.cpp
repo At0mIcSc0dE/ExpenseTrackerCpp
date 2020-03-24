@@ -26,7 +26,7 @@ void Listbox::clearLstFocus(std::array<Listbox*, 3> lstboxes) {
 
 bool Listbox::ItemInsert(QString& expName, QString& expPrice, short unsigned int expMulti) {
 
-	if (expName.length() + expPrice.length() > 13) {
+	if (expName.length() + expPrice.length() > 12) {
 		msgDEBUG("Length of name and price exceed allowed length! Please shorten your Expense name or Price");
 		return false;
 	}
@@ -36,10 +36,14 @@ bool Listbox::ItemInsert(QString& expName, QString& expPrice, short unsigned int
 	streamObj << std::setprecision(2);
 	streamObj << expPrice.toDouble();
 
-	for (int i = 0; i <= expMulti; ++i) {
-		this->insertItem(0, expName + " || " + streamObj.str().c_str() + QString::fromLocal8Bit(config::currency));
-		return true;
-	}
+	TIMER("REPAINT TEST");
+	//Suspend repaint process
+	this->setUpdatesEnabled(false);
+	
+	//Insert Items
+	this->insertItem(0, expName + " || " + streamObj.str().c_str() + QString::fromLocal8Bit(config::currency));
 
-	return false;
+	this->setUpdatesEnabled(true);
+	return true;
+
 }

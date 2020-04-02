@@ -38,12 +38,12 @@ bool Listbox::ItemInsert(QString& expName, QString& expPrice, short unsigned int
 
 	TIMER("REPAINT TEST");
 	//Suspend repaint process
-	this->setUpdatesEnabled(false);
+	//this->setUpdatesEnabled(false);
 	
 	//Insert Items
 	this->insertItem(0, expName + " || " + streamObj.str().c_str() + QString::fromLocal8Bit(config::currency));
 
-	this->setUpdatesEnabled(true);
+	//this->setUpdatesEnabled(true);
 	return true;
 
 }

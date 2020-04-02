@@ -94,13 +94,16 @@ void JSON::updateIndex(const char* userID, short unsigned int indexOfDeletedElem
 
 	std::reverse(listOfAllIndices.begin(), listOfAllIndices.end());
 
-	if (addOrDelete == DELEXP) {
+	short unsigned int nextID = d["General"]["expID"][userID][expTime].GetInt();
+	Value::MemberIterator itrFindNextID = d[expTime][userID].FindMember(Value().SetString(TOCHARPTR(nextID), alloc));
+	
+	if (addOrDelete == DELEXP/* && itrFindNextID != d[expTime][userID].MemberEnd()*/) {
 		for (unsigned int i = indexOfDeletedElement + 1; i <= d["General"]["expID"][userID][expTime].GetInt() + 1; ++i) {
 			changeMemberName(userID, expTime, i, addOrDelete);
 		}
 	}
-	else {
-		for (unsigned int i = 0; i < d["General"]["expID"][userID][expTime].GetInt(); ++i) {
+	else if(addOrDelete == ADDEXP/* && itrFindNextID != d[expTime][userID].MemberEnd()*/) {
+		for (unsigned int i = 0; i < nextID; ++i) {
 			changeMemberName(userID, expTime, i, addOrDelete);
 		}
 	}
@@ -119,7 +122,7 @@ void JSON::changeMemberName(const char* userID, const char* expTime, unsigned in
 	copyAttrVal.AddMember("expDay", Value().SetInt(d[expTime][userID][TOCHARPTR(i)]["expDay"].GetInt()), alloc);
 	copyAttrVal.AddMember("expMonth", Value().SetInt(d[expTime][userID][TOCHARPTR(i)]["expMonth"].GetInt()), alloc);
 	copyAttrVal.AddMember("expYear", Value().SetInt(d[expTime][userID][TOCHARPTR(i)]["expYear"].GetInt()), alloc);
-	copyAttrVal.AddMember("expCategory", Value().SetString(d[expTime][userID][TOCHARPTR(i)]["expCategory"].GetString(), alloc), alloc);
+	copyAttrVal.AddMember("expCat", Value().SetString(d[expTime][userID][TOCHARPTR(i)]["expCat"].GetString(), alloc), alloc);
 
 	//Replace member by removing it first and adding it witch the correct index
 	d[expTime][userID].RemoveMember(itrExpID);

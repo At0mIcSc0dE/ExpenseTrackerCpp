@@ -50,9 +50,10 @@ void JSON::read() {
 
 	FILE* fp = fopen(path, "rb");
 
-	char readBuffer[65536];
+	char readBuffer[65535];
 	FileReadStream is(fp, readBuffer, sizeof(readBuffer));
 	d.ParseStream(is);
+
 
 	fclose(fp);
 }
@@ -60,6 +61,7 @@ void JSON::read() {
 
 void JSON::write() {
 
+	TIMER("WRITE");
 	FILE* fp = fopen(path, "wb");
 
 	char writeBuffer[65536];
@@ -124,7 +126,7 @@ void JSON::changeMemberName(const char* userID, const char* expTime, unsigned in
 	copyAttrVal.AddMember("expYear", Value().SetInt(d[expTime][userID][TOCHARPTR(i)]["expYear"].GetInt()), alloc);
 	copyAttrVal.AddMember("expCat", Value().SetString(d[expTime][userID][TOCHARPTR(i)]["expCat"].GetString(), alloc), alloc);
 
-	//Replace member by removing it first and adding it witch the correct index
+	//Replace member by removing it first and adding it with the correct index
 	d[expTime][userID].RemoveMember(itrExpID);
 
 	if (addOrDelete == DELEXP)

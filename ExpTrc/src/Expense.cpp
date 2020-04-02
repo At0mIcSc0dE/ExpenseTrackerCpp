@@ -41,7 +41,6 @@ void Expense::assignExpID() {
 		break;
 	}
 	
-	config::json.write();
 }
 
 
@@ -105,7 +104,6 @@ void Expense::writeExpenseToJson() {
 		break;
 	}
 
-	config::json.write();
 
 	correctJsonExpID();
 }

@@ -1,2 +1,7 @@
-﻿  JSON.cpp
+﻿  LoginWindow.cpp
+  MainWindow.cpp
+  button.cpp
+  plaintext.cpp
+  spinbox.cpp
+  textbox.cpp
   ExpTrc.vcxproj -> D:\Programming\Cpp\Projects\ExpTrc\x64\Debug\ExpTrc.exe

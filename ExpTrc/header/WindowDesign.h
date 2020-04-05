@@ -7,13 +7,11 @@
 It has two functions which do exactly the same.
 However, the first on is intended for RVALUES the second for LVALUES*/
 
-#include <qobject.h>
-#include "LoginWindow.h"
-#include "MainWindow.h"
+#include <qpropertyanimation.h>
 
 
 template<typename widget>
-void QWidgetAnimation(widget* obj, QRect& endValues, unsigned short int mSecTimer, QEvent* Event = nullptr) {
+void QWidgetAnimation(widget* obj, QRect& endValues, unsigned short int mSecTimer) {
     
     QPropertyAnimation* animation = new QPropertyAnimation(obj, "geometry");
 
@@ -26,7 +24,7 @@ void QWidgetAnimation(widget* obj, QRect& endValues, unsigned short int mSecTime
 
 
 template<typename widget>
-void QWidgetAnimation(widget* obj, QRect&& endValues, unsigned short int&& mSecTimer, QEvent* Event = nullptr) {
+void QWidgetAnimation(widget* obj, QRect&& endValues, unsigned short int&& mSecTimer) {
 
     QPropertyAnimation* animation = new QPropertyAnimation(obj, "geometry");
 

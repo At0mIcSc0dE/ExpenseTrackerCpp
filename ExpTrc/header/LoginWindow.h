@@ -5,7 +5,6 @@
 
 #include <qdialog.h>
 #include <ui_LoginWindow.h>
-#include <qpropertyanimation.h>
 
 namespace Ui {
 	class LoginWindow;

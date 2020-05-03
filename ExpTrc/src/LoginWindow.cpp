@@ -10,6 +10,7 @@ LoginWindow::LoginWindow(QWidget* parent)
 	:QDialog(parent), successfullLogin(false)
 {
 	ui.setupUi(this);
+	this->setWindowIcon(QIcon("ExpenseTrackerIcon.ico"));
 
 	ui.loginBtn->btnRect = ui.loginBtn->geometry();
 	ui.usernameTxt->txtboxSize = ui.usernameTxt->geometry();
@@ -19,7 +20,6 @@ LoginWindow::LoginWindow(QWidget* parent)
 	this->setMinimumSize(280, 400);
 
 	connect(ui.loginBtn, SIGNAL(clicked()), this, SLOT(login()));
-
 }
 
 

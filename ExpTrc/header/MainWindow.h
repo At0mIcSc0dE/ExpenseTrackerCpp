@@ -24,13 +24,15 @@ protected slots:
 
 	void MainListboxInsertion();
 	void MainListboxDeletion();
-	void UpdateLabels(double MoneyLeft);
+	void UpdateLabels();
+	void MonthEndEvents();
 
 	//Checkbox input handler
 	void chbOneStateHandler();
 	void chbMonthStateHandler();
 	void chbOneTakingsStateHandler();
 	void chbMonthTakingsStateHandler();
+	void MoreInfoButtonPressed();
 
 
 	void on_actionEnglish_toggled(bool);
@@ -41,6 +43,7 @@ signals:
 private:
 	Ui::MainWindow ui;
 	QMessageBox* msg;
+	QShortcut* ReturnKey;
 };
 
 

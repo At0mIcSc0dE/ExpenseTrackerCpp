@@ -5,6 +5,7 @@
 
 #include <qdialog.h>
 #include <ui_LoginWindow.h>
+#include "qshortcut.h"
 
 namespace Ui {
 	class LoginWindow;

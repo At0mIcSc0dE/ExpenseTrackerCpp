@@ -5,6 +5,7 @@
 #include "Declarations.h"
 #include "Config.h"
 #include "Calculator.h"
+#include <qshortcut.h>
 
 
 //GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING
@@ -46,6 +47,14 @@ MainWindow::MainWindow(QWidget* parent)
     ui.comboboxTakCat->addItem("All");
     this->setMaximumSize(1200, 680);
     this->setMinimumSize(1200, 680);
+    this->setWindowIcon(QIcon("ExpenseTrackerIcon.ico"));
+
+    ReturnKey = new QShortcut(this);
+    ReturnKey->setKey(Qt::Key_Return);
+
+    //Check if monthl is over
+    MonthEndEvents();
+
 
     //INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING
     ui.chbOneTime->setChecked(true);
@@ -55,13 +64,15 @@ MainWindow::MainWindow(QWidget* parent)
     config::json.insertItemsToListbox(ui.lstboxTakings, TOCHARPTR(config::user.userID), "OneTimeTakings", config::currency);
     config::json.insertItemsToListbox(ui.lstboxTakingsMonth, TOCHARPTR(config::user.userID), "MonthlyTakings", config::currency);
 
-    Calculator::CalculateRemainingBudget([this](double&& MoneyLeft) { UpdateLabels(MoneyLeft); });
-
-    //TODO: Add .json elements into the listobxes on startup!
+    ui.lblRemainingBudget->setText(QString("Your remaining Budget: ") + QString::number(Calculator::CalculateIncome() - Calculator::CalculateExpenses()) + QString::fromLocal8Bit(config::currency));
+    ui.lblTotalIncome->setText(QString("Your total Income: ") + QString::number(Calculator::CalculateIncome()) + QString::fromLocal8Bit(config::currency));
+    ui.lblTotalExpense->setText(QString("Your total Expenses: ") + QString::number(Calculator::CalculateExpenses()) + QString::fromLocal8Bit(config::currency));
 
     //CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS
     connect(ui.addBtn, SIGNAL(clicked()), this, SLOT(MainListboxInsertion()));
     connect(ui.deleteBtn, SIGNAL(clicked()), this, SLOT(MainListboxDeletion()));
+    connect(ui.moreInfoBtn, SIGNAL(clicked()), this, SLOT(MoreInfoButtonPressed()));
+    connect(ReturnKey, SIGNAL(activated()), this, SLOT(MainListboxInsertion()));
 
 
     //Checkbox
@@ -91,8 +102,91 @@ MainWindow::~MainWindow() {
 }
 
 
-void MainWindow::UpdateLabels(double MoneyLeft) {
-    ui.lblRemainingBudget->setText(QString("Your remaining budget: ") + QString::number(MoneyLeft) + QString::fromLocal8Bit(config::currency));
+void MainWindow::UpdateLabels() {
+    //Inneficient I know, updates some labels unnecessarily
+    ui.lblRemainingBudget->setText(QString("Your remaining Budget: ") + QString::number(Calculator::CalculateIncome() - Calculator::CalculateExpenses()) + QString::fromLocal8Bit(config::currency));
+    ui.lblTotalIncome->setText(QString("Your total Income: ") + QString::number(Calculator::CalculateIncome()) + QString::fromLocal8Bit(config::currency));
+    ui.lblTotalExpense->setText(QString("Your total Expenses: ") + QString::number(Calculator::CalculateExpenses()) + QString::fromLocal8Bit(config::currency));
+
+}
+
+
+void MainWindow::MonthEndEvents() {
+
+
+    auto& _time = std::chrono::system_clock::now();
+    std::time_t time__t = std::chrono::system_clock::to_time_t(_time);
+    struct tm* tmp = gmtime(&time__t);
+
+
+    short unsigned int lastExpMonth = config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
+    short unsigned int lastTakMonth = config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
+    
+
+    if (lastExpMonth != 0 && (lastExpMonth < (tmp->tm_mon + 1) || (lastExpMonth == 12 && lastExpMonth > (tmp->tm_mon + 1)))) {
+
+        for (int i = 1; i <= config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeExpense"].GetInt(); ++i) {
+        
+            config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(i), config::json.alloc));
+        }
+        config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeExpense"] = 0;
+
+        for (int i = 1; i <= config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeTakings"].GetInt(); ++i) {
+
+            config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(i), config::json.alloc));
+        }
+        config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeTakings"] = 0;
+    }
+
+
+    if (lastTakMonth != 0 && (lastTakMonth < (tmp->tm_mon + 1) || (lastTakMonth == 12 && lastTakMonth > (tmp->tm_mon + 1)))) {
+        for (int i = 1; i <= config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeExpense"].GetInt(); ++i) {
+
+            config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(i), config::json.alloc));
+        }
+        config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeExpense"] = 0;
+
+            for (int i = 1; i <= config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeTakings"].GetInt(); ++i) {
+
+                config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(i), config::json.alloc));
+            }
+        config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeTakings"] = 0;
+    }
+
+    config::json.write();
+}
+
+
+void MainWindow::MoreInfoButtonPressed() {
+    switch (config::lstboxFocus) {
+    case LSTBOX:
+    {
+        unsigned short int lstboxIndex = ui.lstbox->currentRow() + 1;
+        msgDEBUG(config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        break;
+    }
+    case LSTBOXMONTH:
+    {
+        unsigned short int lstboxIndex = ui.lstboxMonth->currentRow() + 1;
+        msgDEBUG(config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        break;
+
+    }
+    case LSTBOXTAKINGS:
+    {
+        unsigned short int lstboxIndex = ui.lstboxTakings->currentRow() + 1;
+        msgDEBUG(config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        break;
+
+    }
+    case LSTBOXTAKINGSMONTH:
+    {
+        unsigned short int lstboxIndex = ui.lstboxTakingsMonth->currentRow() + 1;
+        msgDEBUG(config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        break;
+
+    }
+    }
 }
 
 
@@ -122,6 +216,7 @@ void MainWindow::MainListboxInsertion() {
                 // ^ TODO --> doesn't check if a user or a group is logged in
                 config::exp = Expense(expName, expPrice, expInfo, expMulti, expCategory, USER, ONETIME);
                 config::exp.writeExpenseToJson();
+                
             }
             else {
                 break;
@@ -163,9 +258,12 @@ void MainWindow::MainListboxInsertion() {
     }
     #pragma endregion
 
+    UpdateLabels();
+
     ui.expNameTxt->clear();
     ui.expPriceTxt->clear();
     ui.expMultiTxt->setValue(1);
+    ui.expInfoTxt->clear();
 }
 
 
@@ -218,6 +316,7 @@ void MainWindow::MainListboxDeletion() {
     #pragma endregion
 
     config::json.write();
+    UpdateLabels();
 }
 
 

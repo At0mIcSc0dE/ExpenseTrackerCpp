@@ -142,4 +142,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="ExpenseTrackerIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ExpenseTracker.rc" />
+  </ItemGroup>
 </Project>

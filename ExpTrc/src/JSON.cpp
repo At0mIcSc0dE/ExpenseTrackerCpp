@@ -151,7 +151,8 @@ void JSON::insertItemsToListbox(Listbox* lstbox, const char* userID, const char*
 	
 	QStringList lst;
 
-	for (int i = d["General"]["expID"][userID][expTime].GetInt(); i != 0 ; --i) {
+	/*for (int i = d["General"]["expID"][userID][expTime].GetInt(); i != 0 ; --i) {*/
+	for(int i = 1; i <= d["General"]["expID"][userID][expTime].GetInt(); ++i) {
 
 		expName = d[expTime][userID][TOCHARPTR(i)]["expName"].GetString();
 		expPrice = d[expTime][userID][TOCHARPTR(i)]["expPrice"].GetDouble();
@@ -164,5 +165,4 @@ void JSON::insertItemsToListbox(Listbox* lstbox, const char* userID, const char*
 		lst.append(QString::fromLocal8Bit((std::string(expName) + " || " + streamObj.str() + currency).c_str()));
 	}
 	lstbox->insertItems(0, lst);
-	std::cout << "Total duration: " << timer.duration << "ms";
 }

@@ -24,7 +24,7 @@ protected slots:
 
 	void MainListboxInsertion();
 	void MainListboxDeletion();
-
+	void UpdateLabels(double MoneyLeft);
 
 	//Checkbox input handler
 	void chbOneStateHandler();

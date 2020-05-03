@@ -4,6 +4,7 @@
 #include "WindowDesign.h"
 #include "Declarations.h"
 #include "Config.h"
+#include "Calculator.h"
 
 
 //GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING
@@ -54,6 +55,8 @@ MainWindow::MainWindow(QWidget* parent)
     config::json.insertItemsToListbox(ui.lstboxTakings, TOCHARPTR(config::user.userID), "OneTimeTakings", config::currency);
     config::json.insertItemsToListbox(ui.lstboxTakingsMonth, TOCHARPTR(config::user.userID), "MonthlyTakings", config::currency);
 
+    Calculator::CalculateRemainingBudget([this](double&& MoneyLeft) { UpdateLabels(MoneyLeft); });
+
     //TODO: Add .json elements into the listobxes on startup!
 
     //CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS
@@ -85,6 +88,11 @@ MainWindow::~MainWindow() {
     
     if (msg != nullptr)
         delete msg;
+}
+
+
+void MainWindow::UpdateLabels(double MoneyLeft) {
+    ui.lblRemainingBudget->setText(QString("Your remaining budget: ") + QString::number(MoneyLeft) + QString::fromLocal8Bit(config::currency));
 }
 
 

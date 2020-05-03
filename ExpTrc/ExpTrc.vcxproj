@@ -87,6 +87,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Calculator.cpp" />
     <ClCompile Include="src\Expense.cpp" />
     <ClCompile Include="src\Config.cpp" />
     <ClCompile Include="src\JSON.cpp" />
@@ -121,6 +122,7 @@
     <QtMoc Include="header\spinbox.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\Calculator.h" />
     <ClInclude Include="header\Expense.h" />
     <ClInclude Include="header\Config.h" />
     <ClInclude Include="header\User.h" />

@@ -162,27 +162,27 @@ void MainWindow::MoreInfoButtonPressed() {
     case LSTBOX:
     {
         unsigned short int lstboxIndex = ui.lstbox->currentRow() + 1;
-        msgDEBUG(config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        msgDEBUG(QString("Name: ") + config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expName"].GetString() + QString("\n") + QString("Price: ") + QString::number(config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expPrice"].GetDouble()) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
         break;
     }
     case LSTBOXMONTH:
     {
         unsigned short int lstboxIndex = ui.lstboxMonth->currentRow() + 1;
-        msgDEBUG(config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        msgDEBUG(QString("Name: ") + config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expName"].GetString() + QString("\n") + QString("Price: ") + QString::number(config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expPrice"].GetDouble()) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
         break;
 
     }
     case LSTBOXTAKINGS:
     {
         unsigned short int lstboxIndex = ui.lstboxTakings->currentRow() + 1;
-        msgDEBUG(config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        msgDEBUG(QString("Name: ") + config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expName"].GetString() + QString("\n") + QString("Price: ") + QString::number(config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expPrice"].GetDouble()) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
         break;
 
     }
     case LSTBOXTAKINGSMONTH:
     {
         unsigned short int lstboxIndex = ui.lstboxTakingsMonth->currentRow() + 1;
-        msgDEBUG(config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        msgDEBUG(QString("Name: ") + config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expName"].GetString() + QString("\n") + QString("Price: ") + QString::number(config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expPrice"].GetDouble()) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
         break;
 
     }

@@ -11,7 +11,7 @@ namespace config {
 	Expense exp;
 
 	void initVariables() {
-		json.setPath("D:/dev/ProgramFiles/ExpenseTracker/Data.json");
+		json.setPath("C:/Users/Simon/Dropbox/Data.json");
 		json.setStartDocument("{\"OneTimeExpense\": {},\"MonthlyExpense\": {},\"OneTimeTakings\": {},\"MonthlyTakings\": {},\"Group\": {\"0\": [\"admin\", \"admin\"]},\"User\": {\"0\": []},\"Category\": {\"All\": []}, \"General\": {\"expID\": {}, \"userID\": 0, \"groupID\": 0}}");
 	}
 }

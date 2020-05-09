@@ -135,10 +135,10 @@
     <ClInclude Include="header\WindowDesign.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="ExpenseTrackerIcon.ico" />
+    <ResourceCompile Include="ExpenseTracker.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ExpenseTracker.rc" />
+    <Image Include="ExpenseTrackerIcon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

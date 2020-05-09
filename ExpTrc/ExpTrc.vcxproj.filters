@@ -143,9 +143,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="ExpenseTrackerIcon.ico" />
+    <ResourceCompile Include="ExpenseTracker.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ExpenseTracker.rc" />
+    <Image Include="ExpenseTrackerIcon.ico" />
   </ItemGroup>
 </Project>

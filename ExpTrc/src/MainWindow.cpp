@@ -67,6 +67,7 @@ MainWindow::MainWindow(QWidget* parent)
     ui.lblRemainingBudget->setText(QString("Your remaining Budget: ") + QString::number(Calculator::CalculateIncome() - Calculator::CalculateExpenses()) + QString::fromLocal8Bit(config::currency));
     ui.lblTotalIncome->setText(QString("Your total Income: ") + QString::number(Calculator::CalculateIncome()) + QString::fromLocal8Bit(config::currency));
     ui.lblTotalExpense->setText(QString("Your total Expenses: ") + QString::number(Calculator::CalculateExpenses()) + QString::fromLocal8Bit(config::currency));
+    ui.lblRemainingBank->setText(QString("Your bank balance: ") + QString::number(config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble()) + QString::fromLocal8Bit(config::currency));
 
     //CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS || CONNECTIONS
     connect(ui.addBtn, SIGNAL(clicked()), this, SLOT(MainListboxInsertion()));
@@ -104,9 +105,36 @@ MainWindow::~MainWindow() {
 
 void MainWindow::UpdateLabels() {
     //Inneficient I know, updates some labels unnecessarily
+
     ui.lblRemainingBudget->setText(QString("Your remaining Budget: ") + QString::number(Calculator::CalculateIncome() - Calculator::CalculateExpenses()) + QString::fromLocal8Bit(config::currency));
     ui.lblTotalIncome->setText(QString("Your total Income: ") + QString::number(Calculator::CalculateIncome()) + QString::fromLocal8Bit(config::currency));
     ui.lblTotalExpense->setText(QString("Your total Expenses: ") + QString::number(Calculator::CalculateExpenses()) + QString::fromLocal8Bit(config::currency));
+    ui.lblRemainingBank->setText(QString("Your bank balance: ") + QString::number(config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble()) + QString::fromLocal8Bit(config::currency));
+
+}
+
+
+bool MainWindow::IsMonthEnd() {
+
+    auto& _time = std::chrono::system_clock::now();
+    std::time_t time__t = std::chrono::system_clock::to_time_t(_time);
+    struct tm* tmp = gmtime(&time__t);
+
+
+    short unsigned int lastExpMonth = config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
+    short unsigned int lastTakMonth = config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
+
+
+    if (lastExpMonth != 0 && (lastExpMonth < (tmp->tm_mon + 1) || (lastExpMonth == 12 && lastExpMonth > (tmp->tm_mon + 1)))) {
+        return true;
+    }
+
+
+    if (lastTakMonth != 0 && (lastTakMonth < (tmp->tm_mon + 1) || (lastTakMonth == 12 && lastTakMonth > (tmp->tm_mon + 1)))) {
+        return true;
+    }
+
+    return false;
 
 }
 
@@ -122,6 +150,7 @@ void MainWindow::MonthEndEvents() {
     short unsigned int lastExpMonth = config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
     short unsigned int lastTakMonth = config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
     
+    bool alreadyCalled = false;
 
     if (lastExpMonth != 0 && (lastExpMonth < (tmp->tm_mon + 1) || (lastExpMonth == 12 && lastExpMonth > (tmp->tm_mon + 1)))) {
 
@@ -136,8 +165,11 @@ void MainWindow::MonthEndEvents() {
             config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(i), config::json.alloc));
         }
         config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeTakings"] = 0;
-    }
 
+        config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() + Calculator::CalculateIncome();
+        config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() - Calculator::CalculateExpenses();
+        alreadyCalled = true;
+    }
 
     if (lastTakMonth != 0 && (lastTakMonth < (tmp->tm_mon + 1) || (lastTakMonth == 12 && lastTakMonth > (tmp->tm_mon + 1)))) {
         for (int i = 1; i <= config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeExpense"].GetInt(); ++i) {
@@ -146,11 +178,16 @@ void MainWindow::MonthEndEvents() {
         }
         config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeExpense"] = 0;
 
-            for (int i = 1; i <= config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeTakings"].GetInt(); ++i) {
+        for (int i = 1; i <= config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeTakings"].GetInt(); ++i) {
 
-                config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(i), config::json.alloc));
-            }
+            config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(i), config::json.alloc));
+        }
         config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeTakings"] = 0;
+
+        if (!alreadyCalled) {
+            config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() + Calculator::CalculateIncome();
+            config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() - Calculator::CalculateExpenses();
+        }
     }
 
     config::json.write();
@@ -278,15 +315,18 @@ void MainWindow::MainListboxDeletion() {
     case LSTBOX:
     {
         unsigned short int lstboxIndex = ui.lstbox->currentRow();
+        config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() + config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex + 1)]["expPrice"].GetDouble();
         config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(lstboxIndex + 1), config::json.alloc));
         ui.lstbox->takeItem(lstboxIndex);
         config::json.updateIndex(TOCHARPTR(config::user.userID), lstboxIndex + 1, "OneTimeExpense", DELEXP);
+
 
         break;
     }
     case LSTBOXMONTH:
     {
         unsigned short int lstboxIndex = ui.lstboxMonth->currentRow();
+        config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() + config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex + 1)]["expPrice"].GetDouble();
         config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(lstboxIndex + 1), config::json.alloc));
         ui.lstboxMonth->takeItem(lstboxIndex);
         config::json.updateIndex(TOCHARPTR(config::user.userID), lstboxIndex + 1, "MonthlyExpense", DELEXP);
@@ -296,6 +336,7 @@ void MainWindow::MainListboxDeletion() {
     case LSTBOXTAKINGS:
     {
         unsigned short int lstboxIndex = ui.lstboxTakings->currentRow();
+        config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() - config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex + 1)]["expPrice"].GetDouble();
         config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(lstboxIndex + 1), config::json.alloc));
         ui.lstboxTakings->takeItem(lstboxIndex);
         config::json.updateIndex(TOCHARPTR(config::user.userID), lstboxIndex + 1, "OneTimeTakings", DELEXP);
@@ -305,6 +346,7 @@ void MainWindow::MainListboxDeletion() {
     case LSTBOXTAKINGSMONTH:
     {
         unsigned short int lstboxIndex = ui.lstboxTakingsMonth->currentRow();
+        config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() - config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex + 1)]["expPrice"].GetDouble();
         config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)].RemoveMember(Value().SetString(TOCHARPTR(lstboxIndex + 1), config::json.alloc));
         ui.lstboxTakingsMonth->takeItem(lstboxIndex);
         config::json.updateIndex(TOCHARPTR(config::user.userID), lstboxIndex + 1, "MonthlyTakings", DELEXP);

@@ -92,15 +92,19 @@ void Expense::writeExpenseToJson() {
 	switch (expType) {
 	case ONETIME:
 		config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)].AddMember(Value().SetString(TOCHARPTR(0), config::json.alloc), expAttr, config::json.alloc);
+		config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() - expPrice;
 		break;
 	case MONTHLY:
 		config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)].AddMember(Value().SetString(TOCHARPTR(0), config::json.alloc), expAttr, config::json.alloc);
+		config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() - expPrice;
 		break;
 	case ONETIME_T:
 		config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)].AddMember(Value().SetString(TOCHARPTR(0), config::json.alloc), expAttr, config::json.alloc);
+		config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() + expPrice;
 		break;
 	case MONTHLY_T:
 		config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)].AddMember(Value().SetString(TOCHARPTR(0), config::json.alloc), expAttr, config::json.alloc);
+		config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"] = config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble() + expPrice;
 		break;
 	}
 

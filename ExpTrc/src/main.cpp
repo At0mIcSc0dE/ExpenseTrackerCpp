@@ -8,6 +8,7 @@
 #include "JSON.h"
 
 #include <Windows.h>
+#include <thread>
 
 
 
@@ -29,10 +30,8 @@ int main(int argc, char* argv[])
 	PROCESS_INFORMATION processInfo;
 	bool ProcessRunning = false;
 	
-	if (CreateProcess(L"C:/Program Files (x86)/Dropbox/Client/Dropbox.exe", L"", NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo)) {
+	if (CreateProcess(L"C:/Program Files (x86)/Dropbox/Client/Dropbox.exe", L"", NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo))
 		ProcessRunning = true;
-		
-	}
 
 	//Initialisation of variaables
 	config::initVariables();
@@ -44,6 +43,7 @@ int main(int argc, char* argv[])
 
 	if (!ProcessRunning) {
 		msgDEBUG("Cannot link to Dropbox");
+		std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(2000));
 		return 0;
 	}
 

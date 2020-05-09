@@ -42,8 +42,11 @@ int main(int argc, char* argv[])
 	LoginWindow loginWin;
 
 	if (!ProcessRunning) {
-		msgDEBUG("Cannot link to Dropbox");
-		std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(2000));
+		QMessageBox msgBox;
+		msgBox.setText("Failed to connect to Dropbox.");
+		msgBox.setWindowTitle("Dropbox failed");
+		msgBox.exec();
+
 		return 0;
 	}
 

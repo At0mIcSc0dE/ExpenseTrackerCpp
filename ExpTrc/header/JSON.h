@@ -28,15 +28,10 @@ public:
 	Document d;
 	Document::AllocatorType& alloc = d.GetAllocator();
 
-	//StringBuffer buffer;
-	//Writer<StringBuffer> writer(buffer);
-	//d.Accept(writer);
-
 	JSON();
 	JSON(const char* path, const char* startDocument);
 
 	~JSON();
-
 
 	void read();
 	void write();

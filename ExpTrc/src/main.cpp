@@ -4,11 +4,9 @@
 #include "MainWindow.h"
 #include "LoginWindow.h"
 #include <qapplication.h>
-#include "Declarations.h"
 #include "JSON.h"
 
 #include <Windows.h>
-#include <thread>
 
 
 
@@ -18,8 +16,6 @@ namespace config {
 	JSON json;
 	MainWindow* win;
 }
-
-//FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS || FUNCTIONS
 
 
 //MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION
@@ -33,7 +29,7 @@ int main(int argc, char* argv[])
 	if (CreateProcess(L"C:/Program Files (x86)/Dropbox/Client/Dropbox.exe", L"", NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo))
 		ProcessRunning = true;
 
-	//Initialisation of variaables
+	//Initialisation of variables
 	config::initVariables();
 	
 

@@ -52,9 +52,8 @@ MainWindow::MainWindow(QWidget* parent)
     ReturnKey = new QShortcut(this);
     ReturnKey->setKey(Qt::Key_Return);
 
-    //Check if monthl is over
+    //Check if month is over
     MonthEndEvents();
-
 
     //INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING
     ui.chbOneTime->setChecked(true);
@@ -110,31 +109,6 @@ void MainWindow::UpdateLabels() {
     ui.lblTotalIncome->setText(QString("Your total Income: ") + QString::number(Calculator::CalculateIncome()) + QString::fromLocal8Bit(config::currency));
     ui.lblTotalExpense->setText(QString("Your total Expenses: ") + QString::number(Calculator::CalculateExpenses()) + QString::fromLocal8Bit(config::currency));
     ui.lblRemainingBank->setText(QString("Your bank balance: ") + QString::number(config::json.d["General"][TOCHARPTR(config::user.userID)]["BankBalance"].GetDouble()) + QString::fromLocal8Bit(config::currency));
-
-}
-
-
-bool MainWindow::IsMonthEnd() {
-
-    auto& _time = std::chrono::system_clock::now();
-    std::time_t time__t = std::chrono::system_clock::to_time_t(_time);
-    struct tm* tmp = gmtime(&time__t);
-
-
-    short unsigned int lastExpMonth = config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
-    short unsigned int lastTakMonth = config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
-
-
-    if (lastExpMonth != 0 && (lastExpMonth < (tmp->tm_mon + 1) || (lastExpMonth == 12 && lastExpMonth > (tmp->tm_mon + 1)))) {
-        return true;
-    }
-
-
-    if (lastTakMonth != 0 && (lastTakMonth < (tmp->tm_mon + 1) || (lastTakMonth == 12 && lastTakMonth > (tmp->tm_mon + 1)))) {
-        return true;
-    }
-
-    return false;
 
 }
 

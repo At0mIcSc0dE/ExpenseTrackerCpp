@@ -1,3 +1,5 @@
+#ifdef DEBUG
+
 #include "Timer.h"
 
 
@@ -17,3 +19,5 @@ Timer::~Timer() {
 double Timer::getDuration() {
 	return duration;
 }
+
+#endif

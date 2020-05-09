@@ -26,7 +26,6 @@ protected slots:
 	void MainListboxDeletion();
 	void UpdateLabels();
 	void MonthEndEvents();
-	bool IsMonthEnd();
 
 	//Checkbox input handler
 	void chbOneStateHandler();

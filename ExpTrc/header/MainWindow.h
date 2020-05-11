@@ -8,19 +8,22 @@
 #include "ui_MainWindow.h"
 #include <qmessagebox.h>
 
+#include <Windows.h>
+#include <TlHelp32.h>
+
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	explicit MainWindow(QWidget* parent = Q_NULLPTR);
+	explicit MainWindow(const PROCESS_INFORMATION& processInfo, QWidget* parent = Q_NULLPTR);
 
 	~MainWindow();
 
 protected slots:
 
-	bool eventFilter(QObject* watched, QEvent* Event);
-
+	bool eventFilter(QObject* watched, QEvent* Event) override;
+	void closeEvent(QCloseEvent* evnt) override;
 
 	void MainListboxInsertion();
 	void MainListboxDeletion();
@@ -44,6 +47,7 @@ private:
 	Ui::MainWindow ui;
 	QMessageBox* msg;
 	QShortcut* ReturnKey;
+	const PROCESS_INFORMATION& m_ProcessInfo;
 };
 
 

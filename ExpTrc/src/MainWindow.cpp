@@ -11,8 +11,8 @@
 //GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING
 
 
-MainWindow::MainWindow(QWidget* parent)
-    : QMainWindow(parent)
+MainWindow::MainWindow(const PROCESS_INFORMATION& processInfo, QWidget* parent)
+    : QMainWindow(parent), m_ProcessInfo(processInfo)
 {
     /*Constructor for MainWindow class
      *Calls setupUi function
@@ -99,6 +99,11 @@ MainWindow::~MainWindow() {
     
     if (msg != nullptr)
         delete msg;
+}
+
+
+void MainWindow::closeEvent(QCloseEvent* evnt) {
+
 }
 
 

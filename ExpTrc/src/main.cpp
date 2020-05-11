@@ -71,11 +71,13 @@ int main(int argc, char* argv[])
 
     if (!FindRunningProcess(process)) {
         if (CreateProcess(L"C:/Program Files (x86)/Dropbox/Client/Dropbox.exe", L"", NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo)) {
+            std::cout << "Stating process...\n";
             WaitForSingleObject(processInfo.hProcess, 10000);
             ProcessRunning = true;
         }
     }
     else {
+        std::cout << "Process already Running!\n";
         ProcessRunning = true;
     }
 

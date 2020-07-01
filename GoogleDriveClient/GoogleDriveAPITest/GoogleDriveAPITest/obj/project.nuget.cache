@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "vpxPerULGM0OZw/5a0GhbmQ5iCnR+JSUBwcYm0FZ3GD9ztdV8ZNAgeQ0OLA3NxSqsKpJVn1wpAOoSOpY9aCDBQ==",
+  "success": true,
+  "projectFilePath": "C:\\dev\\C#\\Projects\\GoogleDriveAPITest\\GoogleDriveAPITest\\GoogleDriveAPITest.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Simon\\.nuget\\packages\\google.apis\\1.46.0\\google.apis.1.46.0.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\google.apis.auth\\1.46.0\\google.apis.auth.1.46.0.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\google.apis.core\\1.46.0\\google.apis.core.1.46.0.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\google.apis.drive.v3\\1.46.0.1992\\google.apis.drive.v3.1.46.0.1992.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

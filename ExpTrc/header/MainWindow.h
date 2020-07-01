@@ -16,7 +16,7 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 
 public:
-	explicit MainWindow(const std::wstring& filePath, QWidget* parent = Q_NULLPTR);
+	explicit MainWindow(const std::wstring& filePath, const std::wstring& exeFilePath, QWidget* parent = Q_NULLPTR);
 
 	~MainWindow();
 
@@ -48,6 +48,7 @@ private:
 	QMessageBox* msg;
 	QShortcut* ReturnKey;
 	const std::wstring& filePath;
+	const std::wstring& exeFilePath;
 };
 
 

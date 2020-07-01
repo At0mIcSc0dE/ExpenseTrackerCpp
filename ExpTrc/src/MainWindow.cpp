@@ -11,8 +11,8 @@
 //GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING
 
 
-MainWindow::MainWindow(const std::wstring& filePath, QWidget* parent)
-    : QMainWindow(parent), filePath(filePath)
+MainWindow::MainWindow(const std::wstring& filePath, const std::wstring& exeFilePath, QWidget* parent)
+    : QMainWindow(parent), filePath(filePath), exeFilePath(exeFilePath)
 {
     /*Constructor for MainWindow class
      *Calls setupUi function
@@ -104,24 +104,25 @@ MainWindow::~MainWindow() {
 
 void MainWindow::closeEvent(QCloseEvent* evnt) {
 
-#ifdef RELEASE
-    wchar_t* exeFilePath = L"D:\\dev\\Cpp\\Projects\\ExpTrc\\x64\\Release";
-#elif defined(DEBUG)
-    wchar_t* exeFilePath = L"D:\\dev\\Cpp\\Projects\\ExpTrc\\x64\\Debug";
-#else
-#error "Could not find .exe file for credentials.json"
-#endif
 
     SHELLEXECUTEINFO ShExecInfo;
     ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
     ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
     ShExecInfo.hwnd = NULL;
     ShExecInfo.lpVerb = NULL;
-    ShExecInfo.lpFile = L"D:/dev/Cpp/Projects/ExpTrc/GoogleDriveClient/GoogleDriveFileManager/UploadDriveFiles/bin/Release/netcoreapp3.1/UploadDriveFiles.exe";
+
+    auto wstr = exeFilePath + std::wstring(L"\\GoogleDriveFileManager\\UploadFiles\\UploadDriveFiles.exe");
+    ShExecInfo.lpFile = wstr.c_str();
+
     ShExecInfo.lpParameters = (filePath + L"Data.json").c_str();
-    ShExecInfo.lpDirectory = exeFilePath;
+    ShExecInfo.lpDirectory = exeFilePath.c_str();
     ShExecInfo.nShow = 0;   //SW_SHOW to show, 0 to hide
     ShExecInfo.hInstApp = NULL;
+
+    QMessageBox uploadFiles;
+    uploadFiles.setText((std::string("<font size=5>") + std::string("Uploading files to Google Drive...") + std::string("</font>")).c_str());
+    uploadFiles.setStandardButtons(0);
+    uploadFiles.show();
 
     ShellExecuteEx(&ShExecInfo);
     WaitForSingleObject(ShExecInfo.hProcess, INFINITE);

@@ -109,17 +109,35 @@ bool FindRunningProcess(const wchar_t* process) {
 
 int main(int argc, char* argv[])
 {
+
+    enum class InstallLocation
+    {
+        CDrive = 0, DDrive
+    };
+
+    InstallLocation installLocation = InstallLocation::DDrive;
+
     setlocale(LC_CTYPE, "");
     std::wstring filePath = L"D:/dev/ProgramFiles/ExpTrc/";
 
     if (!config::dirExists(std::string(filePath.begin(), filePath.end())))
+    {
         filePath = L"C:/dev/ProgramFiles/ExpTrc/";
+        installLocation = InstallLocation::CDrive;
+    }
 
 
+    std::wstring exeFilePath;
 #ifdef RELEASE
-    wchar_t* exeFilePath = L"D:\\dev\\Cpp\\Projects\\ExpTrc\\x64\\Release";
+    if (installLocation == InstallLocation::DDrive)
+        exeFilePath = L"D:\\Applications\\ExpenseTracker";
+    else
+        exeFilePath = L"C:\\ProgramFiles (x86)\\ExpenseTracker";
 #elif defined(DEBUG)
-    wchar_t* exeFilePath = L"D:\\dev\\Cpp\\Projects\\ExpTrc\\x64\\Debug";
+    if (installLocation == InstallLocation::DDrive)
+        exeFilePath = L"D:\\Applications\\ExpenseTracker";
+    else
+        exeFilePath = L"C:\\ProgramFiles (x86)\\ExpenseTracker";
 #else
     #error "Could not find .exe file for credentials.json"
 #endif
@@ -129,13 +147,15 @@ int main(int argc, char* argv[])
     ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
     ShExecInfo.hwnd = NULL;
     ShExecInfo.lpVerb = NULL;
-    ShExecInfo.lpFile = L"D:/dev/Cpp/Projects/ExpTrc/GoogleDriveClient/GoogleDriveFileManager/DownloadDriveFiles/bin/Release/netcoreapp3.1/DownloadDriveFiles.exe";
+    
+    auto wstr = exeFilePath + std::wstring(L"\\GoogleDriveFileManager\\DownloadFiles\\DownloadDriveFiles.exe");
+    ShExecInfo.lpFile = wstr.c_str();
+
     ShExecInfo.lpParameters = (filePath + L"Data.json").c_str();
-    ShExecInfo.lpDirectory = exeFilePath;
+    ShExecInfo.lpDirectory = exeFilePath.c_str();
     ShExecInfo.nShow = 0;   //SW_SHOW to show, 0 to hide
     ShExecInfo.hInstApp = NULL;
 
-    //auto handle = ShellExecute(NULL, L"open", L"D:/dev/Cpp/Projects/ExpTrc/GoogleDriveClient/GoogleDriveFileManager/DownloadDriveFiles/bin/Release/netcoreapp3.1/DownloadDriveFiles.exe", (filePath + L"Data.json").c_str(), exeFilePath, 0);
     ShellExecuteEx(&ShExecInfo);
     WaitForSingleObject(ShExecInfo.hProcess, INFINITE);
     CloseHandle(ShExecInfo.hProcess);
@@ -145,7 +165,7 @@ int main(int argc, char* argv[])
 
 
     QApplication app(argc, argv);
-    config::win = new MainWindow(filePath);
+    config::win = new MainWindow(filePath, exeFilePath);
     LoginWindow loginWin;
 
     loginWin.show();

@@ -1,9 +1,2 @@
-﻿  Calculator.cpp
-  Config.cpp
-  Expense.cpp
-  LoginWindow.cpp
-  MainWindow.cpp
-  User.cpp
-  listbox.cpp
-  main.cpp
+﻿  MainWindow.cpp
   ExpTrc.vcxproj -> D:\dev\Cpp\Projects\ExpTrc\x64\Debug\ExpTrc.exe

@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "iR46GaMRL3I/Zw/lNA847pSJu16lD4vyv92cWK390UTYV4taWs6kL1uI+gYEAw/wMl8f4Aq+geSCImsKsM9ldQ==",
+  "success": true,
+  "projectFilePath": "D:\\dev\\Cpp\\Projects\\ExpTrc\\GoogleDriveClient\\GoogleDriveFileManager\\UploadDriveFiles\\UploadDriveFiles.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Simon\\.nuget\\packages\\google.apis\\1.46.0\\google.apis.1.46.0.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\google.apis.auth\\1.46.0\\google.apis.auth.1.46.0.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\google.apis.core\\1.46.0\\google.apis.core.1.46.0.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\google.apis.drive.v3\\1.46.0.1992\\google.apis.drive.v3.1.46.0.1992.nupkg.sha512",
+    "C:\\Users\\Simon\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

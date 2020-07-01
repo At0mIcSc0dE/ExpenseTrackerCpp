@@ -1,0 +1,9 @@
+D:\dev\Cpp\Projects\ExpTrc\GoogleDriveClient\GoogleDriveFileManager\GoogleDriveFileManager\bin\Release\netstandard2.0\GoogleDriveFileManager.deps.json
+D:\dev\Cpp\Projects\ExpTrc\GoogleDriveClient\GoogleDriveFileManager\GoogleDriveFileManager\bin\Release\netstandard2.0\GoogleDriveFileManager.dll
+D:\dev\Cpp\Projects\ExpTrc\GoogleDriveClient\GoogleDriveFileManager\GoogleDriveFileManager\bin\Release\netstandard2.0\GoogleDriveFileManager.pdb
+D:\dev\Cpp\Projects\ExpTrc\GoogleDriveClient\GoogleDriveFileManager\GoogleDriveFileManager\obj\Release\netstandard2.0\GoogleDriveFileManager.csprojAssemblyReference.cache
+D:\dev\Cpp\Projects\ExpTrc\GoogleDriveClient\GoogleDriveFileManager\GoogleDriveFileManager\obj\Release\netstandard2.0\GoogleDriveFileManager.AssemblyInfoInputs.cache
+D:\dev\Cpp\Projects\ExpTrc\GoogleDriveClient\GoogleDriveFileManager\GoogleDriveFileManager\obj\Release\netstandard2.0\GoogleDriveFileManager.AssemblyInfo.cs
+D:\dev\Cpp\Projects\ExpTrc\GoogleDriveClient\GoogleDriveFileManager\GoogleDriveFileManager\obj\Release\netstandard2.0\GoogleDriveFileManager.csproj.CoreCompileInputs.cache
+D:\dev\Cpp\Projects\ExpTrc\GoogleDriveClient\GoogleDriveFileManager\GoogleDriveFileManager\obj\Release\netstandard2.0\GoogleDriveFileManager.dll
+D:\dev\Cpp\Projects\ExpTrc\GoogleDriveClient\GoogleDriveFileManager\GoogleDriveFileManager\obj\Release\netstandard2.0\GoogleDriveFileManager.pdb

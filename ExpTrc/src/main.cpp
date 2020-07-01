@@ -6,8 +6,11 @@
 #include <qapplication.h>
 #include "JSON.h"
 
-
+#include <thread>
+#include <locale>
 #include <iostream>
+#include <filesystem>
+#include <tchar.h>
 
 //VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES || VARIABLES
 
@@ -59,46 +62,94 @@ bool FindRunningProcess(const wchar_t* process) {
 
 
 //MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION || MAIN FUNCTION
+//int main(int argc, char* argv[])
+//{
+//
+//    STARTUPINFO info = { sizeof(info) };
+//    PROCESS_INFORMATION processInfo;
+//    bool ProcessRunning = false;
+//
+//    WCHAR* process = L"Dropbox.exe";
+//    const wchar_t process[12] = L"Dropbox.exe";
+//
+//    if (!FindRunningProcess(process)) {
+//        if (CreateProcess(L"C:/Program Files (x86)/Dropbox/Client/Dropbox.exe", L"", NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo)) {
+//            std::cout << "Stating process...\n";
+//            WaitForSingleObject(processInfo.hProcess, 10000);
+//            ProcessRunning = true;
+//        }
+//    }
+//    else {
+//        std::cout << "Process already Running!\n";
+//        ProcessRunning = true;
+//    }
+//
+//	//Initialisation of variables
+//	config::initVariables();
+//	
+//
+//	QApplication app(argc, argv);
+//	config::win = new MainWindow(processInfo);
+//	LoginWindow loginWin;
+//
+//	if (!ProcessRunning) {
+//		QMessageBox msgBox;
+//		msgBox.setText("Failed to connect to Dropbox.");
+//		msgBox.setWindowTitle("Dropbox failed");
+//		msgBox.exec();
+//
+//		return 0;
+//	}
+//
+//	loginWin.show();
+//
+//	return app.exec();
+//}
+
+
 int main(int argc, char* argv[])
 {
+    setlocale(LC_CTYPE, "");
+    std::wstring filePath = L"D:/dev/ProgramFiles/ExpTrc/";
 
-    STARTUPINFO info = { sizeof(info) };
-    PROCESS_INFORMATION processInfo;
-    bool ProcessRunning = false;
+    if (!config::dirExists(std::string(filePath.begin(), filePath.end())))
+        filePath = L"C:/dev/ProgramFiles/ExpTrc/";
 
-    //WCHAR* process = L"Dropbox.exe";
-    const wchar_t process[12] = L"Dropbox.exe";
 
-    if (!FindRunningProcess(process)) {
-        if (CreateProcess(L"C:/Program Files (x86)/Dropbox/Client/Dropbox.exe", L"", NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo)) {
-            std::cout << "Stating process...\n";
-            WaitForSingleObject(processInfo.hProcess, 10000);
-            ProcessRunning = true;
-        }
-    }
-    else {
-        std::cout << "Process already Running!\n";
-        ProcessRunning = true;
-    }
+#ifdef RELEASE
+    wchar_t* exeFilePath = L"D:\\dev\\Cpp\\Projects\\ExpTrc\\x64\\Release";
+#elif defined(DEBUG)
+    wchar_t* exeFilePath = L"D:\\dev\\Cpp\\Projects\\ExpTrc\\x64\\Debug";
+#else
+    #error "Could not find .exe file for credentials.json"
+#endif
 
-	//Initialisation of variables
-	config::initVariables();
-	
+    SHELLEXECUTEINFO ShExecInfo;
+    ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+    ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
+    ShExecInfo.hwnd = NULL;
+    ShExecInfo.lpVerb = NULL;
+    ShExecInfo.lpFile = L"D:/dev/Cpp/Projects/ExpTrc/GoogleDriveClient/GoogleDriveFileManager/DownloadDriveFiles/bin/Release/netcoreapp3.1/DownloadDriveFiles.exe";
+    ShExecInfo.lpParameters = (filePath + L"Data.json").c_str();
+    ShExecInfo.lpDirectory = exeFilePath;
+    ShExecInfo.nShow = 0;   //SW_SHOW to show, 0 to hide
+    ShExecInfo.hInstApp = NULL;
 
-	QApplication app(argc, argv);
-	config::win = new MainWindow(processInfo);
-	LoginWindow loginWin;
+    //auto handle = ShellExecute(NULL, L"open", L"D:/dev/Cpp/Projects/ExpTrc/GoogleDriveClient/GoogleDriveFileManager/DownloadDriveFiles/bin/Release/netcoreapp3.1/DownloadDriveFiles.exe", (filePath + L"Data.json").c_str(), exeFilePath, 0);
+    ShellExecuteEx(&ShExecInfo);
+    WaitForSingleObject(ShExecInfo.hProcess, INFINITE);
+    CloseHandle(ShExecInfo.hProcess);
 
-	if (!ProcessRunning) {
-		QMessageBox msgBox;
-		msgBox.setText("Failed to connect to Dropbox.");
-		msgBox.setWindowTitle("Dropbox failed");
-		msgBox.exec();
+    //Initialisation of variables
+    config::initVariables();
 
-		return 0;
-	}
 
-	loginWin.show();
+    QApplication app(argc, argv);
+    config::win = new MainWindow(filePath);
+    LoginWindow loginWin;
 
-	return app.exec();
+    loginWin.show();
+
+
+    return app.exec();
 }

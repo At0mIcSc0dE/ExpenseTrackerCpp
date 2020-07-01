@@ -11,8 +11,8 @@
 //GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING || GLOBAL LINKING
 
 
-MainWindow::MainWindow(const PROCESS_INFORMATION& processInfo, QWidget* parent)
-    : QMainWindow(parent), m_ProcessInfo(processInfo)
+MainWindow::MainWindow(const std::wstring& filePath, QWidget* parent)
+    : QMainWindow(parent), filePath(filePath)
 {
     /*Constructor for MainWindow class
      *Calls setupUi function
@@ -96,7 +96,7 @@ MainWindow::MainWindow(const PROCESS_INFORMATION& processInfo, QWidget* parent)
 
 MainWindow::~MainWindow() {
     /*Destructor for MainWindow class*/
-    
+
     if (msg != nullptr)
         delete msg;
 }
@@ -104,6 +104,28 @@ MainWindow::~MainWindow() {
 
 void MainWindow::closeEvent(QCloseEvent* evnt) {
 
+#ifdef RELEASE
+    wchar_t* exeFilePath = L"D:\\dev\\Cpp\\Projects\\ExpTrc\\x64\\Release";
+#elif defined(DEBUG)
+    wchar_t* exeFilePath = L"D:\\dev\\Cpp\\Projects\\ExpTrc\\x64\\Debug";
+#else
+#error "Could not find .exe file for credentials.json"
+#endif
+
+    SHELLEXECUTEINFO ShExecInfo;
+    ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+    ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
+    ShExecInfo.hwnd = NULL;
+    ShExecInfo.lpVerb = NULL;
+    ShExecInfo.lpFile = L"D:/dev/Cpp/Projects/ExpTrc/GoogleDriveClient/GoogleDriveFileManager/UploadDriveFiles/bin/Release/netcoreapp3.1/UploadDriveFiles.exe";
+    ShExecInfo.lpParameters = (filePath + L"Data.json").c_str();
+    ShExecInfo.lpDirectory = exeFilePath;
+    ShExecInfo.nShow = 0;   //SW_SHOW to show, 0 to hide
+    ShExecInfo.hInstApp = NULL;
+
+    ShellExecuteEx(&ShExecInfo);
+    WaitForSingleObject(ShExecInfo.hProcess, INFINITE);
+    CloseHandle(ShExecInfo.hProcess);
 }
 
 
@@ -125,10 +147,15 @@ void MainWindow::MonthEndEvents() {
     std::time_t time__t = std::chrono::system_clock::to_time_t(_time);
     struct tm* tmp = gmtime(&time__t);
 
+    short unsigned int lastExpMonth = 0;
+    short unsigned int lastTakMonth = 0;
 
-    short unsigned int lastExpMonth = config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
-    short unsigned int lastTakMonth = config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
-    
+    lastExpMonth = config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
+    lastTakMonth = config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)]["1"]["expMonth"].GetInt();
+
+    if (lastExpMonth == 0 || lastTakMonth == 0)
+        return;
+
     bool alreadyCalled = false;
 
     if (lastExpMonth != 0 && (lastExpMonth < (tmp->tm_mon + 1) || (lastExpMonth == 12 && lastExpMonth > (tmp->tm_mon + 1)))) {

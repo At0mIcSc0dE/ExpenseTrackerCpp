@@ -13,6 +13,8 @@ namespace config {
 	extern Expense exp;
 	extern MainWindow* win;
 	
+	extern bool dirExists(const std::string& dirName_in);
+
 	void initVariables();
 }
 

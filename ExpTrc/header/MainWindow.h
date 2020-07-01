@@ -16,7 +16,7 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 
 public:
-	explicit MainWindow(const PROCESS_INFORMATION& processInfo, QWidget* parent = Q_NULLPTR);
+	explicit MainWindow(const std::wstring& filePath, QWidget* parent = Q_NULLPTR);
 
 	~MainWindow();
 
@@ -47,7 +47,7 @@ private:
 	Ui::MainWindow ui;
 	QMessageBox* msg;
 	QShortcut* ReturnKey;
-	const PROCESS_INFORMATION& m_ProcessInfo;
+	const std::wstring& filePath;
 };
 
 

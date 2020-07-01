@@ -1,27 +1,2 @@
-﻿  Calculator.cpp
-  Expense.cpp
-  Config.cpp
-  JSON.cpp
-  LoginWindow.cpp
-  checkbox.cpp
-  button.cpp
-  combobox.cpp
-  listbox.cpp
-  main.cpp
-  MainWindow.cpp
-  plaintext.cpp
-  spinbox.cpp
-  textbox.cpp
-  User.cpp
-  Timer.cpp
-  qrc_MainWindow.cpp
-  moc_MainWindow.cpp
-  moc_button.cpp
-  moc_combobox.cpp
-  moc_listbox.cpp
-  moc_plaintext.cpp
-  moc_spinbox.cpp
-  moc_LoginWindow.cpp
-  moc_textbox.cpp
-  moc_checkbox.cpp
-  ExpTrc.vcxproj -> C:\dev\Cpp\Projects\ExpTrc\x64\Release\ExpTrc.exe
+﻿  MainWindow.cpp
+  ExpTrc.vcxproj -> D:\dev\Cpp\Projects\ExpTrc\x64\Release\ExpTrc.exe

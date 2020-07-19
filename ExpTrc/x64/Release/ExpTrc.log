@@ -1,3 +1,13 @@
-﻿  MainWindow.cpp
+﻿  Reading Qt configuration (C:\Qt\5.14.1\msvc2017_64\\bin\qmake.exe)
+  Calculator.cpp
+  Config.cpp
+  Expense.cpp
+  JSON.cpp
+  LoginWindow.cpp
+  MainWindow.cpp
+  User.cpp
+  listbox.cpp
   main.cpp
+D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\MainWindow.cpp(129): warning C4700: uninitialized local variable 'ShExecInfo' used
+D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\main.cpp(161): warning C4700: uninitialized local variable 'ShExecInfo' used
   ExpTrc.vcxproj -> D:\dev\Cpp\Projects\ExpTrc\x64\Release\ExpTrc.exe

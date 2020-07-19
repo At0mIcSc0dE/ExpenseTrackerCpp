@@ -2,6 +2,8 @@
 
 #include "JSON.h"
 #include <fstream>
+#include <qnetwork.h>
+
 
 JSON::JSON() { }
 
@@ -37,7 +39,7 @@ JSON::JSON(const char* path, const char* startDocument)
 	:path(path), d(kObjectType), startDocument(startDocument)
 {
 	read();
-	writeStartDocument();
+	//writeStartDocument();
 }
 
 

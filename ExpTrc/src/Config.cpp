@@ -23,12 +23,12 @@ namespace config {
 	}
 
 	void initVariables() {
-		if (dirExists("D:/dev/ProgramFiles/ExpTrc/"))
-			json.setPath("D:/dev/ProgramFiles/ExpTrc/Data.json");
-		else if (dirExists("C:/dev/ProgramFiles/ExpTrc/"))
-			json.setPath("C:/dev/ProgramFiles/ExpTrc/Data.json");
+		//if (dirExists("D:/dev/ProgramFiles/ExpTrc/"))
+		//	json.setPath("D:/dev/ProgramFiles/ExpTrc/Data.json");
+		//else if (dirExists("C:/dev/ProgramFiles/ExpTrc/"))
+		//	json.setPath("C:/dev/ProgramFiles/ExpTrc/Data.json");
 		
-		//json.setPath("D:/dev/ProgramFiles/ExpenseTracker/Data.json");
+		json.setPath("\\\\192.168.178.45\\share\\index.html");
 		json.setStartDocument("{\"OneTimeExpense\": {},\"MonthlyExpense\": {},\"OneTimeTakings\": {},\"MonthlyTakings\": {},\"Group\": {\"0\": [\"admin\", \"admin\"]},\"User\": {\"0\": []},\"Category\": {\"All\": []}, \"General\": {\"expID\": {}, \"userID\": 0, \"groupID\": 0, \"0\": {\"BankBalance\": 0}}}");
 	}
 }

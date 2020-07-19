@@ -16,7 +16,7 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 
 public:
-	explicit MainWindow(const std::wstring& filePath, const std::wstring& exeFilePath, QWidget* parent = Q_NULLPTR);
+	explicit MainWindow(const std::wstring& filePath = L"", const std::wstring& exeFilePath = L"", QWidget* parent = Q_NULLPTR);
 
 	~MainWindow();
 

@@ -141,6 +141,581 @@
     <ClInclude Include="header\Calculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\detail\debug.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\detail\directive_base.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\detail\wrapper_base.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\include\http\client.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\include\http\server.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\include\message.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\directives\detail\string_directive.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\directives\detail\string_value.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\directives\header.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\directives\remove_header.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\modifiers\add_header.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\modifiers\body.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\modifiers\clear_headers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\modifiers\destination.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\modifiers\remove_header.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\modifiers\source.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\traits\body.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\traits\destination.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\traits\headers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\traits\source.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\transformers\selectors.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\transformers\to_lower.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\transformers\to_upper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\wrappers\body.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\wrappers\destination.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\wrappers\headers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\wrappers\source.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\directives.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\transformers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message\wrappers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\algorithms\linearize.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\async_base.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\async_normal.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\async_protocol_handler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\connection_delegate.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\connection_delegate_factory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\normal_delegate.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\normal_delegate.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\ssl_delegate.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\ssl_delegate.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\sync_base.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\sync_normal.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\connection\sync_ssl.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\async_impl.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\facade.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\macros.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\options.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\pimpl.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\client\sync_impl.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\impl\message.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\impl\parser.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\impl\request.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\impl\request_parser.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\impl\response.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\directives\major_version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\directives\method.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\directives\minor_version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\directives\status.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\directives\status_message.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\directives\uri.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\directives\version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\header\name.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\header\value.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\body.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\clear_headers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\destination.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\headers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\major_version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\method.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\minor_version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\source.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\status.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\status_message.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\uri.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\modifiers\version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\traits\status.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\traits\status_message.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\traits\version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\anchor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\body.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\destination.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\headers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\helper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\host.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\major_version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\method.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\minor_version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\path.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\port.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\protocol.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\query.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\ready.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\source.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\status.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\status_message.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\uri.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\wrappers\version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\async_message.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\header.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message\message_base.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\parser\incremental.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\policies\async_connection.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\policies\async_resolver.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\policies\pooled_connection.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\policies\simple_connection.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\policies\sync_resolver.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\server\impl\parsers.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\server\async_connection.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\server\async_server.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\server\options.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\server\request.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\server\request_parser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\server\socket_options_base.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\server\storage_base.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\support\client_or_server.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\support\is_client.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\support\is_http.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\support\is_keepalive.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\support\is_server.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\support\is_simple.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\chunk_cache.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\content.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\cookie_name.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\cookie_value.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\cookies_container.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\delimiters.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\header_name.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\header_value.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\headers.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\headers_container.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\method.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\post_content.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\query_container.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\query_name.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\query_string.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\query_value.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\request_methods.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\resource.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\response_code.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\response_message.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\impl\status_message.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\connection_keepalive.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\connection_policy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\delegate_factory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\message_traits.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\parser_traits.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\resolver.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits\resolver_policy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\errors.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\message.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\parser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\request.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\request_parser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\response.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\server.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\tags.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http\traits.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\http.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol\stream_handler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\support\is_async.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\support\is_default_string.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\support\is_default_wstring.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\support\is_http.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\support\is_keepalive.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\support\is_pod.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\support\is_simple.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\support\is_sync.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\support\is_tcp.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\support\is_udp.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\support\pod_or_normal.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\traits\char.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\traits\headers_container.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\traits\istream.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\traits\istringstream.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\traits\ostream_iterator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\traits\ostringstream.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\traits\string.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\traits\vector.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\detail\uri_parts.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\directives\authority.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\directives\fragment.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\directives\host.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\directives\path.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\directives\port.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\directives\query.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\directives\scheme.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\directives\user_info.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\accessors.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\builder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\decode.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\directives.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\encode.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\schemes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\uri.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri\uri.ipp" />
+    <ClInclude Include="vendor\NetLib\boost\network\uri\uri_io.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\utils\base64\encode.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\utils\base64\encode-io.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\utils\thread_group.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\utils\thread_pool.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\constants.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\message_fwd.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\protocol.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\tags.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\uri.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network\version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\mime.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\NetLib\boost\network.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ExpenseTracker.rc" />

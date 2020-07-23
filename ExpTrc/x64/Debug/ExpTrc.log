@@ -1,2 +1,5 @@
-﻿  MainWindow.cpp
+﻿  Expense.cpp
+D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\Expense.cpp(83,85): warning C4838: conversion from 'int' to 'unsigned int' requires a narrowing conversion
+D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\Expense.cpp(83,108): warning C4838: conversion from 'int' to 'unsigned int' requires a narrowing conversion
+D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\Expense.cpp(83,126): warning C4838: conversion from 'int' to 'unsigned int' requires a narrowing conversion
   ExpTrc.vcxproj -> D:\dev\Cpp\Projects\ExpTrc\x64\Debug\ExpTrc.exe

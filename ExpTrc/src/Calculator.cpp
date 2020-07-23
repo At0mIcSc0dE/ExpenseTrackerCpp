@@ -4,17 +4,20 @@
 
 double Calculator::CalculateExpenses() {
 	double CurrentlySpentMoney = 0;
+	const GeneralData& gd = config::fm->GetGeneralData();
 
-	for (unsigned int i = 1; i <= config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeExpense"].GetInt(); ++i) {
+	for (unsigned int i = 1; i <= gd.CurrOneTimeExpCount; ++i) {
 
-		CurrentlySpentMoney += config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expPrice"].GetDouble();
+		//CurrentlySpentMoney += config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expPrice"].GetDouble();
+		const ExpenseData expData = config::fm->ReadExpense(i, ONETIME);
+		CurrentlySpentMoney += expData.Price;
 
 	}
 
-	for (unsigned int i = 1; i <= config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["MonthlyExpense"].GetInt(); ++i) {
+	for (unsigned int i = 1; i <= gd.CurrMonthlyExpCount; ++i) {
 
-		CurrentlySpentMoney += config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expPrice"].GetDouble();
-
+		const ExpenseData expData = config::fm->ReadExpense(i, MONTHLY);
+		CurrentlySpentMoney += expData.Price;
 	}
 
 	return CurrentlySpentMoney;
@@ -23,17 +26,16 @@ double Calculator::CalculateExpenses() {
 
 double Calculator::CalculateIncome() {
 	double MoneyGained = 0;
+	const GeneralData& gd = config::fm->GetGeneralData();
 
-	for (unsigned int i = 1; i <= config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["OneTimeTakings"].GetInt(); ++i) {
-
-		MoneyGained += config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expPrice"].GetDouble();
-
+	for (unsigned int i = 1; i <= gd.CurrOneTimeTakCount; ++i) {
+		const ExpenseData expData = config::fm->ReadExpense(i, ONETIME_T);
+		MoneyGained += expData.Price;
 	}
 	
-	for (unsigned int i = 1; i <= config::json.d["General"]["expID"][TOCHARPTR(config::user.userID)]["MonthlyTakings"].GetInt(); ++i) {
-
-		MoneyGained += config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expPrice"].GetDouble();
-
+	for (unsigned int i = 1; i <= gd.CurrMonthlyTakCount; ++i) {
+		const ExpenseData expData = config::fm->ReadExpense(i, MONTHLY_T);
+		MoneyGained += expData.Price;
 	}
 
 	return MoneyGained;

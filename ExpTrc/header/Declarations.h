@@ -22,6 +22,7 @@
 #define MONTHLY 2
 #define ONETIME_T 3
 #define MONTHLY_T 4
+#define GENERAL 5
 
 #define ADDEXP 0
 #define DELEXP 1

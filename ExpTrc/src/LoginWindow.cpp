@@ -2,7 +2,6 @@
 
 #include "LoginWindow.h"
 #include "WindowDesign.h"
-#include "User.h"
 #include "Config.h"
 
 
@@ -30,11 +29,8 @@ LoginWindow::~LoginWindow() {
 
 bool LoginWindow::login() {
 
-	if (config::user.initUser(ui.usernameTxt->text(), ui.passwordTxt->text())) {
-		this->close();
-		window::initMainWindow(config::win);
-		return true;
-	}
-	return false;
+	this->close();
+	window::initMainWindow(config::win);
+	return true;
 }
 

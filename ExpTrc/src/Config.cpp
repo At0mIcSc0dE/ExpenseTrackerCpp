@@ -7,7 +7,6 @@
 namespace config {
 	short unsigned int lstboxFocus = LSTBOX;
 	char* currency = "€";
-	User user;
 	Expense exp;
 
 	bool dirExists(const std::string& dirName_in)
@@ -28,8 +27,9 @@ namespace config {
 		//else if (dirExists("C:/dev/ProgramFiles/ExpTrc/"))
 		//	json.setPath("C:/dev/ProgramFiles/ExpTrc/Data.json");
 		
-		json.setPath("\\\\192.168.178.45\\share\\index.html");
-		json.setStartDocument("{\"OneTimeExpense\": {},\"MonthlyExpense\": {},\"OneTimeTakings\": {},\"MonthlyTakings\": {},\"Group\": {\"0\": [\"admin\", \"admin\"]},\"User\": {\"0\": []},\"Category\": {\"All\": []}, \"General\": {\"expID\": {}, \"userID\": 0, \"groupID\": 0, \"0\": {\"BankBalance\": 0}}}");
+		//json.setPath("\\\\192.168.178.45\\share\\index.html");
+		//json.setStartDocument("{\"OneTimeExpense\": {},\"MonthlyExpense\": {},\"OneTimeTakings\": {},\"MonthlyTakings\": {},\"Group\": {\"0\": [\"admin\", \"admin\"]},\"User\": {\"0\": []},\"Category\": {\"All\": []}, \"General\": {\"expID\": {}, \"userID\": 0, \"groupID\": 0, \"0\": {\"BankBalance\": 0}}}");
+		fm = std::make_unique<FileManager>("D:\\dev\\ProgramFiles\\ExpTrc\\OneTimeExpenses.exptrc", "D:\\dev\\ProgramFiles\\ExpTrc\\MonthlyExpenses.exptrc", "D:\\dev\\ProgramFiles\\ExpTrc\\OneTimeTakings.exptrc", "D:\\dev\\ProgramFiles\\ExpTrc\\MonthlyTakings.exptrc", "D:\\dev\\ProgramFiles\\ExpTrc\\General.exptrc");
 	}
 }
 

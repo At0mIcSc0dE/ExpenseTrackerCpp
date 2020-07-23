@@ -1,12 +1,2 @@
-﻿  moc header\MainWindow.h
-  Calculator.cpp
-  Config.cpp
-  Expense.cpp
-  JSON.cpp
-  LoginWindow.cpp
-  MainWindow.cpp
-  User.cpp
-  listbox.cpp
-  main.cpp
-  moc_MainWindow.cpp
+﻿  LoginWindow.cpp
   ExpTrc.vcxproj -> D:\dev\Cpp\Projects\ExpTrc\x64\Release\ExpTrc.exe

@@ -189,27 +189,31 @@ void MainWindow::MoreInfoButtonPressed() {
     case LSTBOX:
     {
         unsigned short int lstboxIndex = ui.lstbox->currentRow() + 1;
-        //msgDEBUG(QString("Name: ") + config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expName"].GetString() + QString("\n") + QString("Price: ") + QString::number(config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expPrice"].GetDouble()) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        const ExpenseData& expData = config::fm->ReadExpense(lstboxIndex, ONETIME);
+        msgDEBUG(QString("Name: ") + QString(expData.Name.c_str()) + QString("\n") + QString("Price: ") + QString::number(expData.Price) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + QString(expData.Info.c_str()));
         break;
     }
     case LSTBOXMONTH:
     {
         unsigned short int lstboxIndex = ui.lstboxMonth->currentRow() + 1;
-        //msgDEBUG(QString("Name: ") + config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expName"].GetString() + QString("\n") + QString("Price: ") + QString::number(config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expPrice"].GetDouble()) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + config::json.d["MonthlyExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        const ExpenseData& expData = config::fm->ReadExpense(lstboxIndex, MONTHLY);
+        msgDEBUG(QString("Name: ") + QString(expData.Name.c_str()) + QString("\n") + QString("Price: ") + QString::number(expData.Price) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + QString(expData.Info.c_str()));
         break;
 
     }
     case LSTBOXTAKINGS:
     {
         unsigned short int lstboxIndex = ui.lstboxTakings->currentRow() + 1;
-        //msgDEBUG(QString("Name: ") + config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expName"].GetString() + QString("\n") + QString("Price: ") + QString::number(config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expPrice"].GetDouble()) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + config::json.d["OneTimeTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        const ExpenseData& expData = config::fm->ReadExpense(lstboxIndex, ONETIME_T);
+        msgDEBUG(QString("Name: ") + QString(expData.Name.c_str()) + QString("\n") + QString("Price: ") + QString::number(expData.Price) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + QString(expData.Info.c_str()));
         break;
 
     }
     case LSTBOXTAKINGSMONTH:
     {
         unsigned short int lstboxIndex = ui.lstboxTakingsMonth->currentRow() + 1;
-        //msgDEBUG(QString("Name: ") + config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expName"].GetString() + QString("\n") + QString("Price: ") + QString::number(config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expPrice"].GetDouble()) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + config::json.d["MonthlyTakings"][TOCHARPTR(config::user.userID)][TOCHARPTR(lstboxIndex)]["expInfo"].GetString());
+        const ExpenseData& expData = config::fm->ReadExpense(lstboxIndex, MONTHLY_T);
+        msgDEBUG(QString("Name: ") + QString(expData.Name.c_str()) + QString("\n") + QString("Price: ") + QString::number(expData.Price) + QString::fromLocal8Bit("€") + QString("\n") + QString("Info: ") + QString(expData.Info.c_str()));
         break;
 
     }
@@ -309,6 +313,9 @@ void MainWindow::MainListboxDeletion() {
         unsigned short int lstboxIndex = ui.lstbox->currentRow();
         const ExpenseData& expData = config::fm->ReadExpense(lstboxIndex + 1, ONETIME);
 
+        if (expData.Day == 0)
+            return;
+
         gd.CurrOneTimeExpCount -= 1;
         gd.balance += expData.Price;
         config::fm->DeleteExpense(lstboxIndex + 1, ONETIME);
@@ -321,10 +328,13 @@ void MainWindow::MainListboxDeletion() {
         unsigned short int lstboxIndex = ui.lstboxMonth->currentRow();
         const ExpenseData& expData = config::fm->ReadExpense(lstboxIndex + 1, MONTHLY);
 
+        if (expData.Day == 0)
+            return;
+
         gd.CurrMonthlyExpCount -= 1;
         gd.balance += expData.Price;
         config::fm->DeleteExpense(lstboxIndex + 1, MONTHLY);
-        ui.lstbox->takeItem(lstboxIndex);
+        ui.lstboxMonth->takeItem(lstboxIndex);
 
         break;
     }
@@ -333,10 +343,13 @@ void MainWindow::MainListboxDeletion() {
         unsigned short int lstboxIndex = ui.lstboxTakings->currentRow();
         const ExpenseData& expData = config::fm->ReadExpense(lstboxIndex + 1, ONETIME_T);
 
+        if (expData.Day == 0)
+            return;
+
         gd.CurrOneTimeTakCount -= 1;
-        gd.balance += expData.Price;
+        gd.balance -= expData.Price;
         config::fm->DeleteExpense(lstboxIndex + 1, ONETIME_T);
-        ui.lstbox->takeItem(lstboxIndex);
+        ui.lstboxTakings->takeItem(lstboxIndex);
 
         break;
     }
@@ -345,10 +358,13 @@ void MainWindow::MainListboxDeletion() {
         unsigned short int lstboxIndex = ui.lstboxTakingsMonth->currentRow();
         const ExpenseData& expData = config::fm->ReadExpense(lstboxIndex + 1, MONTHLY_T);
 
+        if (expData.Day == 0)
+            return;
+
         gd.CurrMonthlyTakCount -= 1;
-        gd.balance += expData.Price;
+        gd.balance -= expData.Price;
         config::fm->DeleteExpense(lstboxIndex + 1, MONTHLY_T);
-        ui.lstbox->takeItem(lstboxIndex);
+        ui.lstboxTakingsMonth->takeItem(lstboxIndex);
 
         break;
     }

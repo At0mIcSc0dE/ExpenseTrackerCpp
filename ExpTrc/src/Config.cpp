@@ -22,14 +22,7 @@ namespace config {
 	}
 
 	void initVariables() {
-		//if (dirExists("D:/dev/ProgramFiles/ExpTrc/"))
-		//	json.setPath("D:/dev/ProgramFiles/ExpTrc/Data.json");
-		//else if (dirExists("C:/dev/ProgramFiles/ExpTrc/"))
-		//	json.setPath("C:/dev/ProgramFiles/ExpTrc/Data.json");
-		
-		//json.setPath("\\\\192.168.178.45\\share\\index.html");
-		//json.setStartDocument("{\"OneTimeExpense\": {},\"MonthlyExpense\": {},\"OneTimeTakings\": {},\"MonthlyTakings\": {},\"Group\": {\"0\": [\"admin\", \"admin\"]},\"User\": {\"0\": []},\"Category\": {\"All\": []}, \"General\": {\"expID\": {}, \"userID\": 0, \"groupID\": 0, \"0\": {\"BankBalance\": 0}}}");
-		fm = std::make_unique<FileManager>("D:\\dev\\ProgramFiles\\ExpTrc\\OneTimeExpenses.exptrc", "D:\\dev\\ProgramFiles\\ExpTrc\\MonthlyExpenses.exptrc", "D:\\dev\\ProgramFiles\\ExpTrc\\OneTimeTakings.exptrc", "D:\\dev\\ProgramFiles\\ExpTrc\\MonthlyTakings.exptrc", "D:\\dev\\ProgramFiles\\ExpTrc\\General.exptrc");
+		fm = std::make_unique<FileManager>("\\\\192.168.178.45\\share\\ExpTrc\\OneTimeExpenses.exptrc", "\\\\192.168.178.45\\share\\ExpTrc\\MonthlyExpenses.exptrc", "\\\\192.168.178.45\\share\\ExpTrc\\OneTimeTakings.exptrc", "\\\\192.168.178.45\\share\\ExpTrc\\MonthlyTakings.exptrc", "\\\\192.168.178.45\\share\\ExpTrc\\General.exptrc");
 	}
 }
 

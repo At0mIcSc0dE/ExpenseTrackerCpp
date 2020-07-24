@@ -14,9 +14,9 @@ struct ExpenseData
 	std::string Name;
 	double Price;
 	std::string Info;
-	unsigned int Day;
-	unsigned int Month;
-	unsigned int Year;
+	int Day;
+	int Month;
+	int Year;
 };
 
 struct GeneralData
@@ -28,7 +28,7 @@ struct GeneralData
 
 	unsigned int userID;
 	unsigned int groupID;
-	int balance;
+	double balance;
 };
 
 
@@ -43,6 +43,8 @@ public:
 
 	const GeneralData& ReadGeneral();
 	void WriteGeneral(const GeneralData& data);
+	
+	void UpdateIndices(unsigned short index, unsigned short expTime, unsigned short addOrDelete);
 
 	const GeneralData& GetGeneralData() const { return m_GeneralData; }
 
@@ -59,7 +61,6 @@ private:
 	const std::string m_FilePath3;
 	const std::string m_FilePath4;
 	const std::string m_FilePathG;
-
 
 private:
 	void Read(const std::string& filePath, std::unordered_map<int, std::vector<std::string>>& data);

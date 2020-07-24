@@ -1,5 +1,13 @@
-﻿  Expense.cpp
-D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\Expense.cpp(83,85): warning C4838: conversion from 'int' to 'unsigned int' requires a narrowing conversion
-D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\Expense.cpp(83,108): warning C4838: conversion from 'int' to 'unsigned int' requires a narrowing conversion
-D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\Expense.cpp(83,126): warning C4838: conversion from 'int' to 'unsigned int' requires a narrowing conversion
+﻿  Calculator.cpp
+  Config.cpp
+  Expense.cpp
+  FileManager.cpp
+D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\FileManager.cpp(257,44): warning C4552: '+': result of expression not used
+  LoginWindow.cpp
+D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\Expense.cpp(84,85): warning C4838: conversion from 'int' to 'unsigned int' requires a narrowing conversion
+D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\Expense.cpp(84,108): warning C4838: conversion from 'int' to 'unsigned int' requires a narrowing conversion
+D:\dev\Cpp\Projects\ExpTrc\ExpTrc\src\Expense.cpp(84,126): warning C4838: conversion from 'int' to 'unsigned int' requires a narrowing conversion
+  MainWindow.cpp
+  listbox.cpp
+  main.cpp
   ExpTrc.vcxproj -> D:\dev\Cpp\Projects\ExpTrc\x64\Debug\ExpTrc.exe

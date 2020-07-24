@@ -17,10 +17,22 @@ ExpenseData FileManager::ReadExpense(const int expID, const int expType)
 {
 	ExpenseData expData{};
 
+	// Check if we have any expenses!
+
+
 	switch (expType)
 	{
 	case ONETIME:
-		expData.Name = m_OneTimeExpData[expID][0];
+
+		try
+		{
+			expData.Name = m_OneTimeExpData.at(expID).at(0);
+		}
+		catch (std::out_of_range)
+		{
+			return expData;
+		}
+		
 		expData.Price = std::stod(m_OneTimeExpData[expID][1]);
 		expData.Info = m_OneTimeExpData[expID][2];
 		expData.Day = std::stoi(m_OneTimeExpData[expID][3]);
@@ -29,7 +41,17 @@ ExpenseData FileManager::ReadExpense(const int expID, const int expType)
 
 		break;
 	case MONTHLY:
-		expData.Name = m_MonthlyExpData[expID][0];
+
+		try
+		{
+			expData.Name = m_MonthlyExpData.at(expID).at(0);
+
+		}
+		catch (std::out_of_range)
+		{
+			return expData;
+		}
+		
 		expData.Price = std::stod(m_MonthlyExpData[expID][1]);
 		expData.Info = m_MonthlyExpData[expID][2];
 		expData.Day = std::stoi(m_MonthlyExpData[expID][3]);
@@ -38,7 +60,17 @@ ExpenseData FileManager::ReadExpense(const int expID, const int expType)
 
 		break;
 	case ONETIME_T:
-		expData.Name = m_OneTimeTakData[expID][0];
+
+		try
+		{
+			expData.Name = m_OneTimeTakData.at(expID).at(0);
+
+		}
+		catch (std::out_of_range)
+		{
+			return expData;
+		}
+		
 		expData.Price = std::stod(m_OneTimeTakData[expID][1]);
 		expData.Info = m_OneTimeTakData[expID][2];
 		expData.Day = std::stoi(m_OneTimeTakData[expID][3]);
@@ -47,7 +79,17 @@ ExpenseData FileManager::ReadExpense(const int expID, const int expType)
 
 		break;
 	case MONTHLY_T:
-		expData.Name = m_MonthlyTakData[expID][0];
+
+		try
+		{
+			expData.Name = m_MonthlyTakData.at(expID).at(0);
+
+		}
+		catch (std::out_of_range)
+		{
+			return expData;
+		}
+		
 		expData.Price = std::stod(m_MonthlyTakData[expID][1]);
 		expData.Info = m_MonthlyTakData[expID][2];
 		expData.Day = std::stoi(m_MonthlyTakData[expID][3]);
@@ -168,6 +210,94 @@ void FileManager::WriteGeneral(const GeneralData& data)
 	m_GeneralData = data;
 }
 
+void FileManager::UpdateIndices(unsigned short index, unsigned short expTime, unsigned short addOrDelete)
+{
+
+	if (addOrDelete == DELEXP)
+	{
+		switch (expTime)
+		{
+		case ONETIME:
+			m_GeneralData.CurrOneTimeExpCount -= 1;
+		case MONTHLY:
+			m_GeneralData.CurrMonthlyExpCount -= 1;
+		case ONETIME_T:
+			m_GeneralData.CurrOneTimeTakCount -= 1;
+		case MONTHLY_T:
+			m_GeneralData.CurrMonthlyTakCount -= 1;
+		}
+	}
+
+	WriteGeneral(m_GeneralData);
+
+	std::vector<unsigned int> listOfAllIndices;
+	for (unsigned int i = 0; i < m_GeneralData.CurrOneTimeExpCount; ++i)
+	{
+		listOfAllIndices.emplace_back(i);
+	}
+
+	std::reverse(listOfAllIndices.begin(), listOfAllIndices.end());
+
+	unsigned int nextID = 0;
+	switch (expTime)
+	{
+	case ONETIME:
+		nextID = m_GeneralData.CurrOneTimeExpCount;
+	case MONTHLY:
+		nextID = m_GeneralData.CurrMonthlyExpCount;
+	case ONETIME_T:
+		nextID = m_GeneralData.CurrMonthlyTakCount;
+	case MONTHLY_T:
+		nextID = m_GeneralData.CurrMonthlyTakCount;
+	}
+
+
+	if (addOrDelete == DELEXP)
+	{
+		for (unsigned int i = index; i < nextID; ++i)
+		{
+			
+			switch (expTime)
+			{
+			case ONETIME:
+				RemoveFromMap(i, m_OneTimeExpData);
+				Write(m_FilePath1, m_OneTimeExpData);
+			case MONTHLY:
+				RemoveFromMap(i, m_MonthlyExpData);
+				Write(m_FilePath2, m_MonthlyExpData);
+			case ONETIME_T:
+				RemoveFromMap(i, m_OneTimeTakData);
+				Write(m_FilePath3, m_OneTimeTakData);
+			case MONTHLY_T:
+				RemoveFromMap(i, m_MonthlyTakData);
+				Write(m_FilePath4, m_MonthlyTakData);
+			}
+		}
+	}
+	else
+	{
+		for (unsigned int i = 0; i < nextID; ++i)
+		{
+			switch (expTime)
+			{
+			case ONETIME:
+				RemoveFromMap(i, m_OneTimeExpData);
+				Write(m_FilePath1, m_OneTimeExpData);
+			case MONTHLY:
+				RemoveFromMap(i, m_MonthlyExpData);
+				Write(m_FilePath2, m_MonthlyExpData);
+			case ONETIME_T:
+				RemoveFromMap(i, m_OneTimeTakData);
+				Write(m_FilePath3, m_OneTimeTakData);
+			case MONTHLY_T:
+				RemoveFromMap(i, m_MonthlyTakData);
+				Write(m_FilePath4, m_MonthlyTakData);
+			}
+		}
+	}
+
+}
+
 void FileManager::Read(const std::string& filePath, std::unordered_map<int, std::vector<std::string>>& data)
 {
 	//INTERNAL
@@ -216,7 +346,16 @@ void FileManager::Write(const std::string& filePath, std::unordered_map<int, std
 void FileManager::AddDataToMap(const ExpenseData& data, std::unordered_map<int, std::vector<std::string>>& map)
 {
 	//INTERNAL
-	int nextIndex = map.size() + 1;
+	//int nextIndex = map.size() + 1;
+	int nextIndex = 1;
+
+	for (unsigned int i = map.size(); i > 0; --i)
+	{
+		auto nodeHandler = map.extract(i);
+		nodeHandler.key() = i + 1;
+		map.insert(std::move(nodeHandler));
+	}
+
 	map.insert({ nextIndex, { data.Name, std::to_string(data.Price), data.Info, std::to_string(data.Day), std::to_string(data.Month), std::to_string(data.Year)} });
 }
 
@@ -226,12 +365,14 @@ void FileManager::RemoveFromMap(const int expID, std::unordered_map<int, std::ve
 
 	map.erase(expID);
 
-	for (int i = expID + 1; i < map.size() + 2; ++i)
+	for (unsigned int i = expID + 1; i < map.size() + 2; ++i)
 	{
 		auto nodeHandler = map.extract(i);
 		nodeHandler.key() = i - 1;
 		map.insert(std::move(nodeHandler));
 	}
+
+	//__WARNING__ (might need to write here)
 
 }
 

@@ -49,24 +49,25 @@ void Expense::assignExpID() {
 void Expense::correctJsonExpID() {
 	//Function will sync expID in .json file to the IDs used in the QListWidget (reverse .json IDs)
 
-	const char* expTime;
+	unsigned short expTime;
 
 	switch (expType) {
 	case ONETIME:
-		expTime = "OneTimeExpense";
+		expTime = ONETIME;
 		break;
 	case MONTHLY:
-		expTime = "MonthlyExpense";
+		expTime = MONTHLY;
 		break;
 	case ONETIME_T:
-		expTime = "OneTimeTakings";
+		expTime = ONETIME_T;
 		break;
 	case MONTHLY_T:
-		expTime = "MonthlyTakings";
+		expTime = MONTHLY_T;
 		break;
 	}
 
 	//config::json.updateIndex(TOCHARPTR(config::user.userID), 0, expTime, ADDEXP);
+	//config::fm->UpdateIndices(0, expTime, ADDEXP);
 
 }
 

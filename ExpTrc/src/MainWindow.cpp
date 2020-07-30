@@ -143,18 +143,22 @@ void MainWindow::MonthEndEvents() {
     {
         config::fm->ClearExpenses(ONETIME);
         config::fm->ClearExpenses(ONETIME_T);
+        GeneralData gd = config::fm->GetGeneralData();
+        gd.balance += Calculator::CalculateIncome();
+        gd.balance -= Calculator::CalculateExpenses();
+        config::fm->WriteGeneral(gd);
+
         alreadyCalled = true;
     }
     else if (lastTakMonth != 0 && (lastTakMonth < (tmp->tm_mon + 1) || (lastTakMonth == 12 && lastTakMonth > (tmp->tm_mon + 1)))) 
     {
         config::fm->ClearExpenses(ONETIME);
         config::fm->ClearExpenses(ONETIME_T);
+        GeneralData gd = config::fm->GetGeneralData();
+        gd.balance += Calculator::CalculateIncome();
+        gd.balance -= Calculator::CalculateExpenses();
+        config::fm->WriteGeneral(gd);
     }
-    
-    GeneralData gd = config::fm->GetGeneralData();
-    gd.balance += Calculator::CalculateIncome();
-    gd.balance -= Calculator::CalculateExpenses();
-    config::fm->WriteGeneral(gd);
 }
 
 

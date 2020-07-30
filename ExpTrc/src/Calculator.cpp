@@ -8,7 +8,6 @@ double Calculator::CalculateExpenses() {
 
 	for (unsigned int i = 1; i <= gd.CurrOneTimeExpCount; ++i) {
 
-		//CurrentlySpentMoney += config::json.d["OneTimeExpense"][TOCHARPTR(config::user.userID)][TOCHARPTR(i)]["expPrice"].GetDouble();
 		const ExpenseData expData = config::fm->ReadExpense(i, ONETIME);
 		CurrentlySpentMoney += expData.Price;
 

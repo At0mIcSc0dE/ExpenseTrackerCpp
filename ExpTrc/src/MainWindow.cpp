@@ -60,10 +60,6 @@ MainWindow::MainWindow(const std::wstring& filePath, const std::wstring& exeFile
     //INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING || INITIALIZING
     ui.chbOneTime->setChecked(true);
 
-    //config::json.insertItemsToListbox(ui.lstbox, TOCHARPTR(config::user.userID), "OneTimeExpense", config::currency);
-    //config::json.insertItemsToListbox(ui.lstboxMonth, TOCHARPTR(config::user.userID), "MonthlyExpense", config::currency);
-    //config::json.insertItemsToListbox(ui.lstboxTakings, TOCHARPTR(config::user.userID), "OneTimeTakings", config::currency);
-    //config::json.insertItemsToListbox(ui.lstboxTakingsMonth, TOCHARPTR(config::user.userID), "MonthlyTakings", config::currency);
     ui.lstbox->insertAllItems(ONETIME);
     ui.lstboxMonth->insertAllItems(MONTHLY);
     ui.lstboxTakings->insertAllItems(ONETIME_T);
@@ -126,14 +122,14 @@ void MainWindow::UpdateLabels() {
 
 void MainWindow::MonthEndEvents() {
 
-
+    //@warning Doesn't delete everything and calculates wrong
     auto& _time = std::chrono::system_clock::now();
     std::time_t time__t = std::chrono::system_clock::to_time_t(_time);
     struct tm* tmp = gmtime(&time__t);
 
     const ExpenseData& expData = config::fm->ReadExpense(1, ONETIME);
     const ExpenseData& takData = config::fm->ReadExpense(1, ONETIME_T);
-    GeneralData gData = config::fm->GetGeneralData();
+    //GeneralData gData = config::fm->GetGeneralData();
 
     short unsigned int lastExpMonth = expData.Month;
     short unsigned int lastTakMonth = takData.Month;
@@ -143,44 +139,22 @@ void MainWindow::MonthEndEvents() {
 
     bool alreadyCalled = false;
 
-    if (lastExpMonth != 0 && (lastExpMonth < (tmp->tm_mon + 1) || (lastExpMonth == 12 && lastExpMonth > (tmp->tm_mon + 1)))) {
-
-        for (int i = 1; i <= gData.CurrOneTimeExpCount; ++i) {
-        
-            config::fm->DeleteExpense(i, ONETIME);
-        }
-        gData.CurrOneTimeExpCount = 0;
-
-        for (int i = 1; i <= gData.CurrOneTimeTakCount; ++i) {
-
-            config::fm->DeleteExpense(i, ONETIME_T);
-        }
-        gData.CurrOneTimeTakCount = 0;
-
-        gData.balance += Calculator::CalculateIncome();
-        gData.balance -= Calculator::CalculateExpenses();
+    if (lastExpMonth != 0 && (lastExpMonth < (tmp->tm_mon + 1) || (lastExpMonth == 12 && lastExpMonth > (tmp->tm_mon + 1)))) 
+    {
+        config::fm->ClearExpenses(ONETIME);
+        config::fm->ClearExpenses(ONETIME_T);
         alreadyCalled = true;
     }
-
-    if (lastTakMonth != 0 && (lastTakMonth < (tmp->tm_mon + 1) || (lastTakMonth == 12 && lastTakMonth > (tmp->tm_mon + 1)))) {
-        for (int i = 1; i <= gData.CurrOneTimeExpCount; ++i) {
-
-            config::fm->DeleteExpense(i, ONETIME);
-        }
-        gData.CurrOneTimeExpCount = 0;
-
-        for (int i = 1; i <= gData.CurrOneTimeTakCount; ++i) {
-
-            config::fm->DeleteExpense(i, ONETIME_T);
-        }
-        gData.CurrOneTimeTakCount = 0;
-
-        if (!alreadyCalled) {
-            gData.balance += Calculator::CalculateIncome();
-            gData.balance -= Calculator::CalculateExpenses();
-        }
+    else if (lastTakMonth != 0 && (lastTakMonth < (tmp->tm_mon + 1) || (lastTakMonth == 12 && lastTakMonth > (tmp->tm_mon + 1)))) 
+    {
+        config::fm->ClearExpenses(ONETIME);
+        config::fm->ClearExpenses(ONETIME_T);
     }
-    config::fm->WriteGeneral(gData);
+    
+    GeneralData gd = config::fm->GetGeneralData();
+    gd.balance += Calculator::CalculateIncome();
+    gd.balance -= Calculator::CalculateExpenses();
+    config::fm->WriteGeneral(gd);
 }
 
 

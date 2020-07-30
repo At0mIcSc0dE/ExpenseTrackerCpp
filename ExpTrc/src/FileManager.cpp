@@ -1,5 +1,5 @@
 #include "FileManager.h"
-
+#include "Calculator.h"
 
 
 FileManager::FileManager(const std::string& filePath1, const std::string& filePath2, const std::string& filePath3, const std::string& filePath4, const std::string& filePathG)
@@ -296,6 +296,29 @@ void FileManager::UpdateIndices(unsigned short index, unsigned short expTime, un
 		}
 	}
 
+}
+
+void FileManager::ClearExpenses(unsigned short expTime)
+{
+	switch (expTime)
+	{
+	case ONETIME:
+		m_OneTimeExpData.clear();
+		m_GeneralData.CurrOneTimeExpCount = 0; 
+		Write(m_FilePath1, m_OneTimeExpData);
+		break;
+	case ONETIME_T:
+		m_OneTimeTakData.clear();
+		m_GeneralData.CurrOneTimeTakCount = 0;
+		Write(m_FilePath3, m_OneTimeTakData);
+		break;
+	default:
+		throw std::invalid_argument("Invalid expTime");
+		return;
+	}
+
+	
+	WriteGeneral(m_GeneralData);
 }
 
 void FileManager::Read(const std::string& filePath, std::unordered_map<int, std::vector<std::string>>& data)

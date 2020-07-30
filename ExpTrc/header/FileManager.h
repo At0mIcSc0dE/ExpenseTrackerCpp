@@ -46,6 +46,8 @@ public:
 	
 	void UpdateIndices(unsigned short index, unsigned short expTime, unsigned short addOrDelete);
 
+	void ClearExpenses(unsigned short expTime);
+
 	const GeneralData& GetGeneralData() const { return m_GeneralData; }
 
 private:
